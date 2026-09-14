@@ -28,4 +28,29 @@
     echo "  node: $(node --version)"
     echo "  git:  $(git --version | cut -d' ' -f3)"
   '';
+
+  # Git hooks managed by devenv (installed automatically when entering the shell).
+  #
+  # - eslint: lint on every commit (fast feedback)
+  # - vitest: full test suite on every push (slower, so pre-push keeps commits snappy)
+  git-hooks.hooks = {
+    eslint = {
+      enable = true;
+      name = "eslint";
+      description = "Lint changes with ESLint";
+      entry = "bun run lint";
+      language = "system";
+      pass_filenames = false;
+    };
+
+    vitest = {
+      enable = true;
+      name = "vitest";
+      description = "Run the test suite before pushing";
+      entry = "bun run test";
+      language = "system";
+      pass_filenames = false;
+      stages = [ "pre-push" ];
+    };
+  };
 }
