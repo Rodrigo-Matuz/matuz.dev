@@ -1,75 +1,48 @@
-# React + TypeScript + Vite
+# matuz.dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The personal homepage and portfolio for Matuz (Rodrigo dos Santos Lima). Built with React 19, TypeScript, Vite, Tailwind CSS v4, react-router, and Motion. Bilingual (pt-BR default, EN secondary).
 
-Currently, two official plugins are available:
+## Commands
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `bun run dev` — start the local Vite server.
+- `bun run build` — type-check and make a production build.
+- `bun run lint` — run ESLint.
+- `bun run preview` — preview the production build.
+- `bun run test` — run the test suite once (Vitest).
+- `bun run test:watch` — run tests in watch mode.
+- `bun run test:coverage` — run tests with a coverage report (`coverage/index.html`).
 
-## React Compiler
+## Git hooks & CI
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Local hooks** (devenv-managed, active inside the devenv shell): ESLint runs on every `git commit`; the full Vitest suite runs on every `git push`.
+- **Remote CI** (`.github/workflows/ci.yml`): on every push to `main` and every PR, GitHub Actions runs `lint → test → build` with Bun on Ubuntu. All three must pass.
 
-## Expanding the ESLint configuration
+## Project map
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `src/main.tsx` — entry point, mounts `App`.
+- `src/App.tsx` — router shell (`react-router`); maps paths to pages.
+- `src/pages/` — route-level pages. `HomePage.tsx` is the main composition; its test lives alongside it (`HomePage.test.tsx`).
+- `src/components/` — folder-per-component (see `src/components/README.md`):
+  - `layout/` — `Container`, `Section`, `SectionHeading`, `Header`, `Footer`, `PageBackground`
+  - `ui/` — `Button`, `Eyebrow`, `ArrowLink`, `LanguageMenu`, `Badge`, `Card`, `Divider`, `IconButton`
+  - `content/` — portfolio-specific cards (`ProjectCard`, `SocialLink`, `TechBadge`) awaiting data
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+  Each component folder holds the component, its colocated test, and an `index.ts` barrel re-exporting the default. Import as `import Button from '$/components/ui/Button'` — the barrel resolves the folder, so no `Button/Button` repetition.
+- `src/content/` — bilingual locale dictionaries (`eng.json`, `pt-br.json`), loader (`index.ts`), and structural tests.
+- `src/lib/motion.ts` — central Motion presets (easings, variants, viewport config).
+- `src/index.css` — Tailwind v4 theme tokens, base styles, global utilities.
+- `src/assets/hero-background.webp` — page background image.
+- `src/test/setup.ts` — Vitest setup (jest-dom matchers, cleanup).
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Conventions
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Pages compose the component kit; avoid hand-rolling containers, sections, or buttons inline.
+- **Components use default exports** through their folder's `index.ts`; named type exports (`ButtonProps`, `EyebrowColor`) come from the same barrel.
+- **Tests are colocated** with their subject (`Button/Button.test.tsx`), not in a separate tree.
+- Text content lives in the locale JSON files — never hard-code user-facing strings in components.
+- Animations: import presets from `src/lib/motion.ts`; don't define one-off easings inline.
+- Quotes are single in TS/TSX (enforced by ESLint); indentation is 4 spaces.
 
-```
+For CI, gate on: `bun run lint && bun run test && bun run build`.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+See `src/DESIGN.md` for the palette and design rules, and `guide.md` for the project vision and roadmap.

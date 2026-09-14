@@ -1,4 +1,4 @@
-# matuz.dev — Starter
+# matuz.dev — Project Guide
 
 > A personal website, portfolio, playground, and eventually a small corner of the internet that is entirely mine.
 
@@ -30,30 +30,32 @@ The professional areas should remain polished and reliable. The experimental are
 
 ---
 
-## 2. Initial Tech Stack
+## 2. Tech Stack
 
 ### Frontend
 
-- React
-- TypeScript
+- React 19 + TypeScript
 - Vite
-- Tailwind CSS
-- Motion / Framer Motion
+- Tailwind CSS v4 (CSS-first `@theme` config)
+- Motion (`motion/react`)
 - Lucide React
 - React Router
 
+### Testing
+
+- Vitest + jsdom
+- Testing Library (`@testing-library/react`, `user-event`, `jest-dom`)
+- Colocated tests, folder-per-component structure
+
 ### Content
 
-- Markdown initially
-- `remark` / `rehype` ecosystem as needed
-- `react-markdown` initially
-- Consider MDX later if interactive/custom content becomes useful
+- Notes are Markdown, fetched at runtime from a private Obsidian repository (see §7)
+- `react-markdown` / `remark` / `rehype` when the notes system is built
+- MDX only if interactive content becomes genuinely useful
 
 ### Deployment
 
-- Heroku
-- GitHub
-- GitHub → Heroku deployment
+- Heroku, deployed from GitHub
 
 ### Not planned initially
 
@@ -61,15 +63,12 @@ Avoid adding infrastructure just for the sake of showing infrastructure.
 
 No initial need for:
 
-- Redux
-- Zustand
-- Express/Fastify
-- Prisma
-- PostgreSQL
+- Redux / Zustand
+- Express / Fastify
+- Prisma / PostgreSQL
 - Authentication
 - CMS
 - GraphQL
-- Microservices
 - Docker Compose
 - HTMX alongside React
 - Next.js purely because it is popular
@@ -78,75 +77,7 @@ If a real requirement appears later, add the technology then.
 
 ---
 
-## 3. Why React Instead of HTMX?
-
-HTMX is interesting, but it does not fit the main goal particularly well.
-
-The portfolio is intended to showcase modern frontend/full-stack skills, and React + TypeScript gives the project a natural foundation for:
-
-- component architecture
-- animations
-- interactive UI
-- reusable components
-- client-side routing
-- API integrations
-- dynamic content
-
-HTMX could make sense for a server-rendered application, but adding it to this React project would mostly add complexity without solving a current problem.
-
-**Decision for now: React + TypeScript, no HTMX.**
-
----
-
-## 4. Site Structure
-
-### Professional / Main Site
-
-```text
-/
-├── Home
-├── About
-├── Projects
-├── Contact
-└── Notes
-```
-
-### Playground
-
-```text
-/lol
-/lab
-/experiments
-/...
-```
-
-The playground should not be constrained by the portfolio's professional structure.
-
----
-
-## 5. Homepage
-
-The homepage should primarily sell **me as a developer**, not function as a résumé dump.
-
-Possible content:
-
-1. Hero / introduction
-2. Short description of what I build
-3. Selected projects
-4. Technology/toolkit section
-5. Social links
-6. Notes / recent thoughts
-7. Footer
-
-Avoid generic portfolio copy such as:
-
-> Hello, I'm John. I'm a passionate developer who loves solving problems.
-
-The copy should feel personal and concise.
-
----
-
-## 6. Projects
+## 3. Projects
 
 Projects should be represented as data rather than hard-coded directly into page JSX.
 
@@ -154,12 +85,12 @@ Example concept:
 
 ```ts
 {
-  title: "...",
-  description: "...",
+  title: '...',
+  description: '...',
   technologies: [...],
-  github: "...",
-  demo: "...",
-  image: "...",
+  github: '...',
+  demo: '...',
+  image: '...',
 }
 ```
 
@@ -179,7 +110,7 @@ Possible interactions:
 
 ---
 
-## 7. About
+## 4. About
 
 The About page should explain who I am as a developer and what I like building.
 
@@ -196,16 +127,14 @@ Keep it human rather than turning it into a second résumé.
 
 ---
 
-## 8. Contact / Socials
+## 5. Contact / Socials
 
 Include relevant ways to find/contact me.
-
-Possible links:
 
 - GitHub
 - Discord
 - LinkedIn
-- Email
+- Email (mail@matuz.me — wired up)
 - Other social platforms if useful
 
 The contact page should remain simple and reliable.
@@ -214,7 +143,7 @@ A real contact form can be added later if there is a reason to have one.
 
 ---
 
-## 9. Technology / Toolkit Section
+## 6. Technology / Toolkit Section
 
 The site should show the technologies I work with, but avoid making it look like a giant wall of logos.
 
@@ -266,7 +195,7 @@ Primary technologies can receive more visual emphasis than technologies I only o
 
 ---
 
-## 10. Notes System
+## 7. Notes System
 
 The notes section is **not intended to be a traditional blog**.
 
@@ -282,66 +211,42 @@ It should be a place for casual public writing:
 - media recommendations
 - general yapping
 
-The content should be written as Markdown and stored in a **separate Git repository**.
+### Architecture: Obsidian repository as the source of truth
 
-### Intended flow
-
-```text
-Separate notes repository
-        ↓
-Markdown files
-        ↓
-Website build/content loader
-        ↓
-Markdown parser
-        ↓
-React-rendered notes
-```
-
-The main website repository should not need to contain all note content.
-
-### Possible notes repository
+Notes are written in **Obsidian** and pushed to a **private GitHub repository**. The website does **not** store note content — it fetches Markdown from a specific tracked folder in that repo and renders it.
 
 ```text
-notes/
-├── README.md
-├── notes/
-│   ├── nixos.md
-│   ├── things-i-like.md
-│   ├── random-thought.md
-│   └── ...
-└── images/
-    ├── something.png
-    └── ...
+Obsidian vault (private GitHub repo)
+        ↓  fetch with a fine-grained personal access token
+GitHub Contents API (raw markdown from the tracked folder)
+        ↓  our endpoint holds the token
+Markdown parser (react-markdown + remark/rehype)
+        ↓
+React-rendered note pages
 ```
 
-Example:
+### How it works
 
-```md
-# Something I Like
+1. **Private repo, public site.** The notes repo stays private. The site fetches only a specific tracked folder (e.g. `notes/public/`), so the rest of the vault is never exposed.
+2. **Token handling.** A GitHub fine-grained PAT scoped to *only* the notes repo with *contents: read*. It lives server-side (Heroku config var / serverless env). **The token is never embedded in the frontend bundle or the public site repository.** Frontend requests go through our own endpoint, which attaches the token.
+3. **Fetching.** The endpoint lists the tracked folder via the GitHub Contents API, returns note metadata (name, last-updated), and serves individual files as raw Markdown.
+4. **Rendering.** The site parses the Markdown and renders it with a polished reading experience — typography consistent with the site's editorial style, syntax-highlighted code blocks, images and links resolved against the notes repo, YouTube embeds where wanted.
+5. **Caching.** GitHub API rate limits make caching mandatory: cache responses server-side (interval revalidation or ETags/webhooks on push) so reader traffic never burns through the token's rate limit.
 
-This is a random thing I discovered.
+### Why this design
 
-![Cool image](../images/cool.png)
-
-I also really liked this video:
-
-[YouTube](https://youtube.com/...)
-```
-
-The website should turn this into a polished reading experience.
+- Writing stays where I already write (Obsidian) — zero extra tooling.
+- The vault never becomes public; only the curated folder is served.
+- The website repository stays clean of content.
+- Adding a note is a git push to the vault; the site picks it up on the next cache refresh — no deploy needed.
 
 ### Markdown → MDX later
 
-Start with ordinary Markdown.
-
-If notes eventually need interactive components, custom embeds, code playgrounds, or other React components, consider migrating to MDX.
-
-Do not introduce MDX just because it is technically cool.
+Start with ordinary Markdown. If notes eventually need interactive components, custom embeds, or code playgrounds, consider MDX then — do not introduce it just because it is technically cool.
 
 ---
 
-## 11. Visual Direction
+## 8. Visual Direction
 
 The site should be:
 
@@ -354,11 +259,7 @@ The site should be:
 - Interactive
 - Not extravagant
 
-A background image will be used as part of the visual identity.
-
-The plan is to generate an **abstract, modern AI-generated background** rather than use a generic stock image.
-
-The background should support the interface rather than compete with it.
+A background image is part of the visual identity — currently `src/assets/hero-background.webp`, to be replaced with a generated abstract piece later.
 
 ### Background principles
 
@@ -369,120 +270,47 @@ The background should support the interface rather than compete with it.
 - preferably with areas of lower visual complexity behind text
 - avoid excessive "AI art" appearance
 
-Think of the background as atmosphere, not the centerpiece.
+Think of the background as atmosphere, not the centerpiece. Full palette and typography live in `src/DESIGN.md`.
 
 ---
 
-## 12. UI / Buttons
-
-Buttons should look modern but dependable.
-
-Avoid:
-
-- excessive glassmorphism
-- huge glowing borders
-- unnecessary gradients everywhere
-- extreme neon effects
-- animations that make basic navigation annoying
-
-Prefer:
-
-- good spacing
-- clear hierarchy
-- subtle shadows
-- restrained gradients
-- tasteful hover states
-- consistent border radius
-- strong typography
-- obvious interactive states
-
-The design should communicate:
-
-> "This is a serious website that happens to be fun."
-
-rather than:
-
-> "Look how many CSS effects I know."
-
----
-
-## 13. Animation
-
-Animation is important, but should serve the design.
-
-Potential uses:
-
-- page transitions
-- hero entrance animations
-- subtle text reveals
-- project-card hover movement
-- image transitions
-- button micro-interactions
-- scrolling effects
-- technology icon reactions
-- subtle background movement
-
-Avoid animating everything.
-
-The desired reaction is:
-
-> "Damn, this is polished."
-
-Not:
-
-> "Why is the website fighting me?"
-
----
-
-## 14. Possible Advanced Flex: WebGL
-
-Potential future addition:
-
-- Three.js
-- React Three Fiber
-
-A small WebGL element could be used as a visual accent or interactive object.
-
-Do **not** turn the portfolio into a 3D showcase just to demonstrate Three.js.
-
-Only add it if it improves the design.
-
-This is a **Phase 2+ idea**.
-
----
-
-## 15. Architecture Philosophy
+## 9. Architecture Philosophy
 
 Keep the project easy to change.
 
-Possible initial structure:
+Current structure:
 
 ```text
 matuz.dev/
 ├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── data/
-│   │   ├── projects.ts
-│   │   └── technologies.ts
-│   ├── lib/
-│   ├── hooks/
-│   ├── notes/
-│   ├── styles/
+│   ├── components/        # folder-per-component, default exports via index.ts
+│   │   ├── layout/
+│   │   ├── ui/
+│   │   └── content/
+│   ├── pages/             # route-level pages (HomePage)
+│   ├── content/           # bilingual locale dictionaries (pt-BR default, en)
+│   ├── data/              # projects.ts, technologies.ts (pending)
+│   ├── lib/               # motion presets, shared utilities
+│   ├── test/              # Vitest setup
+│   ├── App.tsx            # router shell
 │   └── main.tsx
 ├── public/
-├── package.json
-├── vite.config.ts
-└── ...
+├── guide.md               # this file
+└── vite.config.ts
 ```
 
-The exact structure can change as the application grows.
+Key conventions:
+
+- `$/*` path alias points at `src/*`
+- Components: default exports through folder barrels, colocated tests
+- Text content lives in locale JSON files, never hard-coded in components
+- Animation presets centralized in `src/lib/motion.ts`
 
 Prefer simple, obvious architecture over abstractions created before they are needed.
 
 ---
 
-## 16. GitHub
+## 10. GitHub
 
 The source code should be public.
 
@@ -506,11 +334,9 @@ Do not artificially add complexity just to make the repository look impressive.
 
 ---
 
-## 17. Deployment
+## 11. Deployment
 
-Initial deployment target:
-
-**Heroku**
+Initial deployment target: **Heroku**.
 
 Possible flow:
 
@@ -524,13 +350,15 @@ Heroku
 matuz.dev
 ```
 
-Heroku is acceptable even though other static hosting platforms may be simpler.
+CI gate before deploy: `bun run lint && bun run test && bun run build`.
 
-If Heroku becomes inconvenient later, deployment can be reconsidered without changing the frontend architecture.
+Secrets (including the notes-repo token, §7) live in Heroku config vars — never in the repository.
+
+Heroku is acceptable even though other static hosting platforms may be simpler. If it becomes inconvenient later, deployment can be reconsidered without changing the frontend architecture.
 
 ---
 
-## 18. Potential Future Features
+## 12. Potential Future Features
 
 Ideas, not requirements:
 
@@ -557,56 +385,57 @@ Only build these when they actually become interesting.
 
 ---
 
-## 19. Development Phases
+## 13. Development Phases
 
 ### Phase 1 — Foundation
 
-- [ ] Initialize React + TypeScript + Vite
-- [ ] Configure Tailwind
-- [ ] Configure routing
-- [ ] Establish typography
-- [ ] Establish color palette
-- [ ] Establish spacing/layout system
-- [ ] Create reusable buttons/components
-- [ ] Add background image
-- [ ] Build responsive shell/navigation
+- [x] Initialize React + TypeScript + Vite
+- [x] Configure Tailwind
+- [x] Configure routing
+- [x] Establish typography
+- [x] Establish color palette
+- [x] Establish spacing/layout system
+- [x] Create reusable buttons/components
+- [x] Add background image
+- [x] Build responsive shell/navigation
+- [x] Set up testing (Vitest + Testing Library, 100+ tests)
 
 ### Phase 2 — Main Pages
 
-- [ ] Home
+- [x] Home
+- [x] Footer
 - [ ] About
 - [ ] Projects
 - [ ] Contact
-- [ ] Footer
 - [ ] Social links
 
 ### Phase 3 — Visual Polish
 
+- [x] Hero animations
+- [x] Scroll-triggered section reveals
+- [x] Language-switch transition
 - [ ] Page transitions
-- [ ] Hero animations
 - [ ] Project-card interactions
 - [ ] Technology icon interactions
 - [ ] Responsive/mobile polish
-- [ ] Accessibility pass
+- [ ] Accessibility pass (incl. prefers-reduced-motion)
 - [ ] Performance pass
 
 ### Phase 4 — Notes
 
-- [ ] Create separate notes repository
-- [ ] Define Markdown format
-- [ ] Load notes during build
-- [ ] Render Markdown
-- [ ] Add images
-- [ ] Add links
-- [ ] Add YouTube embeds
-- [ ] Create notes index
-- [ ] Create individual note pages
+- [ ] Create private Obsidian notes repository with a tracked public folder
+- [ ] Generate fine-grained PAT (contents: read, single repo)
+- [ ] Build fetch endpoint (server holds the token, frontend never does)
+- [ ] Implement caching / rate-limit strategy
+- [ ] Render Markdown with site-consistent typography
+- [ ] Add images, links, YouTube embeds
+- [ ] Create notes index and individual note pages
 
 ### Phase 5 — Deployment
 
+- [x] GitHub Actions CI (lint + test + build on push/PR)
 - [ ] Connect GitHub
-- [ ] Configure Heroku
-- [ ] Configure environment variables if needed
+- [ ] Configure Heroku (incl. config vars / secrets)
 - [ ] Configure domain
 - [ ] Test production build
 - [ ] Test mobile
@@ -622,7 +451,7 @@ Only build these when they actually become interesting.
 
 ---
 
-## 20. Design Rule
+## 14. Design Rule
 
 When deciding whether to add something, ask:
 
@@ -636,7 +465,7 @@ If the answer is mostly "no", don't add it.
 
 ---
 
-## 21. Current Direction
+## 15. Current Direction
 
 ### Identity
 
@@ -660,15 +489,11 @@ Animated and responsive, but restrained.
 
 ### Content
 
-Projects + About + Contact + casual Markdown notes.
-
-### Content source
-
-Separate Git repository for notes.
+Projects + About + Contact + casual Markdown notes (fetched from a private Obsidian repo).
 
 ### Main stack
 
-**React + TypeScript + Vite + Tailwind + Motion**
+**React 19 + TypeScript + Vite + Tailwind v4 + Motion + React Router**
 
 ### Deployment
 
