@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, useAnimationControls } from 'motion/react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
 import Container from '$/components/layout/Container';
 import Footer from '$/components/layout/Footer';
 import Header from '$/components/layout/Header';
@@ -14,6 +15,8 @@ import { locales, type Language } from '$/content';
 import { EASE, fadeUp, staggerContainer, viewportOnce } from '$/lib/motion';
 import backgroundImage from '$/assets/hero-background.webp';
 
+// Per-item accents. All of these are light enough to read on the dark
+// background — do not swap for darker shades of the brand palette.
 const serviceAccentClasses = [
     'text-primary',
     'text-secondary',
@@ -27,6 +30,24 @@ const experienceAccentClasses = [
     'text-accent',
     'text-warning',
     'text-primary',
+];
+// `hover:` (not `group-hover:`) — group-hover only styles descendants of the
+// group, so it would never apply to the anchor itself.
+const correspondenceHoverClasses = [
+    'hover:text-secondary',
+    'hover:text-primary',
+    'hover:text-accent',
+    'hover:text-warning',
+    'hover:text-success',
+    'hover:text-highlight',
+];
+const correspondenceMetaHoverClasses = [
+    'group-hover:text-secondary',
+    'group-hover:text-primary',
+    'group-hover:text-accent',
+    'group-hover:text-warning',
+    'group-hover:text-success',
+    'group-hover:text-highlight',
 ];
 
 export function HomePage() {
@@ -61,7 +82,7 @@ export function HomePage() {
                 animate={contentControls}
                 initial={false}
             >
-                <section className="flex min-h-[calc(100vh-112px)] flex-col justify-center pb-20 pt-14 sm:min-h-[calc(100vh-73px)] sm:pb-24 sm:pt-20">
+                <section className="flex min-h-screen flex-col justify-center pb-20 pt-32 sm:pb-24 sm:pt-36">
                     <Container>
                         <motion.div
                             variants={staggerContainer}
@@ -88,7 +109,7 @@ export function HomePage() {
 
                             <motion.div
                                 variants={fadeUp}
-                                className="mt-10 grid max-w-4xl gap-8 border-t-2 border-secondary pt-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end"
+                                className="mt-10 grid max-w-4xl gap-8 border-t-2 border-warning pt-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end"
                             >
                                 <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
                                     {content.hero.introduction}
@@ -186,10 +207,10 @@ export function HomePage() {
                                             (highlight, index) => (
                                                 <li
                                                     key={highlight}
-                                                    className="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-border py-5 sm:grid-cols-[4rem_1fr]"
+                                                    className="grid grid-cols-[3rem_1fr] gap-4 border-b border-border py-5 sm:grid-cols-[5rem_1fr]"
                                                 >
                                                     <span
-                                                        className={`font-mono text-[10px] tracking-[0.14em] ${experienceAccentClasses[index]}`}
+                                                        className={`font-mono text-sm font-semibold tracking-[0.1em] sm:text-base ${experienceAccentClasses[index]}`}
                                                     >
                                                         0{index + 1}
                                                     </span>
@@ -290,12 +311,24 @@ export function HomePage() {
                                     <a
                                         key={link.label}
                                         href={link.href}
-                                        className="group flex items-center justify-between py-5 transition-colors hover:text-secondary"
+                                        className={`group flex items-center justify-between py-5 transition-colors ${correspondenceHoverClasses[index % correspondenceHoverClasses.length]}`}
                                     >
-                                        <span className="font-display text-2xl tracking-[-0.03em] sm:text-3xl">
-                                            {link.label}
+                                        <span className="flex items-center gap-4">
+                                            {typeof link.icon === 'string' &&
+                                                isBrandIconName(link.icon) && (
+                                                    <BrandIcon
+                                                        name={link.icon}
+                                                        size={22}
+                                                        className="shrink-0 transition-transform group-hover:scale-110 sm:size-6"
+                                                    />
+                                                )}
+                                            <span className="font-display text-2xl tracking-[-0.03em] sm:text-3xl">
+                                                {link.label}
+                                            </span>
                                         </span>
-                                        <span className="flex items-center gap-4 text-[10px] font-medium uppercase tracking-[0.16em] text-subtle group-hover:text-secondary">
+                                        <span
+                                            className={`flex items-center gap-4 text-[10px] font-medium uppercase tracking-[0.16em] text-subtle transition-colors ${correspondenceMetaHoverClasses[index % correspondenceMetaHoverClasses.length]}`}
+                                        >
                                             <span>0{index + 1}</span>
                                             <ArrowUpRight
                                                 size={18}
