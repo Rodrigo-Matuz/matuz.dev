@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import { locales, type Language } from '$/content';
 
+import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
 import LanguageMenu from '$/components/ui/LanguageMenu';
 
 interface HeaderProps {
@@ -7,11 +9,50 @@ interface HeaderProps {
     onLanguageChange: (language: Language) => void;
 }
 
+/**
+ * Scroll threshold (in px) past which the show-on-scroll-up behavior kicks in.
+ * Below it (near the top of the page) the header is always visible.
+ */
+const SCROLL_THRESHOLD = 80;
+
 export function Header({ language, onLanguageChange }: HeaderProps) {
     const content = locales[language];
+    const [isHidden, setIsHidden] = useState(false);
+
+    useEffect(() => {
+        let lastScrollY = window.scrollY;
+
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+
+            if (scrollY <= SCROLL_THRESHOLD) {
+                setIsHidden(false);
+            } else if (scrollY > lastScrollY) {
+                // Scrolling down — tuck the header away.
+                setIsHidden(true);
+            } else if (scrollY < lastScrollY) {
+                // Scrolling up — reveal the header.
+                setIsHidden(false);
+            }
+
+            lastScrollY = scrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <header className="relative z-20 border-b border-foreground/10 bg-background/75 backdrop-blur-md">
+        <header
+            className={`
+        fixed inset-x-0 top-0 z-20
+        border-b border-foreground/10
+        bg-background/75 backdrop-blur-md
+        transition-transform duration-300 ease-out
+        ${isHidden ? '-translate-y-full' : 'translate-y-0'}
+      `}
+        >
             <nav
                 className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-8 sm:py-5 lg:px-10"
                 aria-label={content.navigation.primary}
@@ -37,8 +78,16 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                         <a
                             key={link.label}
                             href={link.href}
-                            className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted transition-colors hover:text-primary sm:text-xs"
+                            className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.14em] text-muted transition-colors hover:text-primary sm:text-xs"
                         >
+                            {typeof link.icon === 'string' &&
+                                isBrandIconName(link.icon) && (
+                                    <BrandIcon
+                                        name={link.icon}
+                                        size={13}
+                                        className="opacity-70 transition-opacity group-hover:opacity-100"
+                                    />
+                                )}
                             {link.label}
                         </a>
                     ))}

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -84,5 +84,85 @@ describe('Header', () => {
                 name: locales['pt-BR'].navigation.languageSelector,
             }),
         ).toHaveTextContent('PT-BR');
+    });
+
+    describe('show on scroll up', () => {
+        const fireScroll = (scrollY: number) => {
+            Object.defineProperty(window, 'scrollY', {
+                configurable: true,
+                value: scrollY,
+            });
+            act(() => {
+                window.dispatchEvent(new Event('scroll'));
+            });
+        };
+
+        it('is visible near the top of the page', () => {
+            Object.defineProperty(window, 'scrollY', {
+                configurable: true,
+                value: 0,
+            });
+
+            const { container } = render(
+                <Header language="en" onLanguageChange={() => {}} />,
+            );
+
+            const header = container.firstElementChild as HTMLElement;
+
+            expect(header).toHaveClass('translate-y-0');
+            expect(header).not.toHaveClass('-translate-y-full');
+        });
+
+        it('hides when scrolling down past the threshold', () => {
+            Object.defineProperty(window, 'scrollY', {
+                configurable: true,
+                value: 0,
+            });
+
+            const { container } = render(
+                <Header language="en" onLanguageChange={() => {}} />,
+            );
+
+            fireScroll(200);
+
+            const header = container.firstElementChild as HTMLElement;
+
+            expect(header).toHaveClass('-translate-y-full');
+        });
+
+        it('reveals again when scrolling up', () => {
+            Object.defineProperty(window, 'scrollY', {
+                configurable: true,
+                value: 0,
+            });
+
+            const { container } = render(
+                <Header language="en" onLanguageChange={() => {}} />,
+            );
+
+            fireScroll(200);
+            fireScroll(150);
+
+            const header = container.firstElementChild as HTMLElement;
+
+            expect(header).toHaveClass('translate-y-0');
+        });
+
+        it('stays visible when scrolling down near the top', () => {
+            Object.defineProperty(window, 'scrollY', {
+                configurable: true,
+                value: 0,
+            });
+
+            const { container } = render(
+                <Header language="en" onLanguageChange={() => {}} />,
+            );
+
+            fireScroll(40);
+
+            const header = container.firstElementChild as HTMLElement;
+
+            expect(header).toHaveClass('translate-y-0');
+        });
     });
 });
