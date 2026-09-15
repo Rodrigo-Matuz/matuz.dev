@@ -22,7 +22,7 @@ Use tokens as Tailwind classes, e.g. `text-primary`, `bg-surface`, and `border-b
 
 ## Future background image
 
-`PageBackground` accepts an optional `src` prop. The current placeholder is `src/assets/hero-background.webp`; when the AI artwork is ready, swap the import in `src/pages/HomePage.tsx` and render `<PageBackground src={artwork} />`. Keep the image low-contrast (the component already sets opacity) so it supports rather than competes with page copy.
+`PageBackground` accepts an optional `src` prop. The current placeholder is `src/assets/hero-background.webp`; when the AI artwork is ready, swap the import in `src/pages/HomePage/HomePage.tsx` and render `<PageBackground src={artwork} />`. Keep the image low-contrast (the component already sets opacity) so it supports rather than competes with page copy.
 
 ## Typography
 
@@ -41,7 +41,7 @@ Loaded via Google Fonts in `index.html`:
 Reusable primitives live in `src/components/` and encode these design rules:
 
 - `Container` — max-width + responsive gutters (use instead of repeating `mx-auto max-w-7xl px-*`).
-- `Section` — vertical rhythm wrapper; `band` / `band="soft"` gives the alternating blurred background bands (`/75` and `/40` opacity respectively).
+- `Section` — vertical rhythm wrapper; `band` / `band="soft"` gives the alternating solid background bands (`bg-background` and `bg-surface` respectively).
 - `Eyebrow` — the small uppercase mono label; accepts a theme `color` and optional `line`.
 - `Button` — square-edged uppercase CTA with `color` variants (`accent`, `primary`, `outline`); renders as `<a>` when given `href`.
 - `ArrowLink` — text link with the animated diagonal arrow.
