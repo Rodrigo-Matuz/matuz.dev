@@ -22,8 +22,8 @@ describe('Section', () => {
 
         const section = container.firstElementChild as HTMLElement;
 
-        expect(section).not.toHaveClass('bg-background/75');
-        expect(section).not.toHaveClass('bg-background/40');
+        expect(section).not.toHaveClass('bg-background');
+        expect(section).not.toHaveClass('bg-surface');
     });
 
     it('applies the solid band treatment when band is true', () => {
@@ -31,8 +31,8 @@ describe('Section', () => {
 
         const section = container.firstElementChild as HTMLElement;
 
-        expect(section).toHaveClass('bg-background/75');
-        expect(section).toHaveClass('backdrop-blur-md');
+        expect(section).toHaveClass('bg-background');
+        expect(section).not.toHaveClass('backdrop-blur-md');
         expect(section).toHaveClass('border-y');
     });
 
@@ -41,8 +41,8 @@ describe('Section', () => {
 
         const section = container.firstElementChild as HTMLElement;
 
-        expect(section).toHaveClass('bg-background/40');
-        expect(section).toHaveClass('backdrop-blur-md');
+        expect(section).toHaveClass('bg-surface');
+        expect(section).not.toHaveClass('backdrop-blur-md');
     });
 
     it('forwards the id for anchor navigation', () => {
@@ -59,6 +59,6 @@ describe('Section', () => {
         const section = container.firstElementChild as HTMLElement;
 
         expect(section).toHaveClass('extra-class');
-        expect(section).toHaveClass('bg-background/75');
+        expect(section).toHaveClass('bg-background');
     });
 });

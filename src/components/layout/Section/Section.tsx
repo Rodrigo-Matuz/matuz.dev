@@ -4,15 +4,15 @@ interface SectionProps extends HTMLAttributes<HTMLElement> {
     id?: string;
     /**
      * Band treatment for alternating sections:
-     * - `true`: blurred band (bg-background/75)
-     * - `"soft"`: more transparent band (bg-background/40) for lower-contrast sections
+     * - `true`: solid band (bg-background)
+     * - `"soft"`: solid raised band (bg-surface) for lower-contrast sections
      */
     band?: boolean | 'soft';
 }
 
 const bandStyles = {
-    true: 'border-y border-foreground/10 bg-background/75 backdrop-blur-md',
-    soft: 'border-y border-foreground/10 bg-background/40 backdrop-blur-md',
+    true: 'border-y border-foreground/10 bg-background',
+    soft: 'border-y border-foreground/10 bg-surface',
 };
 
 export function Section({
