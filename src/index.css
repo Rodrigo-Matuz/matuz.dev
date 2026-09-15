@@ -3,7 +3,7 @@
 @theme {
   /* Brand: retain these values unless the visual identity is intentionally changing. */
   --color-primary: #1e65ff; --color-secondary: #702ef3; --color-accent: #fc1a70; --color-warning: #ff4d00; --color-highlight: #ffff87; --color-success: #a4e400;
-  --color-background: #050505; --color-surface: #101010; --color-surface-raised: #151515; --color-surface-hover: #202020; --color-border: #252525;
+  --color-background: #030a14; --color-surface: #010a17; --color-surface-raised: #151515; --color-surface-hover: #202020; --color-border: #252525;
   --color-foreground: #f5f5f5; --color-muted: #a1a1aa; --color-subtle: #71717a;
   --font-sans: "Inter", "Roboto", ui-sans-serif, system-ui, sans-serif; --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace; --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
