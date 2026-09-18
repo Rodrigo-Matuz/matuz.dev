@@ -3,7 +3,7 @@
  *
  * `motion` is installed; animations will be applied gradually in a later step.
  * Everything animation-related should live here so durations/easings stay
- * consistent with the site's restrained motion philosophy (see DESIGN.md).
+ * consistent with the site's restrained motion philosophy (see docs/DESIGN.md).
  *
  * Usage later, e.g.:
  *   import { motion } from "motion/react";

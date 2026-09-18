@@ -53,13 +53,13 @@ bun run preview   # preview the production build
 
 ## Documentation
 
-- [`guide.md`](guide.md) — the project vision, architecture decisions, notes-system design, and development roadmap.
+- [`docs/guide.md`](docs/guide.md) — the project vision, architecture decisions, notes-system design, and development roadmap.
 - [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) — development notes: commands, project map, and code conventions.
-- [`src/DESIGN.md`](src/DESIGN.md) — design tokens, typography, and motion rules.
+- [`docs/DESIGN.md`](docs/DESIGN.md) — design tokens, typography, and motion rules.
 
 ## Roadmap
 
-The site is under active development. Done so far: the foundation (design system, component kit, testing, CI), the homepage with hero/section animations and language switching, and the footer. Next up: About, Projects, and Contact pages, followed by a Markdown notes system fed from a private Obsidian vault. The full roadmap lives in [`guide.md`](guide.md).
+The site is under active development. Done so far: the foundation (design system, component kit, testing, CI), the homepage with hero/section animations and language switching, and the footer. Next up: About, Projects, and Contact pages, followed by a Markdown notes system fed from a private Obsidian vault. The full roadmap lives in [`docs/guide.md`](docs/guide.md).
 
 ## License
 

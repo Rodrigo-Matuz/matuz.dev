@@ -1,6 +1,6 @@
 # Development notes
 
-Internal orientation for working on this codebase. The public overview lives in the root [`README.md`](../README.md); the long-term vision and roadmap live in [`guide.md`](../guide.md).
+Internal orientation for working on this codebase. The public overview lives in the root [`README.md`](../README.md); the long-term vision and roadmap live in [`guide.md`](guide.md).
 
 ## Commands
 
@@ -45,4 +45,4 @@ Internal orientation for working on this codebase. The public overview lives in 
 
 For CI, gate on: `bun run lint && bun run test && bun run build`.
 
-See `src/DESIGN.md` for the palette and design rules, and `guide.md` for the project vision and roadmap.
+See [`DESIGN.md`](DESIGN.md) for the palette and design rules, and [`guide.md`](guide.md) for the project vision and roadmap.

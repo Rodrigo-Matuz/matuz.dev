@@ -270,7 +270,7 @@ A background image is part of the visual identity — currently `src/assets/hero
 - preferably with areas of lower visual complexity behind text
 - avoid excessive "AI art" appearance
 
-Think of the background as atmosphere, not the centerpiece. Full palette and typography live in `src/DESIGN.md`.
+Think of the background as atmosphere, not the centerpiece. Full palette and typography live in [`DESIGN.md`](DESIGN.md).
 
 ---
 
@@ -295,7 +295,10 @@ matuz.dev/
 │   ├── App.tsx            # router shell
 │   └── main.tsx
 ├── public/
-├── guide.md               # this file
+├── docs/
+│   ├── guide.md           # this file
+│   ├── DEVELOPMENT.md     # commands, project map, conventions
+│   └── DESIGN.md          # palette, typography, motion rules
 └── vite.config.ts
 ```
 
