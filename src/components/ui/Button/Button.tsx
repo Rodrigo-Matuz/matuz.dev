@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
+import { Link } from 'react-router';
 
 import { LoaderCircle } from 'lucide-react';
 
@@ -28,6 +29,11 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
     AnchorOnlyProps & {
         /** When set, the button renders as an anchor element. */
         href?: string;
+        /**
+         * Internal route path — renders a react-router `Link` (client-side
+         * navigation with page transitions). Takes precedence over `href`.
+         */
+        to?: string;
         color?: ButtonColor;
         loading?: boolean;
         className?: string;
@@ -38,12 +44,21 @@ export function Button({
     color = 'accent',
     className = '',
     href,
+    to,
     loading = false,
     disabled,
     type,
     ...props
 }: ButtonProps) {
     const classes = `${baseStyles} ${colorStyles[color]} ${className}`;
+
+    if (to !== undefined) {
+        return (
+            <Link to={to} className={classes} {...(props as AnchorOnlyProps)}>
+                {children}
+            </Link>
+        );
+    }
 
     if (href !== undefined) {
         return (
