@@ -32,3 +32,7 @@ Thumbs.db
 !.vscode/extensions.json
 *.swp
 *.swo
+
+# Personal documents (CV source — never commit)
+/EngSoftware.pdf
+*.pdf
