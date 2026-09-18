@@ -42,3 +42,22 @@ export const staggerContainer: Variants = {
 
 /** Viewport config for scroll-triggered reveals (animate once, slightly early). */
 export const viewportOnce = { once: true, margin: '-80px' } as const;
+
+/**
+ * Page-level transitions for route changes. `AnimatePresence` swaps pages with
+ * a short crossfade + slight rise — quick enough to feel instant, slow enough
+ * to read as deliberate (restrained-motion philosophy, see docs/DESIGN.md).
+ */
+export const pageVariants: Variants = {
+    initial: { opacity: 0, y: 10 },
+    animate: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.45, ease: EASE },
+    },
+    exit: {
+        opacity: 0,
+        y: -6,
+        transition: { duration: 0.2, ease: EASE },
+    },
+};
