@@ -115,6 +115,73 @@ describe('content locales', () => {
         });
     });
 
+    describe('projects', () => {
+        it('provides heading copy and link labels in both locales', () => {
+            for (const key of languageKeys) {
+                const projects = locales[key].projects;
+
+                expect(projects.eyebrow, key).toBeTruthy();
+                expect(projects.title, key).toBeTruthy();
+                expect(projects.description, key).toBeTruthy();
+                expect(projects.sourceLabel, key).toBeTruthy();
+                expect(projects.previewLabel, key).toBeTruthy();
+            }
+        });
+
+        it('provides at least three cards with required fields', () => {
+            for (const key of languageKeys) {
+                const { cards } = locales[key].projects;
+
+                expect(cards.length, key).toBeGreaterThanOrEqual(3);
+
+                for (const card of cards) {
+                    expect(card.title, key).toBeTruthy();
+                    expect(card.description, key).toBeTruthy();
+                    expect(
+                        card.technologies.length,
+                        `${key}:${card.title}`,
+                    ).toBeGreaterThan(0);
+                    expect(card.github, `${key}:${card.title}`).toMatch(
+                        /^https:\/\/(www\.)?github\.com\//,
+                    );
+                }
+            }
+        });
+
+        it('uses the same card ids in the same order in every locale', () => {
+            // Titles may be translated (product names stay, but the pt-BR
+            // Discord bot title is localized); ids are the stable key.
+            const reference = locales.en.projects.cards.map((card) => card.id);
+
+            for (const key of languageKeys) {
+                expect(
+                    locales[key].projects.cards.map((card) => card.id),
+                ).toEqual(reference);
+            }
+        });
+
+        it('has unique card ids per locale', () => {
+            for (const key of languageKeys) {
+                const ids = locales[key].projects.cards.map((card) => card.id);
+
+                expect(new Set(ids).size).toBe(ids.length);
+            }
+        });
+
+        it('only gives preview links to cards that declare one', () => {
+            for (const key of languageKeys) {
+                for (const card of locales[key].projects.cards) {
+                    if (card.preview !== undefined) {
+                        expect(
+                            card.preview,
+                            `${key}:${card.title}`,
+                        ).toMatch(/^(https?:\/\/|\/)/);
+                    }
+                }
+            }
+        });
+    });
+
     describe('hero', () => {
         it('provides kicker, title, introduction, record link and closing line', () => {
             for (const key of languageKeys) {

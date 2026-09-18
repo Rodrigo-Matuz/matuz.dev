@@ -88,6 +88,38 @@
     "email": "mail@matuz.me",
     "emailHref": "mailto:mail@matuz.me"
   },
+  "projects": {
+    "eyebrow": "Projetos",
+    "title": "Coisas que construí.",
+    "description": "Uma seleção de trabalhos para clientes, open source e experimentos pessoais — os que valem a pena mostrar.",
+    "sourceLabel": "Código",
+    "previewLabel": "Prévia",
+    "cards": [
+      {
+        "id": "wallpaper-picker",
+        "title": "Wallpaper Picker UI",
+        "description": "Aplicação desktop multiplataforma para navegar e aplicar wallpapers, pensada para baixo consumo de recursos e integração profunda com o sistema. Processamento de mídia e geração de miniaturas via FFmpeg, com suporte multilíngue via i18n.",
+        "image": null,
+        "technologies": ["Rust", "TypeScript", "Svelte", "Tauri", "FFmpeg"],
+        "github": "https://github.com/Rodrigo-Matuz"
+      },
+      {
+        "id": "discord-bot",
+        "title": "Bot de Tradução para Discord",
+        "description": "Bot modular para Discord focado na tradução automática de mensagens e integração com serviços externos. Construído sobre a API do Google Translate com armazenamento persistente, projetado para receber novas integrações sem tocar no núcleo.",
+        "technologies": ["Python", "Google Translate API", "BeautifulSoup4", "Requests"],
+        "github": "https://github.com/Rodrigo-Matuz"
+      },
+      {
+        "id": "matuz-dev",
+        "title": "matuz.dev",
+        "description": "Este site — um portfólio bilíngue construído como SPA com design system próprio, movimento editorial contido e um kit de componentes totalmente testado.",
+        "technologies": ["React", "TypeScript", "Tailwind CSS", "Motion", "Vite"],
+        "github": "https://github.com/Rodrigo-Matuz/matuz.dev",
+        "preview": "/"
+      }
+    ]
+  },
   "about": {
     "eyebrow": "Sobre",
     "title": "O que é este site — e quem está por trás dele.",
