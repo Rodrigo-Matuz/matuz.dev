@@ -37,6 +37,7 @@ describe('BrandIcon', () => {
         expect(isBrandIconName('github')).toBe(true);
         expect(isBrandIconName('linkedin')).toBe(true);
         expect(isBrandIconName('rss')).toBe(true);
+        expect(isBrandIconName('discord')).toBe(true);
         expect(isBrandIconName('unknown')).toBe(false);
     });
 });

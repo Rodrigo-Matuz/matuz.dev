@@ -104,6 +104,18 @@ describe('content locales', () => {
             }
         });
 
+        it('includes the Discord profile link', () => {
+            for (const key of languageKeys) {
+                const discord = locales[key].links.find(
+                    (link) => link.label === 'Discord',
+                );
+
+                expect(discord?.href).toBe(
+                    'https://discord.com/users/584503954969198612',
+                );
+            }
+        });
+
         it('points GitHub at the expected profile', () => {
             for (const key of languageKeys) {
                 const github = locales[key].links.find(
@@ -257,6 +269,117 @@ describe('content locales', () => {
             for (const key of languageKeys) {
                 expect(locales[key].correspondence.primaryAction).toBeTruthy();
                 expect(locales[key].correspondence.secondaryAction).toBeTruthy();
+            }
+        });
+    });
+
+    describe('contact', () => {
+        it('provides page copy and notes in both locales', () => {
+            for (const key of languageKeys) {
+                const contact = locales[key].contact;
+
+                expect(contact.eyebrow, key).toBeTruthy();
+                expect(contact.title, key).toBeTruthy();
+                expect(contact.description, key).toBeTruthy();
+                expect(contact.emailNote, key).toBeTruthy();
+                expect(contact.discordNote, key).toBeTruthy();
+                expect(contact.closing, key).toBeTruthy();
+            }
+        });
+
+        it('provides channels with valid hrefs in both locales', () => {
+            for (const key of languageKeys) {
+                for (const channel of locales[key].contact.channels) {
+                    expect(channel.label, `${key}:${channel.id}`).toBeTruthy();
+                    expect(channel.value, `${key}:${channel.id}`).toBeTruthy();
+                    expect(channel.note, `${key}:${channel.id}`).toBeTruthy();
+                    expect(channel.href, `${key}:${channel.id}`).toMatch(
+                        /^(https?:\/\/|mailto:)/,
+                    );
+                }
+            }
+        });
+
+        it('uses the same channel ids in the same order in every locale', () => {
+            const reference = locales.en.contact.channels.map(
+                (channel) => channel.id,
+            );
+
+            for (const key of languageKeys) {
+                expect(
+                    locales[key].contact.channels.map(
+                        (channel) => channel.id,
+                    ),
+                ).toEqual(reference);
+            }
+        });
+
+        it('lists email, GitHub, LinkedIn and Discord channels', () => {
+            for (const key of languageKeys) {
+                const ids = locales[key].contact.channels.map(
+                    (channel) => channel.id,
+                );
+
+                expect(ids).toEqual(
+                    expect.arrayContaining([
+                        'email',
+                        'github',
+                        'linkedin',
+                        'discord',
+                    ]),
+                );
+            }
+        });
+
+        it('points the email channel at the real address', () => {
+            for (const key of languageKeys) {
+                const email = locales[key].contact.channels.find(
+                    (channel) => channel.id === 'email',
+                );
+
+                expect(email?.href).toBe('mailto:mail@matuz.me');
+            }
+        });
+
+        it('points the Discord channel at the profile', () => {
+            for (const key of languageKeys) {
+                const discord = locales[key].contact.channels.find(
+                    (channel) => channel.id === 'discord',
+                );
+
+                expect(discord?.value).toBe('@matuz');
+                expect(discord?.href).toBe(
+                    'https://discord.com/users/584503954969198612',
+                );
+            }
+        });
+    });
+
+    describe('about', () => {
+        it('provides a beyond-work section in both locales', () => {
+            for (const key of languageKeys) {
+                const beyondWork = locales[key].about.whoAmI.beyondWork;
+
+                expect(beyondWork.eyebrow, key).toBeTruthy();
+                expect(beyondWork.title, key).toBeTruthy();
+                expect(
+                    beyondWork.paragraphs.length,
+                    key,
+                ).toBeGreaterThanOrEqual(2);
+
+                for (const paragraph of beyondWork.paragraphs) {
+                    expect(paragraph, key).toBeTruthy();
+                }
+            }
+        });
+
+        it('mentions NixOS in the beyond-work section', () => {
+            for (const key of languageKeys) {
+                const text = locales[
+                    key
+                ].about.whoAmI.beyondWork.paragraphs.join(' ');
+
+                expect(text).toContain('NixOS');
             }
         });
     });
