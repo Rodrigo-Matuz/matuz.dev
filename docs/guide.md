@@ -421,7 +421,7 @@ Only build these when they actually become interesting.
 - [ ] Project-card interactions
 - [ ] Technology icon interactions
 - [ ] Responsive/mobile polish
-- [ ] Accessibility pass (incl. prefers-reduced-motion)
+- [x] Accessibility pass (incl. prefers-reduced-motion)
 - [ ] Performance pass
 
 ### Phase 4 — Notes

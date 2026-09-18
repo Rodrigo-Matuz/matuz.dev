@@ -13,7 +13,7 @@ The site is fully bilingual. Brazilian Portuguese is the default language; Engli
 ## Highlights
 
 - **Editorial dark design** — display-serif headings, mono micro-labels, thin dividers, and a restrained blue-violet palette over a near-black background.
-- **Motion with restraint** — hero entrance, scroll-triggered section reveals, and a language-switch transition, all driven by centralized animation presets. A `prefers-reduced-motion` pass is planned (see roadmap).
+- **Motion with restraint** — hero entrance, scroll-triggered section reveals, and a language-switch transition, all driven by centralized animation presets. Honors `prefers-reduced-motion`: movement is disabled and only opacity fades remain.
 - **Bilingual by design** — every visible string lives in locale dictionaries (`pt-br.json` / `eng.json`), with tests enforcing structural parity between languages.
 - **Component kit** — a folder-per-component library (layout primitives, UI building blocks, content cards) with colocated tests and barrel exports.
 - **Tested** — 100+ tests with Vitest + Testing Library, colocated with their subjects.
@@ -63,7 +63,7 @@ The site is under active development. Done so far: the foundation (design system
 
 ## License
 
-All rights reserved. The code is public for portfolio purposes; reuse is not permitted without permission.
+Licensed under [CC BY-NC 4.0](LICENSE) (Attribution-NonCommercial 4.0 International). You may use, copy, and adapt this project for personal, non-commercial purposes, provided you credit Rodrigo dos Santos Lima and link back to this repository. Commercial use requires separate permission — [get in touch](mailto:mail@matuz.me).
 
 ## Contact
 
