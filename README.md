@@ -13,7 +13,7 @@ The site is fully bilingual. Brazilian Portuguese is the default language; Engli
 ## Highlights
 
 - **Editorial dark design** — display-serif headings, mono micro-labels, thin dividers, and a restrained blue-violet palette over a near-black background.
-- **Motion with restraint** — hero entrance, scroll-triggered section reveals, and a language-switch transition, all driven by centralized animation presets and honoring `prefers-reduced-motion` plans.
+- **Motion with restraint** — hero entrance, scroll-triggered section reveals, and a language-switch transition, all driven by centralized animation presets. A `prefers-reduced-motion` pass is planned (see roadmap).
 - **Bilingual by design** — every visible string lives in locale dictionaries (`pt-br.json` / `eng.json`), with tests enforcing structural parity between languages.
 - **Component kit** — a folder-per-component library (layout primitives, UI building blocks, content cards) with colocated tests and barrel exports.
 - **Tested** — 100+ tests with Vitest + Testing Library, colocated with their subjects.

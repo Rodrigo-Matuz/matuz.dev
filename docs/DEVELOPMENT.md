@@ -15,7 +15,7 @@ Internal orientation for working on this codebase. The public overview lives in 
 ## Git hooks & CI
 
 - **Local hooks** (devenv-managed, active inside the devenv shell): ESLint runs on every `git commit`; the full Vitest suite runs on every `git push`.
-- **Remote CI** (`.github/workflows/ci.yml`): on every push to `main` and every PR, GitHub Actions runs `lint → test → build` with Bun on Ubuntu. All three must pass.
+- **Remote CI** (`.github/workflows/ci.yml`): on every push to `master` and every PR, GitHub Actions runs `lint → test → build` with Bun on Ubuntu. All three must pass.
 
 ## Project map
 

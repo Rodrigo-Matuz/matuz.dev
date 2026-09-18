@@ -1,13 +1,11 @@
 /**
  * Central Motion setup for the site.
  *
- * `motion` is installed; animations will be applied gradually in a later step.
- * Everything animation-related should live here so durations/easings stay
+ * Everything animation-related lives here so durations/easings stay
  * consistent with the site's restrained motion philosophy (see docs/DESIGN.md).
  *
- * Usage later, e.g.:
- *   import { motion } from "motion/react";
- *   import { EASE, fadeUp } from "@/lib/motion";
+ * Usage:
+ *   import { EASE, fadeUp } from "$/lib/motion";
  *   <motion.h1 {...fadeUp}>...</motion.h1>
  */
 
