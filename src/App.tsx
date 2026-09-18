@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
 
 import { AboutPage } from '$/pages/AboutPage';
 import { HomePage } from '$/pages/HomePage';
+import { ProjectsPage } from '$/pages/ProjectsPage';
 
 function AppRoutes() {
     const location = useLocation();
@@ -15,6 +16,7 @@ function AppRoutes() {
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
             </Routes>
         </AnimatePresence>
     );
