@@ -21,7 +21,7 @@ Internal orientation for working on this codebase. The public overview lives in 
 
 - `src/main.tsx` — entry point, mounts `App`.
 - `src/App.tsx` — router shell (`react-router`); maps paths to pages and wraps them in `AnimatePresence` for page transitions (`mode="wait"`).
-- `src/pages/` — route-level pages. `HomePage` (`/`) and `AboutPage` (`/about`); each page composes `PageShell` for the shared chrome and carries its colocated test.
+- `src/pages/` — route-level pages. `HomePage` (`/`), `AboutPage` (`/about`), and `ProjectsPage` (`/projects`); each page composes `PageShell` for the shared chrome and carries its colocated test.
 - `src/components/` — folder-per-component (see `src/components/README.md`):
   - `layout/` — `Container`, `Section`, `SectionHeading`, `Header`, `Footer`, `PageBackground`, `PageShell`
   - `ui/` — `Button`, `Eyebrow`, `ArrowLink`, `LanguageMenu`, `Badge`, `Card`, `Divider`, `IconButton`
