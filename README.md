@@ -1,48 +1,72 @@
 # matuz.dev
 
-The personal homepage and portfolio for Matuz (Rodrigo dos Santos Lima). Built with React 19, TypeScript, Vite, Tailwind CSS v4, react-router, and Motion. Bilingual (pt-BR default, EN secondary).
+The personal website and portfolio of Matuz (Rodrigo dos Santos Lima) — a full-stack developer. A polished, bilingual (pt-BR / English) portfolio with a playground spirit: professional core, personal edges.
 
-## Commands
+> Build something useful, make it look damn good, and leave room to have fun with it.
 
-- `bun run dev` — start the local Vite server.
-- `bun run build` — type-check and make a production build.
-- `bun run lint` — run ESLint.
-- `bun run preview` — preview the production build.
-- `bun run test` — run the test suite once (Vitest).
-- `bun run test:watch` — run tests in watch mode.
-- `bun run test:coverage` — run tests with a coverage report (`coverage/index.html`).
+## What this is
 
-## Git hooks & CI
+A dark, editorial, quietly animated single-page portfolio built as a long-term home on the web. It presents who I am, what I build, and how I work — and is designed to grow into a small personal universe: projects, notes, and eventually a few experiments and playground pages.
 
-- **Local hooks** (devenv-managed, active inside the devenv shell): ESLint runs on every `git commit`; the full Vitest suite runs on every `git push`.
-- **Remote CI** (`.github/workflows/ci.yml`): on every push to `main` and every PR, GitHub Actions runs `lint → test → build` with Bun on Ubuntu. All three must pass.
+The site is fully bilingual. Brazilian Portuguese is the default language; English is one click away via the built-in language menu, with a smooth transition between the two.
 
-## Project map
+## Highlights
 
-- `src/main.tsx` — entry point, mounts `App`.
-- `src/App.tsx` — router shell (`react-router`); maps paths to pages.
-- `src/pages/` — route-level pages. `HomePage.tsx` is the main composition; its test lives alongside it (`HomePage.test.tsx`).
-- `src/components/` — folder-per-component (see `src/components/README.md`):
-  - `layout/` — `Container`, `Section`, `SectionHeading`, `Header`, `Footer`, `PageBackground`
-  - `ui/` — `Button`, `Eyebrow`, `ArrowLink`, `LanguageMenu`, `Badge`, `Card`, `Divider`, `IconButton`
-  - `content/` — portfolio-specific cards (`ProjectCard`, `SocialLink`, `TechBadge`) awaiting data
+- **Editorial dark design** — display-serif headings, mono micro-labels, thin dividers, and a restrained blue-violet palette over a near-black background.
+- **Motion with restraint** — hero entrance, scroll-triggered section reveals, and a language-switch transition, all driven by centralized animation presets and honoring `prefers-reduced-motion` plans.
+- **Bilingual by design** — every visible string lives in locale dictionaries (`pt-br.json` / `eng.json`), with tests enforcing structural parity between languages.
+- **Component kit** — a folder-per-component library (layout primitives, UI building blocks, content cards) with colocated tests and barrel exports.
+- **Tested** — 100+ tests with Vitest + Testing Library, colocated with their subjects.
+- **CI-gated** — GitHub Actions runs lint, tests, and the production build on every push and PR.
 
-  Each component folder holds the component, its colocated test, and an `index.ts` barrel re-exporting the default. Import as `import Button from '$/components/ui/Button'` — the barrel resolves the folder, so no `Button/Button` repetition.
-- `src/content/` — bilingual locale dictionaries (`eng.json`, `pt-br.json`), loader (`index.ts`), and structural tests.
-- `src/lib/motion.ts` — central Motion presets (easings, variants, viewport config).
-- `src/index.css` — Tailwind v4 theme tokens, base styles, global utilities.
-- `src/assets/hero-background.webp` — page background image.
-- `src/test/setup.ts` — Vitest setup (jest-dom matchers, cleanup).
+## Tech stack
 
-## Conventions
+| Layer | Choice |
+| --- | --- |
+| UI | React 19 + TypeScript |
+| Build | Vite |
+| Styling | Tailwind CSS v4 (CSS-first `@theme`) |
+| Animation | Motion (`motion/react`) |
+| Routing | React Router |
+| Icons | Lucide React (+ local brand glyphs) |
+| Testing | Vitest + Testing Library + jsdom |
+| Package manager | Bun |
+| Environment | devenv (Nix) |
 
-- Pages compose the component kit; avoid hand-rolling containers, sections, or buttons inline.
-- **Components use default exports** through their folder's `index.ts`; named type exports (`ButtonProps`, `EyebrowColor`) come from the same barrel.
-- **Tests are colocated** with their subject (`Button/Button.test.tsx`), not in a separate tree.
-- Text content lives in the locale JSON files — never hard-code user-facing strings in components.
-- Animations: import presets from `src/lib/motion.ts`; don't define one-off easings inline.
-- Quotes are single in TS/TSX (enforced by ESLint); indentation is 4 spaces.
+## Getting started
 
-For CI, gate on: `bun run lint && bun run test && bun run build`.
+Requires [Bun](https://bun.sh). Then:
 
-See `src/DESIGN.md` for the palette and design rules, and `guide.md` for the project vision and roadmap.
+```bash
+bun install
+bun run dev       # local dev server
+```
+
+Other scripts:
+
+```bash
+bun run test      # run the test suite
+bun run lint      # ESLint
+bun run build     # type-check + production build
+bun run preview   # preview the production build
+```
+
+## Documentation
+
+- [`guide.md`](guide.md) — the project vision, architecture decisions, notes-system design, and development roadmap.
+- [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) — development notes: commands, project map, and code conventions.
+- [`src/DESIGN.md`](src/DESIGN.md) — design tokens, typography, and motion rules.
+
+## Roadmap
+
+The site is under active development. Done so far: the foundation (design system, component kit, testing, CI), the homepage with hero/section animations and language switching, and the footer. Next up: About, Projects, and Contact pages, followed by a Markdown notes system fed from a private Obsidian vault. The full roadmap lives in [`guide.md`](guide.md).
+
+## License
+
+All rights reserved. The code is public for portfolio purposes; reuse is not permitted without permission.
+
+## Contact
+
+- Email — [mail@matuz.me](mailto:mail@matuz.me)
+- GitHub — [github.com/rodrigo-matuz](https://www.github.com/rodrigo-matuz)
+- LinkedIn — [rodrigo-santos-m0117](https://www.linkedin.com/in/rodrigo-santos-m0117)
