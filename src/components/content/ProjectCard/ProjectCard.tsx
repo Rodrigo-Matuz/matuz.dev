@@ -43,11 +43,20 @@ export function ProjectCard({
 
         transition-colors duration-500
 
-        hover:border-foreground/20
+        hover:border-primary/30
+        hover:bg-surface-raised
       "
         >
             {image && (
-                <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+                <div
+                    aria-hidden="true"
+                    className="
+            relative shrink-0
+            h-36 overflow-hidden
+            border-b border-border
+            sm:h-40
+          "
+                >
                     <img
                         src={image}
                         alt=""
@@ -55,76 +64,96 @@ export function ProjectCard({
                         className="
               absolute inset-0
               h-full w-full
-              scale-105 object-cover
-              opacity-30 blur-[1px]
+              object-cover
 
-              transition-all duration-700
+              transition-transform duration-700
 
-              group-hover:scale-110 group-hover:opacity-40
+              group-hover:scale-105
             "
                     />
 
-                    {/* Surface wash — keeps the image a backdrop, never a rival. */}
-                    <div className="absolute inset-0 bg-surface/80" />
-                    <div className="absolute inset-0 bg-[linear-gradient(to_top,var(--color-surface)_20%,transparent_100%)]" />
+                    {/* Subtle top-down fade so the band blends into the card body. */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_top,var(--color-surface)_0%,transparent_35%)]" />
                 </div>
             )}
 
             <div className="relative z-10 flex h-full flex-col p-6">
-                <h3 className="font-display text-2xl leading-tight tracking-[-0.03em] text-foreground">
-                    {title}
-                </h3>
+                {/* Content block grows to fill the card so the footer is
+                    always pinned to the bottom; tags sit at the block's
+                    bottom edge, right above the separator. */}
+                <div className="flex flex-1 flex-col">
+                    {github ? (
+                        <a
+                            href={github}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`${title} — ${sourceLabel}`}
+                            className="w-fit"
+                        >
+                            <h3
+                                className="font-display text-2xl leading-tight tracking-[-0.03em] text-foreground transition-colors duration-300 group-hover:text-primary"
+                            >
+                                {title}
+                            </h3>
+                        </a>
+                    ) : (
+                        <h3 className="font-display text-2xl leading-tight tracking-[-0.03em] text-foreground">
+                            {title}
+                        </h3>
+                    )}
 
-                <p className="mt-3 text-sm leading-6 text-muted">
-                    {description}
-                </p>
+                    <p className="mt-3 text-sm leading-6 text-muted">
+                        {description}
+                    </p>
 
-                {technologies.length > 0 && (
-                    <ul className="mt-5 flex flex-wrap gap-2" aria-label={title}>
-                        {technologies.map((technology) => (
-                            <li key={technology}>
-                                <span className="inline-flex items-center border border-foreground/10 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-muted">
-                                    {technology}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                    {technologies.length > 0 && (
+                        <ul
+                            className="mt-auto flex flex-wrap gap-2 pt-5"
+                            aria-label={title}
+                        >
+                            {technologies.map((technology) => (
+                                <li key={technology}>
+                                    <span className="inline-flex items-center border border-foreground/10 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-muted">
+                                        {technology}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
 
                 {(github || preview) && (
-                    <div className="mt-auto flex items-center gap-5 border-t border-foreground/10 pt-4">
-                        <div className="mt-4 flex items-center gap-5">
-                            {github && (
-                                <a
-                                    href={github}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-subtle transition-colors hover:text-primary"
-                                >
-                                    <BrandIcon name="github" size={14} />
-                                    {sourceLabel}
-                                </a>
-                            )}
+                    <div className="mt-6 flex items-center gap-5 border-t border-foreground/10 pt-4">
+                        {github && (
+                            <a
+                                href={github}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-subtle transition-colors hover:text-primary"
+                            >
+                                <BrandIcon name="github" size={14} />
+                                {sourceLabel}
+                            </a>
+                        )}
 
-                            {preview && (
-                                <a
-                                    href={preview}
-                                    target={
-                                        preview.startsWith('http')
-                                            ? '_blank'
-                                            : undefined
-                                    }
-                                    rel="noreferrer"
-                                    className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-subtle transition-colors hover:text-primary"
-                                >
-                                    {previewLabel}
-                                    <ArrowUpRight
-                                        size={14}
-                                        className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                                    />
-                                </a>
-                            )}
-                        </div>
+                        {preview && (
+                            <a
+                                href={preview}
+                                target={
+                                    preview.startsWith('http')
+                                        ? '_blank'
+                                        : undefined
+                                }
+                                rel="noreferrer"
+                                className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-subtle transition-colors hover:text-primary"
+                            >
+                                {previewLabel}
+                                <ArrowUpRight
+                                    size={14}
+                                    className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                />
+                            </a>
+                        )}
                     </div>
                 )}
             </div>

@@ -50,13 +50,54 @@ describe('ProjectCard', () => {
             />,
         );
 
-        const source = screen.getByRole('link', { name: /código/i });
+        // The footer label link; the title also links to the source (next test).
+        const source = screen.getAllByRole('link', { name: /código/i })[0];
 
         expect(source).toHaveAttribute(
             'href',
             'https://github.com/Rodrigo-Matuz',
         );
         expect(source).toHaveAttribute('target', '_blank');
+    });
+
+    it('makes the title a link to the source', () => {
+        render(
+            <ProjectCard
+                {...baseProps}
+                github="https://github.com/Rodrigo-Matuz"
+                sourceLabel="Código"
+            />,
+        );
+
+        // The title link's accessible name combines the title and the label.
+        const titleLink = screen.getByRole('link', {
+            name: new RegExp(`${baseProps.title}.*código`, 'i'),
+        });
+
+        expect(titleLink).toHaveAttribute(
+            'href',
+            'https://github.com/Rodrigo-Matuz',
+        );
+        expect(titleLink).toHaveAttribute('target', '_blank');
+        expect(titleLink).toHaveTextContent(baseProps.title);
+    });
+
+    it('keeps the title as plain heading without a source link', () => {
+        render(<ProjectCard {...baseProps} />);
+
+        expect(
+            screen.getByRole('heading', { name: baseProps.title }),
+        ).toBeInTheDocument();
+        expect(screen.queryByRole('link')).not.toBeInTheDocument();
+    });
+
+    it('highlights the card with the primary color on hover', () => {
+        const { container } = render(<ProjectCard {...baseProps} />);
+
+        const card = container.firstElementChild as HTMLElement;
+
+        expect(card).toHaveClass('hover:border-primary/30');
+        expect(card).toHaveClass('hover:bg-surface-raised');
     });
 
     it('opens external preview links in a new tab', () => {
@@ -89,12 +130,17 @@ describe('ProjectCard', () => {
         expect(screen.queryByRole('link')).not.toBeInTheDocument();
     });
 
-    it('renders the optional image as a decorative backdrop', () => {
+    it('renders the optional image as a decorative band', () => {
         render(<ProjectCard {...baseProps} image="/preview.webp" />);
 
         const image = screen.getByAltText('');
 
         expect(image).toHaveAttribute('src', '/preview.webp');
-        expect(image.closest('div')).toHaveClass('pointer-events-none');
+
+        // The image sits in a dedicated band above the card body.
+        const band = image.closest('div');
+
+        expect(band).toHaveClass('overflow-hidden');
+        expect(band).toHaveClass('border-b');
     });
 });
