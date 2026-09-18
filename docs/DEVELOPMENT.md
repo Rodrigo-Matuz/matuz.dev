@@ -20,10 +20,10 @@ Internal orientation for working on this codebase. The public overview lives in 
 ## Project map
 
 - `src/main.tsx` — entry point, mounts `App`.
-- `src/App.tsx` — router shell (`react-router`); maps paths to pages.
-- `src/pages/` — route-level pages. `HomePage.tsx` is the main composition; its test lives alongside it (`HomePage.test.tsx`).
+- `src/App.tsx` — router shell (`react-router`); maps paths to pages and wraps them in `AnimatePresence` for page transitions (`mode="wait"`).
+- `src/pages/` — route-level pages. `HomePage` (`/`) and `AboutPage` (`/about`); each page composes `PageShell` for the shared chrome and carries its colocated test.
 - `src/components/` — folder-per-component (see `src/components/README.md`):
-  - `layout/` — `Container`, `Section`, `SectionHeading`, `Header`, `Footer`, `PageBackground`
+  - `layout/` — `Container`, `Section`, `SectionHeading`, `Header`, `Footer`, `PageBackground`, `PageShell`
   - `ui/` — `Button`, `Eyebrow`, `ArrowLink`, `LanguageMenu`, `Badge`, `Card`, `Divider`, `IconButton`
   - `content/` — portfolio-specific cards (`ProjectCard`, `SocialLink`, `TechBadge`) awaiting data
 
@@ -41,6 +41,8 @@ Internal orientation for working on this codebase. The public overview lives in 
 - **Tests are colocated** with their subject (`Button/Button.test.tsx`), not in a separate tree.
 - Text content lives in the locale JSON files — never hard-code user-facing strings in components.
 - Animations: import presets from `src/lib/motion.ts`; don't define one-off easings inline.
+- Language state comes from `$/lib/language` (`useLocale` in components, `setLanguage` in `PageShell`) — never keep a second copy in page state.
+- Never commit personal documents: the CV (`EngSoftware.pdf` at the repo root) is git-ignored and must stay that way; the About page copy is derived from it but lives only in the locale JSONs.
 - Quotes are single in TS/TSX (enforced by ESLint); indentation is 4 spaces.
 
 For CI, gate on: `bun run lint && bun run test && bun run build`.

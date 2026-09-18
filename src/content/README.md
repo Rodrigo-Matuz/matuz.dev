@@ -1,6 +1,6 @@
-# Homepage copy and translations
+# Site copy and translations
 
-All visible homepage copy belongs in the locale dictionaries:
+All visible site copy (home and about pages) belongs in the locale dictionaries:
 
 - `eng.json` — English (`en`)
 - `pt-br.json` — Brazilian Portuguese (`pt-BR`, the default)
@@ -9,9 +9,9 @@ Keep their keys and array order identical. `index.ts` is deliberately code-only 
 
 ## Structure
 
-Top-level keys: `languageName`, `shortLabel`, `countryCode` (ISO 3166-1 alpha-2, lowercase — used by `flag-icons` for the SVG flag), `navigation`, `owner`, `links`, `hero`, `record`, `experience`, `approach`, `correspondence`, `footer`.
+Top-level keys: `languageName`, `shortLabel`, `countryCode` (ISO 3166-1 alpha-2, lowercase — used by `flag-icons` for the SVG flag), `navigation`, `owner`, `links`, `hero`, `record`, `experience`, `approach`, `correspondence`, `about`, `footer`.
 
-`correspondence.email` / `correspondence.emailHref` hold the contact email (`mail@matuz.me`).
+`correspondence.email` / `correspondence.emailHref` hold the contact email (`mail@matuz.me`). The `about` section holds the `/about` page copy: `sitePurpose` (what this site is for) and `whoAmI` (intro, bio, skills, certificates, languages). The biography is derived from the owner's CV — the PDF itself is personal, git-ignored, and never committed or shipped.
 
 ## Rules
 

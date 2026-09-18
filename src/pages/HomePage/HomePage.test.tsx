@@ -1,9 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { MemoryRouter } from 'react-router';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 
 import { HomePage } from './HomePage';
 import { locales } from '$/content';
+
+// PageShell's Header reads the router location; pages must render inside one.
+const renderPage = () =>
+    render(
+        <MemoryRouter>
+            <HomePage />
+        </MemoryRouter>,
+    );
 
 // jsdom lacks IntersectionObserver, which Motion's whileInView uses.
 beforeAll(() => {
@@ -25,7 +34,7 @@ beforeAll(() => {
 
 describe('HomePage', () => {
     it('renders the hero title from the default locale (pt-BR)', () => {
-        render(<HomePage />);
+        renderPage();
 
         const heading = screen.getByRole('heading', { level: 1 });
 
@@ -33,7 +42,7 @@ describe('HomePage', () => {
     });
 
     it('renders all main sections', () => {
-        render(<HomePage />);
+        renderPage();
 
         expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(4);
         expect(screen.getByText(locales['pt-BR'].record.title));
@@ -43,7 +52,7 @@ describe('HomePage', () => {
     });
 
     it('renders every record entry', () => {
-        render(<HomePage />);
+        renderPage();
 
         for (const entry of locales['pt-BR'].record.entries) {
             expect(screen.getByText(entry.title)).toBeInTheDocument();
@@ -51,7 +60,7 @@ describe('HomePage', () => {
     });
 
     it('renders the numbered experience highlights in order', () => {
-        render(<HomePage />);
+        renderPage();
 
         const list = screen.getByRole('list');
 
@@ -68,7 +77,7 @@ describe('HomePage', () => {
     });
 
     it('links the contact button to the real email', () => {
-        render(<HomePage />);
+        renderPage();
 
         const contact = screen.getByRole('link', {
             name: new RegExp(locales['pt-BR'].correspondence.primaryAction),
@@ -81,7 +90,7 @@ describe('HomePage', () => {
     });
 
     it('renders the correspondence links with index numbers', () => {
-        render(<HomePage />);
+        renderPage();
 
         const { links } = locales['pt-BR'];
 
@@ -98,7 +107,7 @@ describe('HomePage', () => {
     it('switches all visible copy when the language changes', async () => {
         const user = userEvent.setup();
 
-        render(<HomePage />);
+        renderPage();
 
         await user.click(
             screen.getByRole('button', {
@@ -120,7 +129,7 @@ describe('HomePage', () => {
     it('updates the document language attribute on switch', async () => {
         const user = userEvent.setup();
 
-        render(<HomePage />);
+        renderPage();
 
         expect(document.documentElement.lang).toBe('pt-BR');
 
@@ -137,7 +146,7 @@ describe('HomePage', () => {
     });
 
     it('renders the footer with the owner name', () => {
-        render(<HomePage />);
+        renderPage();
 
         const footer = screen.getByRole('contentinfo');
 
@@ -147,7 +156,7 @@ describe('HomePage', () => {
     });
 
     it('provides anchor targets for in-page navigation', () => {
-        const { container } = render(<HomePage />);
+        const { container } = renderPage();
 
         expect(container.querySelector('#record')).not.toBeNull();
         expect(container.querySelector('#experience')).not.toBeNull();

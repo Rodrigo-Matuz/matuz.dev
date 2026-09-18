@@ -48,7 +48,7 @@ Reusable primitives live in `src/components/` and encode these design rules:
 
 ## Motion
 
-Central presets live in `src/lib/motion.ts` (`EASE`, `fadeUp`, `fade`, `staggerContainer`, `viewportOnce`) and are applied across the homepage: the hero staggers in on load, content sections reveal on scroll (`whileInView` + `viewportOnce`), and language switches fade/rise the page content via animation controls. Keep animations restrained: entrances and hover micro-interactions only.
+Central presets live in `src/lib/motion.ts` (`EASE`, `fadeUp`, `fade`, `staggerContainer`, `viewportOnce`, `pageVariants`) and are applied across the site: the hero staggers in on load, content sections reveal on scroll (`whileInView` + `viewportOnce`), language switches fade/rise the page content via animation controls, and route changes crossfade pages — `App.tsx` keys `Routes` by pathname inside `AnimatePresence mode="wait"`, and each page root (`motion.article`) plays `pageVariants` (short fade + rise in, quicker fade out). Keep animations restrained: entrances, route transitions, and hover micro-interactions only.
 
 Reduced motion is honored at two layers: `<MotionConfig reducedMotion="user">` in `App.tsx` disables transform/layout animations for users with `prefers-reduced-motion` enabled (opacity fades still run), and a CSS media query in `index.css` collapses CSS-driven animations and transitions (header slide, menu, hover transforms).
 

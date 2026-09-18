@@ -15,4 +15,4 @@ Import via the folder — the barrel resolves it, avoiding `HomePage/HomePage` r
 import HomePage from '$/pages/HomePage';
 ```
 
-Routes are registered in `src/App.tsx`. When adding a page, create a matching folder here and add its route.
+Current pages: `HomePage` (`/`) and `AboutPage` (`/about`). Routes are registered in `src/App.tsx`, where `AnimatePresence` crossfades between them on route change. When adding a page, create a matching folder here, add its route, and wrap the page content in `PageShell` (header, background, footer, language-switch fade) — the page body itself is a `motion.article` using the `pageVariants` preset from `$/lib/motion` so its exit animation plays.
