@@ -25,6 +25,7 @@ export function NavMenu({ language }: NavMenuProps) {
         { to: '/', label: content.navigation.home },
         { to: '/about', label: content.navigation.about },
         { to: '/projects', label: content.navigation.projects },
+        { to: '/contact', label: content.navigation.contact },
     ];
 
     useEffect(() => {

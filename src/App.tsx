@@ -2,6 +2,7 @@ import { AnimatePresence, MotionConfig } from 'motion/react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
 
 import { AboutPage } from '$/pages/AboutPage';
+import { ContactPage } from '$/pages/ContactPage';
 import { HomePage } from '$/pages/HomePage';
 import { ProjectsPage } from '$/pages/ProjectsPage';
 
@@ -17,6 +18,7 @@ function AppRoutes() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
             </Routes>
         </AnimatePresence>
     );
