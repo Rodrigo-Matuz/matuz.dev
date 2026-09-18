@@ -195,6 +195,43 @@ export function AboutPage() {
                     </Container>
                 </Section>
 
+                {/* Beyond work — NixOS, shell, dotfiles */}
+                <Section id="beyond-work" band="soft">
+                    <Container className="py-20 sm:py-28">
+                        <motion.div
+                            variants={staggerContainer}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={viewportOnce}
+                        >
+                            <motion.div variants={fadeUp}>
+                                <Eyebrow color="secondary">
+                                    {about.whoAmI.beyondWork.eyebrow}
+                                </Eyebrow>
+                                <h2 className="mt-5 font-display text-4xl leading-[0.98] tracking-[-0.045em] sm:text-5xl">
+                                    {about.whoAmI.beyondWork.title}
+                                </h2>
+                            </motion.div>
+
+                            <motion.div
+                                variants={fadeUp}
+                                className="mt-8 max-w-2xl border-t-2 border-secondary pt-6"
+                            >
+                                {about.whoAmI.beyondWork.paragraphs.map(
+                                    (paragraph) => (
+                                        <p
+                                            key={paragraph}
+                                            className="mt-5 text-sm leading-7 text-muted first:mt-0 sm:text-base sm:leading-8"
+                                        >
+                                            {paragraph}
+                                        </p>
+                                    ),
+                                )}
+                            </motion.div>
+                        </motion.div>
+                    </Container>
+                </Section>
+
                 {/* Back to home */}
                 <Section id="about-closing" band="soft">
                     <Container className="py-20 sm:py-28">

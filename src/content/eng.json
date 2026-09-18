@@ -8,6 +8,7 @@
     "home": "Home",
     "about": "About",
     "projects": "Projects",
+    "contact": "Contact",
     "menu": "Menu",
     "closeMenu": "Close menu",
     "pages": "Pages",
@@ -173,7 +174,6 @@
     ],
     "closing": "No forms, no gatekeeping — write whenever you feel like it."
   },
-
   "about": {
     "eyebrow": "About",
     "title": "What this site is — and who is behind it.",
@@ -221,6 +221,15 @@
         "languages": [
           "Portuguese — native",
           "English — C1 (EF SET)"
+        ]
+      },
+      "beyondWork": {
+        "eyebrow": "Beyond work",
+        "title": "What I tinker with.",
+        "paragraphs": [
+          "Outside of client work I run NixOS on my personal machine — currently learning my way around it and slowly rebuilding my environment as declarative configuration. Reproducibility as a daily habit, not just a buzzword.",
+          "My desktop runs the Caelestia shell, and I'm planning to publish my Nix configuration and dotfiles soon — once they're presentable enough to be read by strangers.",
+          "This side of things has no deadline and no deliverable: it's where I break things on purpose, then write down how I fixed them."
         ]
       },
       "closing": "The rest is on the home page — what I do, how I work, and how to reach me."

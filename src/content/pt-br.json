@@ -8,6 +8,7 @@
     "home": "Início",
     "about": "Sobre",
     "projects": "Projetos",
+    "contact": "Contato",
     "menu": "Menu",
     "closeMenu": "Fechar menu",
     "pages": "Páginas",
@@ -173,7 +174,6 @@
     ],
     "closing": "Sem formulários, sem burocracia — escreva quando quiser."
   },
-
   "about": {
     "eyebrow": "Sobre",
     "title": "O que é este site — e quem está por trás dele.",
@@ -221,6 +221,15 @@
         "languages": [
           "Português — nativo",
           "Inglês — C1 (EF SET)"
+        ]
+      },
+      "beyondWork": {
+        "eyebrow": "Além do trabalho",
+        "title": "O que eu mexo por fora.",
+        "paragraphs": [
+          "Fora do trabalho com clientes, uso NixOS na minha máquina pessoal — aprendendo meu caminho por ele e reconstruindo meu ambiente aos poucos como configuração declarativa. Reprodutibilidade como hábito diário, não só palavra da moda.",
+          "Meu desktop roda a Caelestia shell, e em breve devo publicar minha configuração Nix e meus dotfiles — quando estiverem apresentáveis o suficiente para serem lidos por estranhos.",
+          "Esse lado não tem prazo nem entregável: é onde eu quebro as coisas de propósito e depois anoto como consertei."
         ]
       },
       "closing": "O resto está na página inicial — o que eu faço, como trabalho e como falar comigo."
