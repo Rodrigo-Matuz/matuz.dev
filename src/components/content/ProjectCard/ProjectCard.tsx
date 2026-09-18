@@ -1,190 +1,131 @@
-import { ArrowUpRight, GitBranch } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
-import Badge from '$/components/ui/Badge';
+import BrandIcon from '$/components/ui/BrandIcon';
 
 interface ProjectCardProps {
     title: string;
     description: string;
+    /** Optional preview image, rendered as a low-contrast backdrop. */
     image?: string;
+    /** Technology tags rendered as small document-like labels. */
     technologies?: string[];
-    href?: string;
+    /** Link to the project's source on GitHub. */
     github?: string;
+    /** Optional live preview link (external URL or internal route path). */
+    preview?: string;
+    /** Label for the source link (localized by the caller). */
+    sourceLabel?: string;
+    /** Label for the preview link (localized by the caller). */
+    previewLabel?: string;
 }
 
+/**
+ * Portfolio project card — square-edged, hairline borders, restrained hover.
+ * The optional image sits behind a surface wash so text always wins.
+ */
 export function ProjectCard({
     title,
     description,
     image,
     technologies = [],
-    href,
     github,
+    preview,
+    sourceLabel = 'Source',
+    previewLabel = 'Preview',
 }: ProjectCardProps) {
     return (
         <article
             className="
-        group relative overflow-hidden
-        rounded-2xl
+        group relative flex h-full flex-col
+        overflow-hidden
         border border-border
         bg-surface
 
-        transition-all duration-500
+        transition-colors duration-500
 
-        hover:-translate-y-1
-        hover:border-primary/20
-        hover:shadow-[0_20px_70px_-45px_var(--color-primary)]
+        hover:border-foreground/20
       "
         >
             {image && (
-                <div
-                    className="
-            pointer-events-none
-            absolute inset-0
-            overflow-hidden
-          "
-                >
+                <div aria-hidden="true" className="pointer-events-none absolute inset-0">
                     <img
                         src={image}
                         alt=""
-                        aria-hidden="true"
+                        loading="lazy"
                         className="
               absolute inset-0
               h-full w-full
-              scale-105
-              object-cover
-              blur-[1px]
-              opacity-45
+              scale-105 object-cover
+              opacity-30 blur-[1px]
 
               transition-all duration-700
 
-              group-hover:scale-110
-              group-hover:opacity-50
+              group-hover:scale-110 group-hover:opacity-40
             "
                     />
 
-                    {/* Horizontal fade */}
-                    <div
-                        className="
-              absolute inset-0
-              bg-gradient-to-r
-              from-surface
-              via-surface/90
-              via-55%
-              to-surface/30
-            "
-                    />
-
-                    {/* Vertical integration */}
-                    <div
-                        className="
-              absolute inset-0
-              bg-gradient-to-b
-              from-surface/40
-              via-transparent
-              to-surface/60
-            "
-                    />
+                    {/* Surface wash — keeps the image a backdrop, never a rival. */}
+                    <div className="absolute inset-0 bg-surface/80" />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_top,var(--color-surface)_20%,transparent_100%)]" />
                 </div>
             )}
 
-            <div className="relative z-10 p-6">
-                <div className="flex items-start gap-4">
-                    <div className="min-w-0 flex-1">
-                        <h3
-                            className="
-                text-xl font-semibold
-                tracking-tight
-                text-foreground
-              "
-                        >
-                            {title}
-                        </h3>
+            <div className="relative z-10 flex h-full flex-col p-6">
+                <h3 className="font-display text-2xl leading-tight tracking-[-0.03em] text-foreground">
+                    {title}
+                </h3>
 
-                        <p
-                            className="
-                mt-2
-                max-w-xl
-                text-sm leading-6
-                text-muted
-              "
-                        >
-                            {description}
-                        </p>
-                    </div>
-
-                    {href && (
-                        <a
-                            href={href}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label={`View ${title}`}
-                            className="
-                shrink-0
-                inline-flex items-center gap-1.5
-                rounded-lg
-                px-3 py-2
-
-                text-sm font-medium
-                text-subtle
-
-                transition-all duration-300
-
-                hover:text-foreground
-
-                group-hover:text-primary
-                group-hover:drop-shadow-[0_0_8px_color-mix(in_srgb,var(--color-primary)_35%,transparent)]
-              "
-                        >
-                            View
-                            <ArrowUpRight
-                                size={16}
-                                className="
-                  transition-transform duration-300
-
-                  group-hover:translate-x-0.5
-                  group-hover:-translate-y-0.5
-                "
-                            />
-                        </a>
-                    )}
-                </div>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                    {description}
+                </p>
 
                 {technologies.length > 0 && (
-                    <div className="mt-5 flex flex-wrap gap-2">
+                    <ul className="mt-5 flex flex-wrap gap-2" aria-label={title}>
                         {technologies.map((technology) => (
-                            <Badge key={technology}>{technology}</Badge>
+                            <li key={technology}>
+                                <span className="inline-flex items-center border border-foreground/10 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-muted">
+                                    {technology}
+                                </span>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 )}
 
-                {github && (
-                    <a
-                        href={github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="
-              mt-6
-              inline-flex items-center gap-2
+                {(github || preview) && (
+                    <div className="mt-auto flex items-center gap-5 border-t border-foreground/10 pt-4">
+                        <div className="mt-4 flex items-center gap-5">
+                            {github && (
+                                <a
+                                    href={github}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-subtle transition-colors hover:text-primary"
+                                >
+                                    <BrandIcon name="github" size={14} />
+                                    {sourceLabel}
+                                </a>
+                            )}
 
-              text-sm font-medium
-              text-subtle
-
-              transition-all duration-300
-
-              hover:text-foreground
-
-              group-hover:text-muted
-              group-hover:drop-shadow-[0_0_8px_color-mix(in_srgb,var(--color-primary)_35%,transparent)]
-            "
-                    >
-                        <GitBranch
-                            size={16}
-                            className="
-                transition-colors duration-300
-                group-hover:text-primary
-              "
-                        />
-                        Source
-                    </a>
+                            {preview && (
+                                <a
+                                    href={preview}
+                                    target={
+                                        preview.startsWith('http')
+                                            ? '_blank'
+                                            : undefined
+                                    }
+                                    rel="noreferrer"
+                                    className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-subtle transition-colors hover:text-primary"
+                                >
+                                    {previewLabel}
+                                    <ArrowUpRight
+                                        size={14}
+                                        className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                    />
+                                </a>
+                            )}
+                        </div>
+                    </div>
                 )}
             </div>
         </article>
