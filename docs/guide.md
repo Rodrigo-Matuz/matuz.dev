@@ -408,7 +408,7 @@ Only build these when they actually become interesting.
 - [x] Home
 - [x] Footer
 - [x] About
-- [ ] Projects
+- [x] Projects
 - [ ] Contact
 - [ ] Social links
 
@@ -417,10 +417,10 @@ Only build these when they actually become interesting.
 - [x] Hero animations
 - [x] Scroll-triggered section reveals
 - [x] Language-switch transition
-- [ ] Page transitions
+- [x] Page transitions
 - [ ] Project-card interactions
 - [ ] Technology icon interactions
-- [ ] Responsive/mobile polish
+- [x] Responsive/mobile polish
 - [x] Accessibility pass (incl. prefers-reduced-motion)
 - [ ] Performance pass
 
