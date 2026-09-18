@@ -14,6 +14,15 @@ import {
     staggerContainer,
     viewportOnce,
 } from '$/lib/motion';
+import matuzDevImage from '$/assets/project-matuz-dev.webp';
+import wallpaperPickerImage from '$/assets/project-wallpaper-picker.webp';
+
+// Card images are Vite asset imports, not locale data — JSON can't hold them.
+// Keyed by the stable card id from the locale dictionaries.
+const cardImages: Record<string, string> = {
+    'wallpaper-picker': wallpaperPickerImage,
+    'matuz-dev': matuzDevImage,
+};
 
 /**
  * `/projects` — selected work as a card grid: one card per row on mobile,
@@ -55,7 +64,7 @@ export function ProjectsPage() {
 
                             <motion.p
                                 variants={fadeUp}
-                                className="mt-8 max-w-2xl border-t-2 border-warning pt-6 text-base leading-7 text-muted sm:text-lg sm:leading-8"
+                                className="mt-8 max-w-2xl border-t-2 border-highlight pt-6 text-base leading-7 text-muted sm:text-lg sm:leading-8"
                             >
                                 {projects.description}
                             </motion.p>
@@ -81,7 +90,7 @@ export function ProjectsPage() {
                                         <ProjectCard
                                             title={card.title}
                                             description={card.description}
-                                            image={card.image ?? undefined}
+                                            image={cardImages[card.id]}
                                             technologies={card.technologies}
                                             github={card.github}
                                             preview={card.preview}

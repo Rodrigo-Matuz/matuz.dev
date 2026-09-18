@@ -110,22 +110,21 @@
       {
         "id": "wallpaper-picker",
         "title": "Wallpaper Picker UI",
-        "description": "Cross-platform desktop application for browsing and applying wallpapers, built for low resource usage and deep OS integration. Media processing and thumbnail generation run through FFmpeg, with multilingual support via i18n.",
-        "image": null,
-        "technologies": ["Rust", "TypeScript", "Svelte", "Tauri", "FFmpeg"],
-        "github": "https://github.com/Rodrigo-Matuz"
+        "description": "A cross-platform desktop application for browsing and applying wallpapers, designed for low resource consumption and deep system integration. Media processing and thumbnail generation are handled through FFmpeg, with multilingual support via i18n.",
+        "technologies": ["Rust", "TypeScript", "Svelte", "Tauri", "FFmpeg", "Tailwind CSS"],
+        "github": "https://github.com/Rodrigo-Matuz/wallpaper-picker-ui"
       },
       {
-        "id": "discord-bot",
-        "title": "Discord Translation Bot",
-        "description": "Modular Discord bot for automatic message translation and integration with external services. Built on the Google Translate API with persistent storage, designed so new integrations can be added without touching the core.",
-        "technologies": ["Python", "Google Translate API", "BeautifulSoup4", "Requests"],
-        "github": "https://github.com/Rodrigo-Matuz"
+        "id": "cinema-automation-challenge",
+        "title": "Cinema Automation Challenge - Robot Framework",
+        "description": "This repository was created as part of a test automation challenge for a cinema application, focused on practicing and demonstrating advanced web test automation skills using Robot Framework and Browser Library.",
+        "technologies": ["Python", "Robot Framework", "Playwright", "Requests", "QA"],
+        "github": "https://github.com/Rodrigo-Matuz/cinema-automation-challenge"
       },
       {
         "id": "matuz-dev",
         "title": "matuz.dev",
-        "description": "This website — a bilingual portfolio built as a single-page application with a custom design system, restrained editorial motion, and a fully tested component kit.",
+        "description": "This website — a bilingual portfolio built as an SPA with a custom design system, restrained editorial motion, and a fully tested component library.",
         "technologies": ["React", "TypeScript", "Tailwind CSS", "Motion", "Vite"],
         "github": "https://github.com/Rodrigo-Matuz/matuz.dev",
         "preview": "/"

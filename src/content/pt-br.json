@@ -111,16 +111,15 @@
         "id": "wallpaper-picker",
         "title": "Wallpaper Picker UI",
         "description": "Aplicação desktop multiplataforma para navegar e aplicar wallpapers, pensada para baixo consumo de recursos e integração profunda com o sistema. Processamento de mídia e geração de miniaturas via FFmpeg, com suporte multilíngue via i18n.",
-        "image": null,
-        "technologies": ["Rust", "TypeScript", "Svelte", "Tauri", "FFmpeg"],
-        "github": "https://github.com/Rodrigo-Matuz"
+        "technologies": ["Rust", "TypeScript", "Svelte", "Tauri", "FFmpeg", "Tailwind CSS"],
+        "github": "https://github.com/Rodrigo-Matuz/wallpaper-picker-ui"
       },
       {
-        "id": "discord-bot",
-        "title": "Bot de Tradução para Discord",
-        "description": "Bot modular para Discord focado na tradução automática de mensagens e integração com serviços externos. Construído sobre a API do Google Translate com armazenamento persistente, projetado para receber novas integrações sem tocar no núcleo.",
-        "technologies": ["Python", "Google Translate API", "BeautifulSoup4", "Requests"],
-        "github": "https://github.com/Rodrigo-Matuz"
+        "id": "cinema-automation-challenge",
+        "title": "Cinema Automation Challenge - Robot Framework",
+        "description": "Este repositório foi criado como parte do desafio de automação de testes para uma aplicação de cinema, com o objetivo de praticar e demonstrar conhecimentos avançados em automação de testes web utilizando o Robot Framework com Browser Library.",
+        "technologies": ["Python", "Robot Framework", "Playwright", "Requests", "QA"],
+        "github": "https://github.com/Rodrigo-Matuz/cinema-automation-challenge"
       },
       {
         "id": "matuz-dev",
