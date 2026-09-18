@@ -5,7 +5,13 @@
   "navigation": {
     "primary": "Primary navigation",
     "languageSelector": "Choose language",
-    "about": "About"
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "pages": "Pages",
+    "social": "Elsewhere"
   },
   "owner": {
     "displayName": "Rodrigo dos Santos Lima",

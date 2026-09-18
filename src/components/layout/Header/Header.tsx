@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router';
 
 import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
 import LanguageMenu from '$/components/ui/LanguageMenu';
+import NavMenu from '$/components/ui/NavMenu';
 import { locales, type Language } from '$/content';
 
 interface HeaderProps {
@@ -20,7 +21,13 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
     const content = locales[language];
     const [isHidden, setIsHidden] = useState(false);
     const location = useLocation();
-    const isAbout = location.pathname === '/about';
+
+    // Internal route links — client-side navigation with page transitions.
+    // Shown inline on desktop; inside the NavMenu drawer on mobile.
+    const routeLinks = [
+        { to: '/about', label: content.navigation.about },
+        { to: '/projects', label: content.navigation.projects },
+    ];
 
     useEffect(() => {
         let lastScrollY = window.scrollY;
@@ -57,10 +64,10 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
       `}
         >
             <nav
-                className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-8 sm:py-5 lg:px-10"
+                className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 sm:px-8 sm:py-5 lg:px-10"
                 aria-label={content.navigation.primary}
             >
-                <div className="flex w-full items-center justify-between sm:w-auto sm:gap-7">
+                <div className="flex items-center gap-7">
                     <Link
                         to="/"
                         className="font-display text-xl leading-none tracking-[-0.04em] text-foreground sm:text-2xl"
@@ -68,7 +75,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                         {content.owner.displayName}
                     </Link>
 
-                    <div className="sm:border-l sm:border-foreground/10 sm:pl-7">
+                    <div className="hidden border-l border-foreground/10 pl-7 sm:block">
                         <LanguageMenu
                             language={language}
                             onLanguageChange={onLanguageChange}
@@ -76,32 +83,53 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                     </div>
                 </div>
 
-                <div className="flex w-full items-center justify-between border-t border-foreground/10 pt-3 sm:w-auto sm:justify-start sm:gap-7 sm:border-0 sm:pt-0">
-                    <Link
-                        to="/about"
-                        aria-current={isAbout ? 'page' : undefined}
-                        className={`text-[11px] font-medium uppercase tracking-[0.14em] transition-colors sm:text-xs ${isAbout ? 'text-primary' : 'text-muted hover:text-primary'}`}
-                    >
-                        {content.navigation.about}
-                    </Link>
-
-                    {content.links.map((link) => (
-                        <a
-                            key={link.label}
-                            href={link.href}
-                            className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.14em] text-muted transition-colors hover:text-primary sm:text-xs"
+                {/* Desktop: inline page links + icon-only social links. */}
+                <div className="hidden items-center gap-7 sm:flex">
+                    {routeLinks.map((routeLink) => (
+                        <Link
+                            key={routeLink.to}
+                            to={routeLink.to}
+                            aria-current={
+                                location.pathname === routeLink.to
+                                    ? 'page'
+                                    : undefined
+                            }
+                            className={`text-xs font-medium uppercase tracking-[0.14em] transition-colors ${location.pathname === routeLink.to ? 'text-primary' : 'text-muted hover:text-primary'}`}
                         >
-                            {typeof link.icon === 'string' &&
-                                isBrandIconName(link.icon) && (
-                                    <BrandIcon
-                                        name={link.icon}
-                                        size={13}
-                                        className="opacity-70 transition-opacity group-hover:opacity-100"
-                                    />
-                                )}
-                            {link.label}
-                        </a>
+                            {routeLink.label}
+                        </Link>
                     ))}
+
+                    <div className="flex items-center gap-4 border-l border-foreground/10 pl-7">
+                        {content.links.map((link) => (
+                            <a
+                                key={link.label}
+                                href={link.href}
+                                aria-label={link.label}
+                                title={link.label}
+                                className="text-muted transition-colors hover:text-primary"
+                            >
+                                {typeof link.icon === 'string' &&
+                                    isBrandIconName(link.icon) && (
+                                        <BrandIcon
+                                            name={link.icon}
+                                            size={16}
+                                        />
+                                    )}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Mobile: single hamburger opening the NavMenu drawer. */}
+                <div className="flex items-center gap-5 sm:hidden">
+                    <NavMenu language={language} />
+                    <div className="border-l border-foreground/10 pl-5">
+                        <LanguageMenu
+                            language={language}
+                            onLanguageChange={onLanguageChange}
+                        />
+                    </div>
                 </div>
             </nav>
         </header>

@@ -110,12 +110,12 @@ describe('HomePage', () => {
         renderPage();
 
         await user.click(
-            screen.getByRole('button', {
+            screen.getAllByRole('button', {
                 name: locales['pt-BR'].navigation.languageSelector,
-            }),
+            })[0],
         );
         await user.click(
-            screen.getByRole('menuitemradio', { name: /english/i }),
+            screen.getAllByRole('menuitemradio', { name: /english/i })[0],
         );
 
         expect(
@@ -134,12 +134,12 @@ describe('HomePage', () => {
         expect(document.documentElement.lang).toBe('pt-BR');
 
         await user.click(
-            screen.getByRole('button', {
+            screen.getAllByRole('button', {
                 name: locales['pt-BR'].navigation.languageSelector,
-            }),
+            })[0],
         );
         await user.click(
-            screen.getByRole('menuitemradio', { name: /english/i }),
+            screen.getAllByRole('menuitemradio', { name: /english/i })[0],
         );
 
         expect(document.documentElement.lang).toBe('en');

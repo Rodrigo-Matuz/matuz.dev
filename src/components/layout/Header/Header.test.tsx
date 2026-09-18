@@ -45,14 +45,104 @@ describe('Header', () => {
         expect(aboutLink).toHaveAttribute('href', '/about');
     });
 
+    it('renders the Projects route link', () => {
+        renderHeader();
+
+        const projectsLink = screen.getByRole('link', {
+            name: locales.en.navigation.projects,
+        });
+
+        expect(projectsLink).toHaveAttribute('href', '/projects');
+    });
+
     it('renders the navigation links from content', () => {
         renderHeader();
 
         for (const link of locales.en.links) {
+            // Social links are icon-only on desktop; the accessible name
+            // comes from the aria-label.
             expect(
                 screen.getAllByRole('link', { name: link.label }).length,
             ).toBeGreaterThan(0);
         }
+    });
+
+    it('renders social links as icon-only with accessible names', () => {
+        renderHeader();
+
+        const github = screen.getAllByRole('link', {
+            name: locales.en.links[0].label,
+        })[0];
+
+        expect(github).toHaveTextContent('');
+        expect(github.querySelector('svg')).not.toBeNull();
+    });
+
+    it('opens the mobile menu with page and social links', async () => {
+        const user = userEvent.setup();
+
+        renderHeader();
+
+        await user.click(
+            screen.getByRole('button', { name: locales.en.navigation.menu }),
+        );
+
+        const menu = screen.getByRole('menu', {
+            name: locales.en.navigation.primary,
+        });
+
+        expect(menu).toBeInTheDocument();
+        expect(
+            screen.getByRole('menuitem', { name: locales.en.navigation.about }),
+        ).toHaveAttribute('href', '/about');
+        expect(
+            screen.getByRole('menuitem', {
+                name: locales.en.navigation.projects,
+            }),
+        ).toHaveAttribute('href', '/projects');
+        expect(
+            screen.getByRole('menuitem', { name: locales.en.links[0].label }),
+        ).toHaveAttribute('href', locales.en.links[0].href);
+    });
+
+    it('closes the mobile menu when a page link is chosen', async () => {
+        const user = userEvent.setup();
+
+        renderHeader();
+
+        await user.click(
+            screen.getByRole('button', { name: locales.en.navigation.menu }),
+        );
+        await user.click(
+            screen.getByRole('menuitem', { name: locales.en.navigation.about }),
+        );
+
+        expect(
+            screen.queryByRole('menu', {
+                name: locales.en.navigation.primary,
+            }),
+        ).not.toBeInTheDocument();
+    });
+
+    it('closes the mobile menu via the close button', async () => {
+        const user = userEvent.setup();
+
+        renderHeader();
+
+        await user.click(
+            screen.getByRole('button', { name: locales.en.navigation.menu }),
+        );
+        await user.click(
+            screen.getByRole('button', {
+                name: locales.en.navigation.closeMenu,
+            }),
+        );
+
+        expect(
+            screen.queryByRole('menu', {
+                name: locales.en.navigation.primary,
+            }),
+        ).not.toBeInTheDocument();
     });
 
     it('labels the nav for screen readers', () => {
@@ -68,11 +158,17 @@ describe('Header', () => {
     it('shows the language menu trigger with the current short label', () => {
         renderHeader();
 
-        const trigger = screen.getByRole('button', {
+        // The header renders one LanguageMenu per breakpoint (desktop +
+        // mobile); both show the current short label.
+        const triggers = screen.getAllByRole('button', {
             name: locales.en.navigation.languageSelector,
         });
 
-        expect(trigger).toHaveTextContent('ENG');
+        expect(triggers.length).toBeGreaterThan(0);
+
+        for (const trigger of triggers) {
+            expect(trigger).toHaveTextContent('ENG');
+        }
     });
 
     it('switches language through the menu', async () => {
@@ -82,12 +178,12 @@ describe('Header', () => {
         renderHeader({ onLanguageChange });
 
         await user.click(
-            screen.getByRole('button', {
+            screen.getAllByRole('button', {
                 name: locales.en.navigation.languageSelector,
-            }),
+            })[0],
         );
         await user.click(
-            screen.getByRole('menuitemradio', { name: /português/i }),
+            screen.getAllByRole('menuitemradio', { name: /português/i })[0],
         );
 
         expect(onLanguageChange).toHaveBeenCalledWith('pt-BR');
@@ -96,11 +192,13 @@ describe('Header', () => {
     it('localizes the trigger label per language', () => {
         renderHeader({ language: 'pt-BR' });
 
-        expect(
-            screen.getByRole('button', {
-                name: locales['pt-BR'].navigation.languageSelector,
-            }),
-        ).toHaveTextContent('PT-BR');
+        const triggers = screen.getAllByRole('button', {
+            name: locales['pt-BR'].navigation.languageSelector,
+        });
+
+        for (const trigger of triggers) {
+            expect(trigger).toHaveTextContent('PT-BR');
+        }
     });
 
     it('marks the About link as the current page on /about', () => {
