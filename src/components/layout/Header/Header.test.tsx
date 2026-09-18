@@ -1,27 +1,52 @@
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 
 import Header from './Header';
 import { locales } from '$/content';
 
+interface HeaderTestProps {
+    language?: 'en' | 'pt-BR';
+    onLanguageChange?: (language: 'en' | 'pt-BR') => void;
+    initialPath?: string;
+}
+
+const renderHeader = ({
+    language = 'en',
+    onLanguageChange = () => {},
+    initialPath = '/',
+}: HeaderTestProps = {}) =>
+    render(
+        <MemoryRouter initialEntries={[initialPath]}>
+            <Header language={language} onLanguageChange={onLanguageChange} />
+        </MemoryRouter>,
+    );
+
 describe('Header', () => {
     it('renders the site owner name as a home link', () => {
-        render(
-            <Header language="en" onLanguageChange={() => {}} />,
-        );
+        renderHeader({ initialPath: '/about' });
 
         const nameLink = screen.getByRole('link', {
             name: locales.en.owner.displayName,
         });
 
-        expect(nameLink).toHaveAttribute('href', '#top');
+        // Router Link — resolves to the home route, not an in-page anchor.
+        expect(nameLink).toHaveAttribute('href', '/');
+    });
+
+    it('renders the About route link', () => {
+        renderHeader();
+
+        const aboutLink = screen.getByRole('link', {
+            name: locales.en.navigation.about,
+        });
+
+        expect(aboutLink).toHaveAttribute('href', '/about');
     });
 
     it('renders the navigation links from content', () => {
-        render(
-            <Header language="en" onLanguageChange={() => {}} />,
-        );
+        renderHeader();
 
         for (const link of locales.en.links) {
             expect(
@@ -31,9 +56,7 @@ describe('Header', () => {
     });
 
     it('labels the nav for screen readers', () => {
-        render(
-            <Header language="en" onLanguageChange={() => {}} />,
-        );
+        renderHeader();
 
         expect(
             screen.getByRole('navigation', {
@@ -43,9 +66,7 @@ describe('Header', () => {
     });
 
     it('shows the language menu trigger with the current short label', () => {
-        render(
-            <Header language="en" onLanguageChange={() => {}} />,
-        );
+        renderHeader();
 
         const trigger = screen.getByRole('button', {
             name: locales.en.navigation.languageSelector,
@@ -58,9 +79,7 @@ describe('Header', () => {
         const onLanguageChange = vi.fn();
         const user = userEvent.setup();
 
-        render(
-            <Header language="en" onLanguageChange={onLanguageChange} />,
-        );
+        renderHeader({ onLanguageChange });
 
         await user.click(
             screen.getByRole('button', {
@@ -75,15 +94,23 @@ describe('Header', () => {
     });
 
     it('localizes the trigger label per language', () => {
-        render(
-            <Header language="pt-BR" onLanguageChange={() => {}} />,
-        );
+        renderHeader({ language: 'pt-BR' });
 
         expect(
             screen.getByRole('button', {
                 name: locales['pt-BR'].navigation.languageSelector,
             }),
         ).toHaveTextContent('PT-BR');
+    });
+
+    it('marks the About link as the current page on /about', () => {
+        renderHeader({ initialPath: '/about' });
+
+        const aboutLink = screen.getByRole('link', {
+            name: locales.en.navigation.about,
+        });
+
+        expect(aboutLink).toHaveAttribute('aria-current', 'page');
     });
 
     describe('show on scroll up', () => {
@@ -103,9 +130,7 @@ describe('Header', () => {
                 value: 0,
             });
 
-            const { container } = render(
-                <Header language="en" onLanguageChange={() => {}} />,
-            );
+            const { container } = renderHeader();
 
             const header = container.firstElementChild as HTMLElement;
 
@@ -119,9 +144,7 @@ describe('Header', () => {
                 value: 0,
             });
 
-            const { container } = render(
-                <Header language="en" onLanguageChange={() => {}} />,
-            );
+            const { container } = renderHeader();
 
             fireScroll(200);
 
@@ -136,9 +159,7 @@ describe('Header', () => {
                 value: 0,
             });
 
-            const { container } = render(
-                <Header language="en" onLanguageChange={() => {}} />,
-            );
+            const { container } = renderHeader();
 
             fireScroll(200);
             fireScroll(150);
@@ -154,9 +175,7 @@ describe('Header', () => {
                 value: 0,
             });
 
-            const { container } = render(
-                <Header language="en" onLanguageChange={() => {}} />,
-            );
+            const { container } = renderHeader();
 
             fireScroll(40);
 

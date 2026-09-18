@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { locales, type Language } from '$/content';
+import { Link, useLocation } from 'react-router';
 
 import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
 import LanguageMenu from '$/components/ui/LanguageMenu';
+import { locales, type Language } from '$/content';
 
 interface HeaderProps {
     language: Language;
@@ -18,6 +19,8 @@ const SCROLL_THRESHOLD = 80;
 export function Header({ language, onLanguageChange }: HeaderProps) {
     const content = locales[language];
     const [isHidden, setIsHidden] = useState(false);
+    const location = useLocation();
+    const isAbout = location.pathname === '/about';
 
     useEffect(() => {
         let lastScrollY = window.scrollY;
@@ -58,12 +61,12 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                 aria-label={content.navigation.primary}
             >
                 <div className="flex w-full items-center justify-between sm:w-auto sm:gap-7">
-                    <a
-                        href="#top"
+                    <Link
+                        to="/"
                         className="font-display text-xl leading-none tracking-[-0.04em] text-foreground sm:text-2xl"
                     >
                         {content.owner.displayName}
-                    </a>
+                    </Link>
 
                     <div className="sm:border-l sm:border-foreground/10 sm:pl-7">
                         <LanguageMenu
@@ -74,6 +77,14 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                 </div>
 
                 <div className="flex w-full items-center justify-between border-t border-foreground/10 pt-3 sm:w-auto sm:justify-start sm:gap-7 sm:border-0 sm:pt-0">
+                    <Link
+                        to="/about"
+                        aria-current={isAbout ? 'page' : undefined}
+                        className={`text-[11px] font-medium uppercase tracking-[0.14em] transition-colors sm:text-xs ${isAbout ? 'text-primary' : 'text-muted hover:text-primary'}`}
+                    >
+                        {content.navigation.about}
+                    </Link>
+
                     {content.links.map((link) => (
                         <a
                             key={link.label}
