@@ -407,7 +407,7 @@ Only build these when they actually become interesting.
 
 - [x] Home
 - [x] Footer
-- [ ] About
+- [x] About
 - [ ] Projects
 - [ ] Contact
 - [ ] Social links
