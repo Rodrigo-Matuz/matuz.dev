@@ -57,7 +57,7 @@ export function ContactPage() {
 
                             <motion.div
                                 variants={fadeUp}
-                                className="mt-8 max-w-2xl border-t-2 border-warning pt-6"
+                                className="mt-8 max-w-2xl border-t-2 border-success pt-6"
                             >
                                 <p className="text-base leading-7 text-muted sm:text-lg sm:leading-8">
                                     {contact.description}

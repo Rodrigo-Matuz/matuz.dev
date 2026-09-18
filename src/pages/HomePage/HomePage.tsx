@@ -90,7 +90,7 @@ export function HomePage() {
 
                             <motion.div
                                 variants={fadeUp}
-                                className="mt-10 grid max-w-4xl gap-8 border-t-2 border-warning pt-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end"
+                                className="mt-10 grid max-w-4xl gap-8 border-t-2 border-accent pt-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end"
                             >
                                 <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
                                     {content.hero.introduction}
