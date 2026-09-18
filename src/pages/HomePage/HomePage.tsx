@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react';
-import { motion, useAnimationControls } from 'motion/react';
+import { motion } from 'motion/react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
 import Container from '$/components/layout/Container';
-import Footer from '$/components/layout/Footer';
-import Header from '$/components/layout/Header';
-import PageBackground from '$/components/layout/PageBackground';
+import PageShell from '$/components/layout/PageShell';
 import Section from '$/components/layout/Section';
 import SectionHeading from '$/components/layout/SectionHeading';
 import ArrowLink from '$/components/ui/ArrowLink';
 import Button from '$/components/ui/Button';
 import Eyebrow from '$/components/ui/Eyebrow';
-import { locales, type Language } from '$/content';
-import { EASE, fadeUp, staggerContainer, viewportOnce } from '$/lib/motion';
+import { useLocale } from '$/lib/language';
+import {
+    fadeUp,
+    pageVariants,
+    staggerContainer,
+    viewportOnce,
+} from '$/lib/motion';
 import backgroundImage from '$/assets/hero-background.webp';
 
 // Per-item accents. All of these are light enough to read on the dark
@@ -51,39 +53,18 @@ const correspondenceMetaHoverClasses = [
 ];
 
 export function HomePage() {
-    const [language, setLanguage] = useState<Language>('pt-BR');
-    const content = locales[language];
-    const contentControls = useAnimationControls();
-
-    useEffect(() => {
-        document.documentElement.lang = language;
-    }, [language]);
-
-    const handleLanguageChange = (nextLanguage: Language) => {
-        if (nextLanguage === language) return;
-
-        setLanguage(nextLanguage);
-        contentControls.start({
-            opacity: [0, 1],
-            y: [8, 0],
-            transition: { duration: 0.45, ease: EASE },
-        });
-    };
+    const content = useLocale();
 
     return (
-        <div className="relative isolate min-h-screen overflow-hidden bg-background text-foreground">
-            <PageBackground src={backgroundImage} />
-
-            <Header language={language} onLanguageChange={handleLanguageChange} />
-
-            <motion.main
-                id="top"
-                className="relative z-10"
-                animate={contentControls}
-                initial={false}
+        <PageShell backgroundSrc={backgroundImage}>
+            <motion.article
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
             >
-                <section className="flex min-h-screen flex-col justify-center pb-20 pt-32 sm:pb-24 sm:pt-36">
-                    <Container>
+            <section className="flex min-h-screen flex-col justify-center pb-20 pt-32 sm:pb-24 sm:pt-36">
+                <Container>
                         <motion.div
                             variants={staggerContainer}
                             initial="hidden"
@@ -341,11 +322,7 @@ export function HomePage() {
                         </motion.div>
                     </Container>
                 </Section>
-            </motion.main>
-
-            <motion.div animate={contentControls} initial={false}>
-                <Footer language={language} />
-            </motion.div>
-        </div>
+            </motion.article>
+        </PageShell>
     );
 }
