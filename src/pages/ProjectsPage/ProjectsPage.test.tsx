@@ -69,14 +69,32 @@ describe('ProjectsPage', () => {
         renderPage();
 
         const { cards, sourceLabel } = locales['pt-BR'].projects;
-        const sourceLinks = screen.getAllByRole('link', {
-            name: new RegExp(sourceLabel, 'i'),
-        });
 
-        expect(sourceLinks).toHaveLength(cards.length);
+        // Each card renders two source links: the title (accessible name
+        // combines title + label) and the footer label. Assert per card so
+        // the pairs are matched unambiguously.
+        for (const card of cards) {
+            const links = screen
+                .getAllByRole('link')
+                .filter(
+                    (link) =>
+                        link.getAttribute('href') === card.github &&
+                        link
+                            .getAttribute('aria-label')
+                            ?.includes(card.title) !== false,
+                );
 
-        for (const [index, link] of sourceLinks.entries()) {
-            expect(link).toHaveAttribute('href', cards[index].github);
+            const titleLink = links.find((link) =>
+                (link.getAttribute('aria-label') ?? '').includes(card.title),
+            );
+            const footerLink = links.find(
+                (link) => link.getAttribute('aria-label') === null,
+            );
+
+            expect(titleLink, card.id).toBeDefined();
+            expect(footerLink, card.id).toBeDefined();
+            expect(titleLink).toHaveTextContent(card.title);
+            expect(footerLink).toHaveTextContent(sourceLabel);
         }
     });
 
