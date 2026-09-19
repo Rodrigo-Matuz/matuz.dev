@@ -4,6 +4,11 @@ node_modules/
 # Build output
 dist/
 dist-ssr/
+dist-server/
+
+# Internal planning docs (not for the public repo)
+docs/phase4plan.md
+docs/phase4-actions.md
 
 # devenv / direnv
 .devenv/
