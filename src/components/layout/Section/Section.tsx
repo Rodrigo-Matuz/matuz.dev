@@ -24,7 +24,7 @@ export function Section({
     return (
         <section
             className={`
-        relative
+        relative scroll-mt-24
         ${band ? bandStyles[String(band) as 'true' | 'soft'] : ''}
         ${className}
       `}

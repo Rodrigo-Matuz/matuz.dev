@@ -35,7 +35,7 @@
 }
 
 :root { color-scheme: dark; }
-html { background: var(--color-background); font-family: var(--font-sans); font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+html { background: var(--color-background); font-family: var(--font-sans); font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
 body { min-width: 320px; min-height: 100vh; margin: 0; background: var(--color-background); }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { font: inherit; }
@@ -45,6 +45,25 @@ button { font: inherit; }
 @keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes menu-in { from { opacity: 0; transform: translateY(-4px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
+
+/* Custom scrollbar, cross-browser.
+   - Chromium/WebKit: ::-webkit-scrollbar-* pseudo-elements.
+   - Firefox: scrollbar-width + scrollbar-color.
+   Both keep native behavior (drag, arrows, keyboard) — only the look changes. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-hover) transparent;
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-hover);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--color-primary); }
+::-webkit-scrollbar-corner { background: transparent; }
 
 /* Respect prefers-reduced-motion for CSS-driven animation and transitions.
    Motion's JS animations are handled globally by <MotionConfig reducedMotion="user" />

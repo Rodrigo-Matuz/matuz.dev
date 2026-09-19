@@ -8,6 +8,7 @@ import { NotePage } from '$/pages/NotePage';
 import { NotesPage } from '$/pages/NotesPage';
 import { ProjectsPage } from '$/pages/ProjectsPage';
 import NoteMarkdown from '$/components/notes/NoteMarkdown';
+import HashScroller from '$/lib/hash-scroller';
 
 function NotePageRoute() {
     return <NotePage renderContent={(content) => <NoteMarkdown content={content} />} />;
@@ -40,6 +41,7 @@ function App() {
         // users with prefers-reduced-motion enabled; opacity fades still run.
         <MotionConfig reducedMotion="user">
             <BrowserRouter>
+                <HashScroller />
                 <AppRoutes />
             </BrowserRouter>
         </MotionConfig>
