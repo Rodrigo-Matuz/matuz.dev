@@ -33,14 +33,14 @@ export function PageShell({ backgroundSrc, children }: PageShellProps) {
     };
 
     return (
-        <div className="relative isolate min-h-screen overflow-hidden bg-background text-foreground">
+        <div className="relative isolate flex min-h-screen flex-col overflow-hidden bg-background text-foreground">
             <PageBackground src={backgroundSrc} />
 
             <Header language={language} onLanguageChange={handleLanguageChange} />
 
             <motion.main
                 id="top"
-                className="relative z-10"
+                className="relative z-10 flex-1"
                 animate={contentControls}
                 initial={false}
             >
