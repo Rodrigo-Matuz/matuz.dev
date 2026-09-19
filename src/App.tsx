@@ -4,7 +4,14 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
 import { AboutPage } from '$/pages/AboutPage';
 import { ContactPage } from '$/pages/ContactPage';
 import { HomePage } from '$/pages/HomePage';
+import { NotePage } from '$/pages/NotePage';
+import { NotesPage } from '$/pages/NotesPage';
 import { ProjectsPage } from '$/pages/ProjectsPage';
+import NoteMarkdown from '$/components/notes/NoteMarkdown';
+
+function NotePageRoute() {
+    return <NotePage renderContent={(content) => <NoteMarkdown content={content} />} />;
+}
 
 function AppRoutes() {
     const location = useLocation();
@@ -19,6 +26,8 @@ function AppRoutes() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/projects" element={<ProjectsPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/notes" element={<NotesPage />} />
+                <Route path="/notes/:slug" element={<NotePageRoute />} />
             </Routes>
         </AnimatePresence>
     );

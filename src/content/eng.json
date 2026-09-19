@@ -234,5 +234,17 @@
       "closing": "The rest is on the home page — what I do, how I work, and how to reach me."
     }
   },
-  "footer": "Built by Rodrigo-Matuz · Brazil"
+  "footer": "Built by Rodrigo-Matuz · Brazil",
+  "notes": {
+    "eyebrow": "Notes",
+    "title": "Public notes — things I learned, liked, or thought worth writing down.",
+    "languageNotice": "Notes are written in English only. Your browser's translate feature is a good way to read them in another language.",
+    "empty": "No notes published yet — check back soon.",
+    "loadError": "Notes could not be loaded right now. Try again in a moment.",
+    "notFound": "This note does not exist (or was renamed).",
+    "backToNotes": "All notes",
+    "created": "Created",
+    "updated": "Updated",
+    "untitled": "Untitled note"
+  }
 }
