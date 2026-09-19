@@ -11,16 +11,23 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "start": "serve -s dist -l $PORT"
+    "build:server": "tsc -p tsconfig.server.json",
+    "start": "node dist-server/index.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "express": "^5.2.1",
     "flag-icons": "^7.5.0",
+    "highlight.js": "^11.12.0",
     "lucide-react": "^1.43.0",
     "motion": "^13.2.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-markdown": "^10.1.0",
     "react-router": "^8.3.1",
+    "rehype-highlight": "^7.0.2",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
     "serve": "^14.2.6",
     "tailwindcss": "^4.3.3"
   },
@@ -30,6 +37,7 @@
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",
+    "@types/express": "^5.0.6",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router';
 import { X } from 'lucide-react';
 
@@ -32,10 +33,17 @@ export function NavMenu({ language }: NavMenuProps) {
         if (!isOpen) return;
 
         const onPointerDown = (event: PointerEvent) => {
-            if (
-                containerRef.current &&
-                !containerRef.current.contains(event.target as Node)
-            ) {
+            const target = event.target as Node;
+
+            // The drawer is portaled to document.body, so it lives outside
+            // containerRef — treat clicks inside it as "inside" as well.
+            const isInsideMenu =
+                (containerRef.current &&
+                    containerRef.current.contains(target)) ||
+                (target instanceof Element &&
+                    target.closest('#nav-menu') !== null);
+
+            if (!isInsideMenu) {
                 setIsOpen(false);
             }
         };
@@ -87,13 +95,14 @@ export function NavMenu({ language }: NavMenuProps) {
                 </span>
             </button>
 
-            {isOpen && (
-                <div
-                    id="nav-menu"
-                    role="menu"
-                    aria-label={content.navigation.primary}
-                    className="absolute right-0 top-[calc(100%+0.75rem)] z-30 w-64 origin-top-right animate-[menu-in_160ms_ease-out] border border-foreground/10 bg-background shadow-[0_24px_60px_-24px_rgba(0,0,0,0.8)] backdrop-blur-md"
-                >
+            {isOpen &&
+                createPortal(
+                    <div
+                        id="nav-menu"
+                        role="menu"
+                        aria-label={content.navigation.primary}
+                        className="fixed inset-y-0 right-0 z-30 w-64 origin-top-right animate-[menu-in_160ms_ease-out] overflow-y-auto border-l border-foreground/10 bg-background pt-20 shadow-[-24px_0_60px_-24px_rgba(0,0,0,0.8)] backdrop-blur-md"
+                    >
                     <div className="flex items-center justify-between border-b border-foreground/10 px-4 py-3">
                         <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-subtle">
                             {content.navigation.primary}
@@ -170,7 +179,8 @@ export function NavMenu({ language }: NavMenuProps) {
                             ))}
                         </ul>
                     </div>
-                </div>
+                </div>,
+                document.body,
             )}
         </div>
     );
