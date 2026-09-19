@@ -4,6 +4,8 @@ The personal website and portfolio of Matuz (Rodrigo dos Santos Lima) — a full
 
 > Build something useful, make it look damn good, and leave room to have fun with it.
 
+**Live at [matuz.dev](https://matuz.dev)** — including the [notes](https://matuz.dev/notes) section, rendered from Markdown at runtime.
+
 ## What this is
 
 A dark, editorial, quietly animated single-page portfolio built as a long-term home on the web. It presents who I am, what I build, and how I work — and is designed to grow into a small personal universe: projects, notes, and eventually a few experiments and playground pages.
@@ -15,8 +17,9 @@ The site is fully bilingual. Brazilian Portuguese is the default language; Engli
 - **Editorial dark design** — display-serif headings, mono micro-labels, thin dividers, and a restrained blue-violet palette over a near-black background.
 - **Motion with restraint** — hero entrance, scroll-triggered section reveals, and a language-switch transition, all driven by centralized animation presets. Honors `prefers-reduced-motion`: movement is disabled and only opacity fades remain.
 - **Bilingual by design** — every visible string lives in locale dictionaries (`pt-br.json` / `eng.json`), with tests enforcing structural parity between languages.
+- **Notes system** — Markdown notes written in a private Obsidian vault, fetched at runtime through a token-secured API and rendered with a rich reading experience: Obsidian callouts, LaTeX math (KaTeX), syntax-highlighted code blocks (Sweet Dracula Monokai), footnotes, definition lists, task lists, inline HTML, YouTube embeds, and hidden `%% comments %%`. Folder-grouped sidebar on desktop, dropdown navigation on mobile.
 - **Component kit** — a folder-per-component library (layout primitives, UI building blocks, content cards) with colocated tests and barrel exports.
-- **Tested** — 100+ tests with Vitest + Testing Library, colocated with their subjects.
+- **Tested** — 200+ tests with Vitest + Testing Library, colocated with their subjects, covering the UI, the markdown pipeline, and the notes metadata parser.
 - **CI-gated** — GitHub Actions runs lint, tests, and the production build on every push and PR.
 
 ## Tech stack
@@ -29,9 +32,13 @@ The site is fully bilingual. Brazilian Portuguese is the default language; Engli
 | Animation | Motion (`motion/react`) |
 | Routing | React Router |
 | Icons | Lucide React (+ local brand glyphs) |
+| Markdown | react-markdown + remark/rehype (GFM, math, deflists, raw HTML) |
+| Math | KaTeX |
+| Server | Express 5 (notes API + static serving) |
 | Testing | Vitest + Testing Library + jsdom |
 | Package manager | Bun |
 | Environment | devenv (Nix) |
+| Hosting | Heroku |
 
 ## Getting started
 
@@ -59,7 +66,7 @@ bun run preview   # preview the production build
 
 ## Roadmap
 
-The site is under active development. Done so far: the foundation (design system, component kit, testing, CI), the homepage with hero/section animations and language switching, and the footer. Next up: About, Projects, and Contact pages, followed by a Markdown notes system fed from a private Obsidian vault. The full roadmap lives in [`docs/guide.md`](docs/guide.md).
+The site is under active development. Done so far: the foundation (design system, component kit, testing, CI), the homepage with hero/section animations and language switching, the About / Projects / Contact pages, and the notes system — Markdown notes fetched at runtime from a private Obsidian vault and rendered with callouts, math, syntax highlighting, and more. Next up: visual polish passes and the playground pages. The full roadmap lives in [`docs/guide.md`](docs/guide.md).
 
 ## License
 

@@ -2,11 +2,70 @@ import type { ReactNode } from 'react';
 
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
+import rehypeKatex from 'rehype-katex';
+import rehypeRaw from 'rehype-raw';
 import rehypeSlug from 'rehype-slug';
+import remarkDeflist from 'remark-deflist';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+
+import { CALLOUT_STYLES, DEFAULT_CALLOUT } from './callouts';
 
 interface NoteMarkdownProps {
     content: string;
+}
+
+/**
+ * Strip Obsidian `%% comments %%` before parsing — they are author notes
+ * that must never appear in reading view.
+ */
+function stripComments(markdown: string): string {
+    return markdown.replace(/%%[\s\S]*?%%/g, '');
+}
+
+/**
+ * Preprocess Obsidian callouts into GFM-compatible HTML the renderer can
+ * style: `> [!type] title` blockquotes become <details>/<div> panels.
+ * Done as a string transform because remark has no native callout syntax.
+ */
+function preprocessCallouts(markdown: string): string {
+    const lines = markdown.split('\n');
+    const out: string[] = [];
+    let i = 0;
+
+    while (i < lines.length) {
+        const line = lines[i];
+        // Fold marker sits AFTER the closing bracket: [!tip]- / [!danger]+
+        const calloutMatch = line.match(/^>\s?\[!(\w+)\]([+-])?\s*(.*)$/);
+
+        if (!calloutMatch) {
+            out.push(line);
+            i += 1;
+            continue;
+        }
+
+        // Collect the whole blockquote block.
+        const block: string[] = [];
+
+        while (i < lines.length && lines[i].startsWith('>')) {
+            block.push(lines[i].replace(/^>\s?/, ''));
+            i += 1;
+        }
+
+        const [, type, fold, title] = calloutMatch;
+        const body = block.slice(1).join('\n');
+        const isFoldable = fold !== undefined;
+        const openAttr = fold === '+' ? ' open' : '';
+
+        out.push(
+            isFoldable
+                ? `<details data-callout="${type}" data-callout-title="${title}"${openAttr}>\n<summary>${title}</summary>\n\n${body}\n\n</details>`
+                : `<div data-callout="${type}" data-callout-title="${title}">\n\n${body}\n\n</div>`,
+        );
+        out.push('');
+    }
+
+    return out.join('\n');
 }
 
 /** Extract a YouTube video ID from common URL shapes; null when not YouTube. */
@@ -29,20 +88,74 @@ function youtubeId(href: string): string | null {
 
 /**
  * Markdown renderer for notes, mapped to the site's typography with a
- * colorful editorial palette (headings, bold, links, inline code each get
- * their own accent — dark-blue background, so blues/purples are avoided
- * except for inline code, which sits on a gray chip).
- *
- * GFM (tables, task lists, strikethrough) is enabled; headings get slug
- * anchors; code blocks use the Sweet Dracula Monokai theme; YouTube links
- * become embeds.
+ * colorful editorial palette. Supports GFM (tables, task lists,
+ * strikethrough, footnotes), Obsidian callouts, LaTeX math (KaTeX),
+ * definition lists, inline HTML, hidden %% comments %% and YouTube embeds.
+ * Code blocks use the Sweet Dracula Monokai theme.
  */
 export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
+    const processed = preprocessCallouts(stripComments(content));
+
     return (
         <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeSlug, rehypeHighlight]}
+            remarkPlugins={[remarkGfm, remarkMath, remarkDeflist]}
+            rehypePlugins={[rehypeSlug, rehypeKatex, rehypeHighlight, rehypeRaw]}
             components={{
+                // Callout panels (from the preprocessor) — styled by type.
+                div: ({ node, children, ...props }) => {
+                    const type = (node as unknown as { properties?: { dataCallout?: string } })
+                        .properties?.dataCallout;
+
+                    if (!type) return <div {...props}>{children}</div>;
+
+                    const title = (node as unknown as { properties?: { dataCalloutTitle?: string } })
+                        .properties?.dataCalloutTitle;
+                    const style = CALLOUT_STYLES[type] ?? DEFAULT_CALLOUT;
+                    const { Icon } = style;
+
+                    return (
+                        <div
+                            {...props}
+                            className={`mt-6 rounded-sm border px-4 py-3 first:mt-0 ${style.panel}`}
+                        >
+                            <span
+                                className={`flex items-center gap-2 font-semibold ${style.icon}`}
+                            >
+                                <Icon size={16} className="shrink-0" />
+                                {title}
+                            </span>
+                            <div className="mt-2 [&>p]:mt-0">{children}</div>
+                        </div>
+                    );
+                },
+                details: ({ node, children, ...props }) => {
+                    const type = (node as unknown as { properties?: { dataCallout?: string } })
+                        .properties?.dataCallout;
+
+                    if (!type) return <details {...props}>{children}</details>;
+
+                    const title = (node as unknown as { properties?: { dataCalloutTitle?: string } })
+                        .properties?.dataCalloutTitle;
+                    const style = CALLOUT_STYLES[type] ?? DEFAULT_CALLOUT;
+                    const { Icon } = style;
+
+                    return (
+                        <details
+                            {...props}
+                            className={`mt-6 rounded-sm border px-4 py-3 first:mt-0 ${style.panel}`}
+                        >
+                            <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                                <span
+                                    className={`flex items-center gap-2 font-semibold ${style.icon}`}
+                                >
+                                    <Icon size={16} className="shrink-0" />
+                                    {title}
+                                </span>
+                            </summary>
+                            <div className="mt-2 [&>p]:mt-0">{children}</div>
+                        </details>
+                    );
+                },
                 h1: ({ children }) => (
                     <h1 className="mt-10 font-display text-2xl tracking-[-0.03em] text-success first:mt-0">
                         {children}
@@ -79,12 +192,12 @@ export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
                     </p>
                 ),
                 strong: ({ children }) => (
-                    <strong className="font-semibold text-foreground">
+                    <strong className="font-semibold text-primary">
                         {children}
                     </strong>
                 ),
                 em: ({ children }) => (
-                    <em className="text-highlight italic">{children}</em>
+                    <em className="text-muted italic">{children}</em>
                 ),
                 del: ({ children }) => (
                     <del className="text-subtle">{children}</del>
@@ -119,7 +232,7 @@ export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
                     );
                 },
                 ul: ({ children }) => (
-                    <ul className="mt-4 list-disc space-y-1 pl-6 text-base leading-7 text-muted marker:text-success">
+                    <ul className="mt-4 list-disc space-y-1 pl-6 text-base leading-7 text-muted marker:text-success [&_input[type='checkbox']]:mr-2 [&_input[type='checkbox']]:align-middle [&_input[type='checkbox']]:accent-emerald-400">
                         {children}
                     </ul>
                 ),
@@ -128,6 +241,37 @@ export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
                         {children}
                     </ol>
                 ),
+                li: ({ children }) => (
+                    <li className="[&>p]:m-0 [&>input[type='checkbox']:checked~*]:text-subtle">
+                        {children}
+                    </li>
+                ),
+                dl: ({ children }) => (
+                    <dl className="mt-4 space-y-2 text-base text-muted">{children}</dl>
+                ),
+                dt: ({ children }) => (
+                    <dt className="font-semibold text-foreground">{children}</dt>
+                ),
+                dd: ({ children }) => (
+                    <dd className="ml-6 border-l border-foreground/10 pl-4">{children}</dd>
+                ),
+                section: ({ children, ...props }) => {
+                    // Footnote sections from remark-gfm.
+                    const className = (props as { className?: string }).className;
+
+                    if (className?.includes('footnotes')) {
+                        return (
+                            <section
+                                {...props}
+                                className="mt-10 border-t border-foreground/10 pt-4 text-sm text-subtle"
+                            >
+                                {children}
+                            </section>
+                        );
+                    }
+
+                    return <section {...props}>{children}</section>;
+                },
                 blockquote: ({ children }) => (
                     <blockquote className="mt-6 border-l-2 border-warning pl-4 text-warning/90 italic">
                         {children}
@@ -145,7 +289,7 @@ export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
                     }
 
                     return (
-                        <code className="rounded-sm bg-foreground/10 px-1.5 py-0.5 font-mono text-[0.85em] text-highlight">
+                        <code className="rounded-sm bg-foreground/10 px-1.5 py-0.5 font-mono text-[0.85em] text-primary">
                             {children}
                         </code>
                     );
@@ -179,7 +323,7 @@ export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
                 hr: () => <hr className="mt-8 border-foreground/10" />,
             }}
         >
-            {content}
+            {processed}
         </ReactMarkdown>
     );
 }
