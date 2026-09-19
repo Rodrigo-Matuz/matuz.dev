@@ -24,6 +24,14 @@ function stripComments(markdown: string): string {
 }
 
 /**
+ * Convert Obsidian `==highlight==` into <mark> elements (GFM has no native
+ * highlight syntax). Content inside is preserved verbatim.
+ */
+function preprocessHighlights(markdown: string): string {
+    return markdown.replace(/==([^=\n]+)==/g, '<mark>$1</mark>');
+}
+
+/**
  * Preprocess Obsidian callouts into GFM-compatible HTML the renderer can
  * style: `> [!type] title` blockquotes become <details>/<div> panels.
  * Done as a string transform because remark has no native callout syntax.
@@ -94,7 +102,9 @@ function youtubeId(href: string): string | null {
  * Code blocks use the Sweet Dracula Monokai theme.
  */
 export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
-    const processed = preprocessCallouts(stripComments(content));
+    const processed = preprocessCallouts(
+        preprocessHighlights(stripComments(content)),
+    );
 
     return (
         <ReactMarkdown
@@ -198,6 +208,11 @@ export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
                 ),
                 em: ({ children }) => (
                     <em className="text-muted italic">{children}</em>
+                ),
+                mark: ({ children }) => (
+                    <mark className="rounded-sm bg-highlight/25 px-1 text-highlight">
+                        {children}
+                    </mark>
                 ),
                 del: ({ children }) => (
                     <del className="text-subtle">{children}</del>

@@ -65,7 +65,7 @@ describe('NoteMarkdown — callouts', () => {
 
         const panel = screen.getByText('Warning Callout').closest('div');
 
-        expect(panel?.className).toContain('border-orange-400');
+        expect(panel?.className).toContain('border-warning');
     });
 
     it('renders a collapsible tip callout collapsed by default', () => {
