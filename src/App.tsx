@@ -27,7 +27,8 @@ function AppRoutes() {
                 <Route path="/projects" element={<ProjectsPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/notes" element={<NotesPage />} />
-                <Route path="/notes/:slug" element={<NotePageRoute />} />
+                {/* Splat so nested slugs (user1/FileNameTitle) match. */}
+                <Route path="/notes/*" element={<NotePageRoute />} />
             </Routes>
         </AnimatePresence>
     );

@@ -22,7 +22,13 @@ type LoadState = 'loading' | 'loaded' | 'error' | 'not-found';
  */
 export function NotePage({ renderContent }: { renderContent: (content: string) => React.ReactNode }) {
     const content = useLocale();
-    const { slug } = useParams<{ slug: string }>();
+    // Route is a splat (/notes/*), so the slug is the full remainder of the
+    // path — segments are decoded individually to preserve '/' separators.
+    const params = useParams();
+    const splat = params['*'];
+    const slug = splat
+        ? splat.split('/').map(decodeURIComponent).join('/')
+        : undefined;
     const [state, setState] = useState<LoadState>('loading');
     const [note, setNote] = useState<NoteContent | null>(null);
     const [notes, setNotes] = useState<NoteIndexEntry[]>([]);

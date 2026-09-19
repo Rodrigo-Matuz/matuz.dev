@@ -29,10 +29,10 @@ const mockNote: notesLib.NoteContent = {
 const renderPage = (slug = 'my-note') =>
     render(
         <MemoryRouter initialEntries={[`/notes/${slug}`]}>
-            {/* NotePage reads useParams, so it must mount inside a Route. */}
+            {/* NotePage reads the splat param, so it must mount inside a Route. */}
             <Routes>
                 <Route
-                    path="/notes/:slug"
+                    path="/notes/*"
                     element={
                         <NotePage renderContent={(content) => <pre>{content}</pre>} />
                     }
