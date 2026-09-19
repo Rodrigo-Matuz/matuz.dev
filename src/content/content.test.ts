@@ -75,11 +75,13 @@ describe('content locales', () => {
     });
 
     describe('links', () => {
-        it('has the same link labels in the same order in every locale', () => {
-            const reference = locales.en.links.map((link) => link.label);
+        it('has the same link icons in the same order in every locale', () => {
+            // Labels are localized (e.g. "Notes" / "Notas"); icons are the
+            // locale-neutral identity of each link.
+            const reference = locales.en.links.map((link) => link.icon);
 
             for (const key of languageKeys) {
-                expect(locales[key].links.map((link) => link.label)).toEqual(
+                expect(locales[key].links.map((link) => link.icon)).toEqual(
                     reference,
                 );
             }
@@ -89,7 +91,7 @@ describe('content locales', () => {
             for (const key of languageKeys) {
                 for (const link of locales[key].links) {
                     expect(link.href, `${key}:${link.label}`).toMatch(
-                        /^(https?:\/\/|#)/,
+                        /^(https?:\/\/|#|\/)/,
                     );
                 }
             }

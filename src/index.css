@@ -1,5 +1,21 @@
 @import "tailwindcss";
-@import "highlight.js/styles/github-dark.css";
+
+/* Sweet Dracula Monokai — code block theme (dark, pink/green/cyan accents). */
+.hljs { color: #f8f8f2; background: transparent; }
+.hljs-comment, .hljs-quote { color: #6272a4; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-section, .hljs-doctag, .hljs-type, .hljs-name, .hljs-strong { color: #ff79c6; }
+.hljs-string, .hljs-regexp, .hljs-addition, .hljs-attribute, .hljs-meta .hljs-string { color: #50fa7b; }
+.hljs-number, .hljs-symbol, .hljs-bullet, .hljs-link, .hljs-variable, .hljs-template-variable { color: #bd93f9; }
+.hljs-title, .hljs-title.function_, .hljs-title.class_ { color: #50fa7b; }
+.hljs-attr, .hljs-property, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id { color: #8be9fd; }
+.hljs-built_in, .hljs-class .hljs-title, .hljs-title.constant_ { color: #8be9fd; }
+.hljs-params { color: #ffb86c; }
+.hljs-meta, .hljs-meta .hljs-keyword { color: #ff79c6; }
+.hljs-deletion { color: #ff5555; }
+.hljs-emphasis { font-style: italic; }
+.hljs-tag { color: #ff79c6; }
+.hljs-tag .hljs-name { color: #ff79c6; }
+.hljs-tag .hljs-attr { color: #50fa7b; }
 
 @theme {
   /* Brand: retain these values unless the visual identity is intentionally changing. */

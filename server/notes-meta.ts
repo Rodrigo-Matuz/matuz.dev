@@ -125,8 +125,25 @@ export function stripNoteHeader(raw: string): string {
     return lines.slice(index).join('\n').replace(/^\s+/, '');
 }
 
-/** Derive the display title from the first `# heading`, else the filename. */
+/**
+ * Derive the display title: frontmatter `title` first, then the first
+ * `# heading`, then the filename.
+ */
 export function deriveTitle(raw: string, filename: string): string {
+    const frontmatter = raw.match(FRONTMATTER_BLOCK);
+
+    if (frontmatter) {
+        const titleLine = frontmatter[1]
+            .split('\n')
+            .find((line) => /^title:\s*\S/.test(line));
+
+        if (titleLine) {
+            const value = titleLine.replace(/^title:\s*/, '').trim();
+
+            if (value) return value.replace(/^["']|["']$/g, '');
+        }
+    }
+
     const heading = raw.match(/^#\s+(.+)$/m);
 
     if (heading) return heading[1].trim();

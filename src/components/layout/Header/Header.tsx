@@ -27,6 +27,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
     const routeLinks = [
         { to: '/about', label: content.navigation.about },
         { to: '/projects', label: content.navigation.projects },
+        { to: '/notes', label: content.navigation.notes },
         { to: '/contact', label: content.navigation.contact },
     ];
 

@@ -8,6 +8,7 @@
     "home": "Home",
     "about": "About",
     "projects": "Projects",
+    "notes": "Notes",
     "contact": "Contact",
     "menu": "Menu",
     "closeMenu": "Close menu",
@@ -35,8 +36,8 @@
       "icon": "discord"
     },
     {
-      "label": "Blog",
-      "href": "#",
+      "label": "Notes",
+      "href": "/notes",
       "icon": "rss"
     }
   ],
@@ -238,7 +239,7 @@
   "notes": {
     "eyebrow": "Notes",
     "title": "Public notes — things I learned, liked, or thought worth writing down.",
-    "languageNotice": "Notes are written in English only. Your browser's translate feature is a good way to read them in another language.",
+    "languageNotice": "These notes are written in English only — translating every note into other languages isn't something I plan to maintain. If English isn't your language, paste the text into a translator (Google Translate, DeepL, or your browser's built-in translate feature) and read it that way.",
     "empty": "No notes published yet — check back soon.",
     "loadError": "Notes could not be loaded right now. Try again in a moment.",
     "notFound": "This note does not exist (or was renamed).",

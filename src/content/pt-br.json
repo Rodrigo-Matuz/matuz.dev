@@ -8,6 +8,7 @@
     "home": "Início",
     "about": "Sobre",
     "projects": "Projetos",
+    "notes": "Notas",
     "contact": "Contato",
     "menu": "Menu",
     "closeMenu": "Fechar menu",
@@ -35,8 +36,8 @@
       "icon": "discord"
     },
     {
-      "label": "Blog",
-      "href": "#",
+      "label": "Notas",
+      "href": "/notes",
       "icon": "rss"
     }
   ],
@@ -238,7 +239,7 @@
   "notes": {
     "eyebrow": "Notas",
     "title": "Notas públicas — coisas que aprendi, curti ou achei que valiam um registro.",
-    "languageNotice": "As notas são escritas apenas em inglês. O recurso de tradução do seu navegador é uma boa forma de lê-las em outro idioma.",
+    "languageNotice": "As notas são escritas apenas em inglês — traduzir cada nota para outros idiomas não é algo que eu pretenda manter. Se inglês não é seu idioma, cole o texto em um tradutor (Google Tradutor, DeepL, ou o recurso de tradução do próprio navegador) e leia por lá.",
     "empty": "Nenhuma nota publicada ainda — volte em breve.",
     "loadError": "Não foi possível carregar as notas agora. Tente novamente em instantes.",
     "notFound": "Essa nota não existe (ou foi renomeada).",

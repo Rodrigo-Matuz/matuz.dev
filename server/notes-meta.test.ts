@@ -48,6 +48,27 @@ describe('parseNoteHeader', () => {
         });
     });
 
+    it('finds created/updated anywhere in the frontmatter block', () => {
+        const raw = [
+            '---',
+            'title: Hello, World!',
+            'date: 2025-04-05',
+            'tags:',
+            '  - blog',
+            '  - hello-world',
+            'created: 2026-09-19T10:12',
+            'updated: 2026-09-19T10:12',
+            '---',
+            '',
+            '# body',
+        ].join('\n');
+
+        expect(parseNoteHeader(raw)).toEqual({
+            created: '2026-09-19T10:12',
+            updated: '2026-09-19T10:12',
+        });
+    });
+
     it('returns nulls for a note without a header', () => {
         expect(parseNoteHeader('# Just content')).toEqual({
             created: null,
@@ -98,6 +119,24 @@ describe('stripNoteHeader', () => {
 describe('deriveTitle', () => {
     it('uses the first h1 heading', () => {
         expect(deriveTitle('# My Note\nbody', 'file.md')).toBe('My Note');
+    });
+
+    it('prefers the frontmatter title over the first heading', () => {
+        const raw = [
+            '---',
+            'created: 2026-09-19T07:54',
+            'title: Markdown Test Page',
+            '---',
+            '# Heading',
+        ].join('\n');
+
+        expect(deriveTitle(raw, 'file.md')).toBe('Markdown Test Page');
+    });
+
+    it('strips quotes from a quoted frontmatter title', () => {
+        const raw = '---\ntitle: "Quoted Title"\n---\nbody';
+
+        expect(deriveTitle(raw, 'file.md')).toBe('Quoted Title');
     });
 
     it('falls back to the filename without dashes', () => {
