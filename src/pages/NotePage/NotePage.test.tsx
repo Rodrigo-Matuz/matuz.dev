@@ -14,6 +14,7 @@ vi.mock('$/lib/notes', () => ({
 const mockIndex: notesLib.NoteIndexEntry[] = [
     {
         slug: 'my-note',
+        id: 'my-note',
         title: 'My note',
         created: '2026-09-19T07:54',
         updated: '2026-09-19T07:54',

@@ -147,6 +147,7 @@ describe('deriveTitle', () => {
 describe('sortNotes', () => {
     const note = (slug: string, created: string | null): NoteMeta => ({
         slug,
+        id: slug,
         title: slug,
         created,
         updated: created,

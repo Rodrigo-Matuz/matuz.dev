@@ -16,6 +16,8 @@
 
 export interface NoteMeta {
     slug: string;
+    /** Short stable ID (first 8 hex of SHA-256 of the repo path). */
+    id: string;
     title: string;
     /** ISO-ish local timestamp `YYYY-MM-DDTHH:mm`, or null when missing. */
     created: string | null;

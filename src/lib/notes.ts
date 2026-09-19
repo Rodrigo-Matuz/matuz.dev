@@ -8,6 +8,8 @@
 
 export interface NoteIndexEntry {
     slug: string;
+    /** Short stable ID — collision-proof URL alternative to the slug. */
+    id: string;
     title: string;
     created: string | null;
     updated: string | null;

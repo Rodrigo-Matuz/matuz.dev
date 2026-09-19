@@ -57,14 +57,27 @@ app.get('/api/notes', async (_req, res) => {
     }
 });
 
-app.get('/api/notes/:slug', async (req, res) => {
+// Nested slugs contain slashes (e.g. user1/FileNameTitle), so use a
+// wildcard parameter — :slug alone would not match across '/'.
+// Express 5 (path-to-regexp v8) requires wildcard params to be named.
+app.get('/api/notes/*splat', async (req, res) => {
+    // Express 5 returns wildcard params as string | string[].
+    const params = req.params as unknown as { splat?: string | string[] };
+    const raw = params.splat;
+    const slug = (Array.isArray(raw) ? raw.join('/') : (raw ?? '')).trim();
+
+    if (!slug) {
+        res.status(404).json({ error: 'Note not found.' });
+        return;
+    }
+
     if (!isNotesConfigured()) {
         res.status(503).json({ error: 'Notes source is not configured.' });
         return;
     }
 
     try {
-        const note = await getNoteContent(req.params.slug);
+        const note = await getNoteContent(slug);
 
         if (!note) {
             res.status(404).json({ error: 'Note not found.' });

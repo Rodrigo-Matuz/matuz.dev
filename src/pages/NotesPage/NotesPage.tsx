@@ -87,7 +87,10 @@ export function NotesPage() {
                                             className="border-b border-foreground/10"
                                         >
                                             <Link
-                                                to={`/notes/${note.slug}`}
+                                                to={`/notes/${note.slug
+                                                    .split('/')
+                                                    .map(encodeURIComponent)
+                                                    .join('/')}`}
                                                 className="group block py-5 transition-colors"
                                             >
                                                 <span className="font-display text-xl tracking-[-0.02em] text-foreground transition-colors group-hover:text-primary">

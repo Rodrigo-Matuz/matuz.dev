@@ -9,6 +9,8 @@
  *   NOTES_PATH         — tracked folder inside the vault (default: blog)
  */
 
+import crypto from 'node:crypto';
+
 import {
     deriveTitle,
     parseNoteHeader,
@@ -48,6 +50,16 @@ function pathToSlug(path: string): string {
         : path;
 
     return withoutBase.replace(/\.md$/i, '').replace(/\\/g, '/');
+}
+
+/**
+ * Short stable ID derived from the repo path (first 8 hex chars of the
+ * SHA-256). Used as a collision-proof alias: two notes with the same
+ * filename in different folders get different IDs, and renaming a note's
+ * title keeps the ID stable as long as the path is unchanged.
+ */
+function shortId(path: string): string {
+    return crypto.createHash('sha256').update(path).digest('hex').slice(0, 8);
 }
 
 interface CacheEntry<T> {
@@ -179,6 +191,7 @@ export async function getNotesIndex(): Promise<NoteIndexEntry[]> {
 
         entries.push({
             slug: pathToSlug(path),
+            id: shortId(path),
             title: deriveTitle(raw, filename),
             created: header.created,
             updated: header.updated,
@@ -193,16 +206,23 @@ export async function getNotesIndex(): Promise<NoteIndexEntry[]> {
 }
 
 /**
- * Get one note's full content (header stripped). Throws when the slug is not
- * in the index — callers must validate against the listing, never build API
- * paths from raw user input.
+ * Get one note's full content (header stripped). Accepts either the full
+ * slug (`user1/FileNameTitle`) or the note's short ID (`a1b2c3d4`) — the ID
+ * keeps URLs collision-proof when two notes share a filename. Throws when
+ * the identifier is not in the index — callers must validate against the
+ * listing, never build API paths from raw user input.
  */
-export async function getNoteContent(slug: string): Promise<NoteContent | null> {
+export async function getNoteContent(
+    identifier: string,
+): Promise<NoteContent | null> {
     const index = await getNotesIndex();
-    const meta = index.find((entry) => entry.slug === slug);
+    const meta =
+        index.find((entry) => entry.slug === identifier) ??
+        index.find((entry) => entry.id === identifier);
 
     if (!meta) return null;
 
+    const slug = meta.slug;
     const cached = contentCaches.get(slug);
     const path = `${config.path}/${slug}.md`;
 
