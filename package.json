@@ -11,7 +11,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "build:server": "tsc -p tsconfig.server.json",    "heroku-postbuild": "tsc -p tsconfig.server.json",    "start": "node dist-server/index.js"
+    "build:server": "tsc -p tsconfig.server.json",
+    "heroku-postbuild": "npm run build && tsc -p tsconfig.server.json",
+    "start": "node dist-server/index.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
