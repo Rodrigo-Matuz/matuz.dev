@@ -12,7 +12,36 @@ import { locales, type Language } from '$/content';
 
 export type { Language };
 
-let currentLanguage: Language = 'pt-BR';
+/**
+ * Detect the browser's preferred language on first load: `en` → English,
+ * `pt-BR`/`pt` → Portuguese, anything else → English (the site's fallback).
+ * Only applies when the user hasn't picked a language yet (no localStorage
+ * entry) — an explicit choice always wins.
+ */
+function detectInitialLanguage(): Language {
+    try {
+        const stored = localStorage.getItem('matuz.dev:language');
+
+        if (stored === 'en' || stored === 'pt-BR') {
+            return stored;
+        }
+    } catch {
+        // localStorage unavailable (private mode, etc.) — fall through.
+    }
+
+    const languages = navigator.languages ?? [navigator.language];
+
+    for (const tag of languages) {
+        const normalized = tag.toLowerCase();
+
+        if (normalized.startsWith('pt')) return 'pt-BR';
+        if (normalized.startsWith('en')) return 'en';
+    }
+
+    return 'en';
+}
+
+let currentLanguage: Language = detectInitialLanguage();
 
 const listeners = new Set<() => void>();
 
@@ -25,6 +54,14 @@ export function setLanguage(language: Language): void {
 
     currentLanguage = language;
     document.documentElement.lang = language;
+
+    // Persist the explicit choice so browser detection doesn't override it
+    // on the next visit.
+    try {
+        localStorage.setItem('matuz.dev:language', language);
+    } catch {
+        // localStorage unavailable — language still applies for this session.
+    }
 
     for (const listener of listeners) {
         listener();

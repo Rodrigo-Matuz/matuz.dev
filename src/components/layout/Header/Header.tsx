@@ -123,14 +123,14 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                     </div>
                 </div>
 
-                {/* Mobile: single hamburger opening the NavMenu drawer. */}
+                {/* Mobile: language menu, then the NavMenu drawer trigger. */}
                 <div className="flex items-center gap-5 sm:hidden">
-                    <NavMenu language={language} />
+                    <LanguageMenu
+                        language={language}
+                        onLanguageChange={onLanguageChange}
+                    />
                     <div className="border-l border-foreground/10 pl-5">
-                        <LanguageMenu
-                            language={language}
-                            onLanguageChange={onLanguageChange}
-                        />
+                        <NavMenu language={language} />
                     </div>
                 </div>
             </nav>
