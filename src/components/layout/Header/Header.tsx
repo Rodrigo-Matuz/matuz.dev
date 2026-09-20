@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router';
 import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
 import LanguageMenu from '$/components/ui/LanguageMenu';
 import NavMenu from '$/components/ui/NavMenu';
+import SafeLink from '$/components/ui/SafeLink';
 import { locales, type Language } from '$/content';
 
 interface HeaderProps {
@@ -104,7 +105,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
 
                     <div className="flex items-center gap-4 border-l border-foreground/10 pl-7">
                         {content.links.map((link) => (
-                            <a
+                            <SafeLink
                                 key={link.label}
                                 href={link.href}
                                 aria-label={link.label}
@@ -118,7 +119,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                                             size={16}
                                         />
                                     )}
-                            </a>
+                            </SafeLink>
                         ))}
                     </div>
                 </div>

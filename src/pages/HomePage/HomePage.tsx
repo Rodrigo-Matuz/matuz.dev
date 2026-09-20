@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
+import SafeLink from '$/components/ui/SafeLink';
 import Container from '$/components/layout/Container';
 import PageShell from '$/components/layout/PageShell';
 import Section from '$/components/layout/Section';
@@ -289,7 +290,7 @@ export function HomePage() {
                                 className="mt-4 divide-y divide-foreground/10"
                             >
                                 {content.links.map((link, index) => (
-                                    <a
+                                    <SafeLink
                                         key={link.label}
                                         href={link.href}
                                         className={`group flex items-center justify-between py-5 transition-colors ${correspondenceHoverClasses[index % correspondenceHoverClasses.length]}`}
@@ -316,7 +317,7 @@ export function HomePage() {
                                                 className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                                             />
                                         </span>
-                                    </a>
+                                    </SafeLink>
                                 ))}
                             </motion.div>
                         </motion.div>

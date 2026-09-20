@@ -102,7 +102,16 @@ describe('Header', () => {
         ).toHaveAttribute('href', '/projects');
         expect(
             screen.getByRole('menuitem', { name: locales.en.links[0].label }),
-        ).toHaveAttribute('href', locales.en.links[0].href);
+        ).toBeInTheDocument();
+
+        // SafeLink: the href only exists after hover (anti-scraping).
+        const socialItem = screen.getByRole('menuitem', {
+            name: locales.en.links[0].label,
+        });
+
+        await user.hover(socialItem);
+
+        expect(socialItem).toHaveAttribute('href', locales.en.links[0].href);
     });
 
     it('closes the mobile menu when a page link is chosen', async () => {

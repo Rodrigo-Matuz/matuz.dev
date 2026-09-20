@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 
@@ -32,6 +33,18 @@ const renderPage = () =>
     );
 
 /**
+ * Channels render through SafeLink (anti-scraping): the href only exists in
+ * the DOM after hover/touch/focus. Reveal every link before asserting.
+ */
+const revealChannelLinks = async () => {
+    const user = userEvent.setup();
+
+    for (const link of getChannelLinks()) {
+        await user.hover(link);
+    }
+};
+
+/**
  * The header also renders social links with the same hrefs (icon-only, no
  * target). Channel assertions must look inside the channel list only.
  */
@@ -60,8 +73,10 @@ describe('ContactPage', () => {
         }
     });
 
-    it('links every channel to its href', () => {
+    it('links every channel to its href', async () => {
         renderPage();
+
+        await revealChannelLinks();
 
         const { channels } = locales['pt-BR'].contact;
         const links = getChannelLinks();
@@ -75,8 +90,10 @@ describe('ContactPage', () => {
         }
     });
 
-    it('opens external channels in a new tab but keeps mailto in-tab', () => {
+    it('opens external channels in a new tab but keeps mailto in-tab', async () => {
         renderPage();
+
+        await revealChannelLinks();
 
         const { channels } = locales['pt-BR'].contact;
         const links = getChannelLinks();
@@ -96,8 +113,10 @@ describe('ContactPage', () => {
         }
     });
 
-    it('lists the Discord handle with the profile link', () => {
+    it('lists the Discord handle with the profile link', async () => {
         renderPage();
+
+        await revealChannelLinks();
 
         const discord = locales['pt-BR'].contact.channels.find(
             (channel) => channel.id === 'discord',
@@ -122,7 +141,7 @@ describe('ContactPage', () => {
         expect(screen.getByText(contact.discordNote)).toBeInTheDocument();
     });
 
-    it('renders the closing action with the real email', () => {
+    it('renders the closing action with the real email', async () => {
         renderPage();
 
         const action = screen.getByRole('link', {
@@ -131,6 +150,9 @@ describe('ContactPage', () => {
                 'i',
             ),
         });
+
+        // SafeLink: the href appears on hover.
+        await userEvent.setup().hover(action);
 
         expect(action).toHaveAttribute(
             'href',

@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router';
 import { X } from 'lucide-react';
 
 import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
+import SafeLink from '$/components/ui/SafeLink';
 import { locales, type Language } from '$/content';
 
 interface NavMenuProps {
@@ -154,7 +155,7 @@ export function NavMenu({ language }: NavMenuProps) {
                         <ul className="mt-2">
                             {content.links.map((link) => (
                                 <li key={link.label}>
-                                    <a
+                                    <SafeLink
                                         href={link.href}
                                         role="menuitem"
                                         target={
@@ -175,7 +176,7 @@ export function NavMenu({ language }: NavMenuProps) {
                                                 />
                                             )}
                                         {link.label}
-                                    </a>
+                                    </SafeLink>
                                 </li>
                             ))}
                         </ul>

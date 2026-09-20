@@ -5,8 +5,8 @@ import Container from '$/components/layout/Container';
 import PageShell from '$/components/layout/PageShell';
 import Section from '$/components/layout/Section';
 import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
-import Button from '$/components/ui/Button';
 import Eyebrow from '$/components/ui/Eyebrow';
+import SafeLink from '$/components/ui/SafeLink';
 import { useLocale } from '$/lib/language';
 import {
     fadeUp,
@@ -85,7 +85,9 @@ export function ContactPage() {
                             >
                                 {contact.channels.map((channel, index) => (
                                     <li key={channel.id}>
-                                        <a
+                                        {/* SafeLink keeps the destination out
+                                            of the static HTML (anti-scraping). */}
+                                        <SafeLink
                                             href={channel.href}
                                             target={
                                                 channel.href.startsWith('http')
@@ -130,7 +132,7 @@ export function ContactPage() {
                                                     className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                                                 />
                                             </span>
-                                        </a>
+                                        </SafeLink>
                                     </li>
                                 ))}
                             </motion.ul>
@@ -161,16 +163,16 @@ export function ContactPage() {
                                 <p className="max-w-md text-sm leading-6 text-subtle sm:text-base">
                                     {contact.closing}
                                 </p>
-                                <Button
+                                <SafeLink
                                     href={content.correspondence.emailHref}
-                                    color="accent"
+                                    className="group inline-flex items-center gap-2 bg-accent px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-accent/85"
                                 >
                                     {content.correspondence.primaryAction}
                                     <ArrowUpRight
                                         size={15}
                                         className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                                     />
-                                </Button>
+                                </SafeLink>
                             </motion.div>
                         </motion.div>
                     </Container>
