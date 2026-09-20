@@ -213,6 +213,7 @@
         "eyebrow": "Certificados & idiomas",
         "title": "Credenciais",
         "items": [
+          "Bacharelado em Engenharia de Software — UniCesumar, 2026",
           "AWS Certified Cloud Practitioner — Amazon Web Services, 2025",
           "EF SET — C1 Effective Proficiency (Inglês), 2026",
           "Início Rápido em Teste e QA — Udemy, 2025",
@@ -244,6 +245,9 @@
     "loadError": "Não foi possível carregar as notas agora. Tente novamente em instantes.",
     "notFound": "Essa nota não existe (ou foi renomeada).",
     "backToNotes": "Todas as notas",
+    "copySource": "Copiar fonte",
+    "copied": "Copiado",
+    "copyFailed": "Falhou",
     "created": "Criada",
     "updated": "Atualizada",
     "untitled": "Nota sem título"

@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 
 import NoteSidebar from '$/components/notes/NoteSidebar';
 import RelativeTimeTag from '$/components/notes/RelativeTimeTag';
+import CopySourceButton from '$/components/notes/CopySourceButton';
 import Container from '$/components/layout/Container';
 import PageShell from '$/components/layout/PageShell';
 import { useLocale } from '$/lib/language';
@@ -107,7 +108,7 @@ export function NotePage({ renderContent }: { renderContent: (content: string) =
                                     <h1 className="font-display text-3xl leading-[1.05] tracking-[-0.04em] text-foreground sm:text-4xl">
                                         {note.title}
                                     </h1>
-                                    <div className="mt-4 flex flex-wrap gap-x-6 gap-y-1">
+                                    <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
                                         <RelativeTimeTag
                                             timestamp={note.created}
                                             label={content.notes.created}
@@ -115,6 +116,12 @@ export function NotePage({ renderContent }: { renderContent: (content: string) =
                                         <RelativeTimeTag
                                             timestamp={note.updated}
                                             label={content.notes.updated}
+                                        />
+                                        {/* Puts the entire raw .md source on
+                                            the user's clipboard. */}
+                                        <CopySourceButton
+                                            content={note.content}
+                                            title={note.title}
                                         />
                                     </div>
                                 </header>

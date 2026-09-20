@@ -213,6 +213,7 @@
         "eyebrow": "Certificates & languages",
         "title": "Credentials",
         "items": [
+          "B.Sc. Software Engineering — UniCesumar, 2026",
           "AWS Certified Cloud Practitioner — Amazon Web Services, 2025",
           "EF SET — C1 Effective Proficiency (English), 2026",
           "Início Rápido em Teste e QA — Udemy, 2025",
@@ -244,6 +245,9 @@
     "loadError": "Notes could not be loaded right now. Try again in a moment.",
     "notFound": "This note does not exist (or was renamed).",
     "backToNotes": "All notes",
+    "copySource": "Copy source",
+    "copied": "Copied",
+    "copyFailed": "Copy failed",
     "created": "Created",
     "updated": "Updated",
     "untitled": "Untitled note"
