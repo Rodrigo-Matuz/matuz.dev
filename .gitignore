@@ -9,6 +9,7 @@ dist-server/
 # Internal planning docs (not for the public repo)
 docs/phase4plan.md
 docs/phase4-actions.md
+docs/context.md
 
 # devenv / direnv
 .devenv/

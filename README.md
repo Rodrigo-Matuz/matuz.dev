@@ -17,9 +17,10 @@ The site is fully bilingual. Brazilian Portuguese is the default language; Engli
 - **Editorial dark design** — display-serif headings, mono micro-labels, thin dividers, and a restrained blue-violet palette over a near-black background.
 - **Motion with restraint** — hero entrance, scroll-triggered section reveals, and a language-switch transition, all driven by centralized animation presets. Honors `prefers-reduced-motion`: movement is disabled and only opacity fades remain.
 - **Bilingual by design** — every visible string lives in locale dictionaries (`pt-br.json` / `eng.json`), with tests enforcing structural parity between languages.
-- **Notes system** — Markdown notes written in a private Obsidian vault, fetched at runtime through a token-secured API and rendered with a rich reading experience: Obsidian callouts, LaTeX math (KaTeX), syntax-highlighted code blocks (Sweet Dracula Monokai), footnotes, definition lists, task lists, inline HTML, YouTube embeds, and hidden `%% comments %%`. Folder-grouped sidebar on desktop, dropdown navigation on mobile.
+- **Notes system** — Markdown notes written in a private Obsidian vault, fetched at runtime through a token-secured API and rendered with a rich reading experience: Obsidian callouts, LaTeX math (KaTeX), syntax-highlighted code blocks (Sweet Dracula Monokai), footnotes, definition lists, task lists, inline HTML, YouTube embeds, and hidden `%% comments %%`. Folder-grouped sidebar on desktop, dropdown navigation on mobile. Each note has a **copy source** action that puts the entire raw `.md` file on the reader's clipboard.
 - **Component kit** — a folder-per-component library (layout primitives, UI building blocks, content cards) with colocated tests and barrel exports.
 - **Tested** — 200+ tests with Vitest + Testing Library, colocated with their subjects, covering the UI, the markdown pipeline, and the notes metadata parser.
+- **Scrape-resistant contact** — email and profile links render without a static `href`; the destination is injected only on hover/touch/focus, so crawlers that parse raw HTML never harvest the address while real visitors lose nothing (keyboard activation included).
 - **CI-gated** — GitHub Actions runs lint, tests, and the production build on every push and PR.
 
 ## Tech stack
@@ -74,6 +75,9 @@ Licensed under [CC BY-NC 4.0](LICENSE) (Attribution-NonCommercial 4.0 Internatio
 
 ## Contact
 
-- Email — [mail@matuz.me](mailto:mail@matuz.me)
-- GitHub — [github.com/rodrigo-matuz](https://www.github.com/rodrigo-matuz)
-- LinkedIn — [rodrigo-santos-m0117](https://www.linkedin.com/in/rodrigo-santos-m0117)
+Contact details are rendered through a scrape-resistant link component (`SafeLink`) — open the site (or the Contact page) and hover/tap a channel to reveal it:
+
+- Email — mail@matuz.me (anything `@matuz.me` reaches the inbox)
+- GitHub — github.com/rodrigo-matuz
+- LinkedIn — rodrigo-santos-m0117
+- Discord — @matuz
