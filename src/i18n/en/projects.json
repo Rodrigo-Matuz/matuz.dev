@@ -4,8 +4,7 @@
     "title": "Things I've built.",
     "description": "A selection of client work, open source, and personal experiments — the ones worth showing.",
     "sourceLabel": "Source",
-    "previewLabel": "Preview",
-    "demoLabel": "Demo",
+    "previewLabel": "Demo",
     "backToProjects": "All projects",
     "demo": {
       "videoTitle": "Demo video",
@@ -75,6 +74,7 @@
           ]
         }
       }
-    ]
+    ],
+    "aboutLabel": "About"
   }
 }

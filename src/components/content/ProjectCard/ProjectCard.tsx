@@ -11,7 +11,11 @@ interface ProjectCardProps {
     technologies?: string[];
     /** Link to the project's source on GitHub. */
     github?: string;
-    /** Optional live preview link (external URL or internal route path). */
+    /** Internal route to the project's expanded "About" page. */
+    aboutHref?: string;
+    /** Label for the About link (localized by the caller). */
+    aboutLabel?: string;
+    /** Optional live preview link (external URL) — only when one exists. */
     preview?: string;
     /** Label for the source link (localized by the caller). */
     sourceLabel?: string;
@@ -29,9 +33,11 @@ export function ProjectCard({
     image,
     technologies = [],
     github,
+    aboutHref,
+    aboutLabel = 'About',
     preview,
     sourceLabel = 'Source',
-    previewLabel = 'Preview',
+    previewLabel = 'Demo',
 }: ProjectCardProps) {
     return (
         <article
@@ -122,7 +128,7 @@ export function ProjectCard({
                     )}
                 </div>
 
-                {(github || preview) && (
+                {(github || aboutHref || preview) && (
                     <div className="mt-6 flex items-center gap-5 border-t border-foreground/10 pt-4">
                         {github && (
                             <a
@@ -133,6 +139,19 @@ export function ProjectCard({
                             >
                                 <BrandIcon name="github" size={14} />
                                 {sourceLabel}
+                            </a>
+                        )}
+
+                        {aboutHref && (
+                            <a
+                                href={aboutHref}
+                                className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-subtle transition-colors hover:text-primary"
+                            >
+                                {aboutLabel}
+                                <ArrowUpRight
+                                    size={14}
+                                    className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                />
                             </a>
                         )}
 

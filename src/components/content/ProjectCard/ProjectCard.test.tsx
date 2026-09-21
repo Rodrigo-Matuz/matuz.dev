@@ -105,11 +105,11 @@ describe('ProjectCard', () => {
             <ProjectCard
                 {...baseProps}
                 preview="https://example.com"
-                previewLabel="Prévia"
+                previewLabel="Demo"
             />,
         );
 
-        const preview = screen.getByRole('link', { name: /prévia/i });
+        const preview = screen.getByRole('link', { name: /demo/i });
 
         expect(preview).toHaveAttribute('href', 'https://example.com');
         expect(preview).toHaveAttribute('target', '_blank');
@@ -118,10 +118,31 @@ describe('ProjectCard', () => {
     it('keeps internal preview links in the same tab', () => {
         render(<ProjectCard {...baseProps} preview="/" />);
 
-        const preview = screen.getByRole('link', { name: /preview/i });
+        const preview = screen.getByRole('link', { name: /demo/i });
 
         expect(preview).toHaveAttribute('href', '/');
         expect(preview).not.toHaveAttribute('target');
+    });
+
+    it('links the About label to the expanded-card page', () => {
+        render(
+            <ProjectCard
+                {...baseProps}
+                aboutHref="/projects/wallpaper-picker"
+                aboutLabel="Sobre"
+            />,
+        );
+
+        const about = screen.getByRole('link', { name: /sobre/i });
+
+        expect(about).toHaveAttribute('href', '/projects/wallpaper-picker');
+        expect(about).not.toHaveAttribute('target');
+    });
+
+    it('omits the About link without aboutHref', () => {
+        render(<ProjectCard {...baseProps} />);
+
+        expect(screen.queryByRole('link', { name: /about/i })).toBeNull();
     });
 
     it('renders no links without github or preview', () => {

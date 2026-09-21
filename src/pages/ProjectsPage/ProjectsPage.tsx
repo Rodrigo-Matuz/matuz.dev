@@ -93,7 +93,9 @@ export function ProjectsPage() {
                                             image={cardImages[card.id]}
                                             technologies={card.technologies}
                                             github={card.github}
-                                            preview={card.preview ?? `/projects/${card.id}`}
+                                            aboutHref={`/projects/${card.id}`}
+                                            aboutLabel={projects.aboutLabel}
+                                            preview={card.preview}
                                             sourceLabel={projects.sourceLabel}
                                             previewLabel={projects.previewLabel}
                                         />

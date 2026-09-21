@@ -98,22 +98,48 @@ describe('ProjectsPage', () => {
         }
     });
 
-    it('gives every card a preview link (demo page or external)', () => {
-        renderPage();
+    it('gives every card an About link to its demo page', () => {
+        const { container } = renderPage();
+
+        const { cards, aboutLabel } = locales['pt-BR'].projects;
+
+        // Scope to the card grid — the header nav link is also "Sobre".
+        const grid = container.querySelector('#projects-grid')!;
+        const aboutLinks = Array.from(grid.querySelectorAll('a')).filter((a) =>
+            new RegExp(aboutLabel, 'i').test(a.textContent ?? ''),
+        );
+
+        expect(aboutLinks).toHaveLength(cards.length);
+
+        for (const [index, link] of aboutLinks.entries()) {
+            expect(link).toHaveAttribute('href', `/projects/${cards[index].id}`);
+            expect(link).not.toHaveAttribute('target');
+        }
+    });
+
+    it('renders the Demo button only for cards with an external preview', () => {
+        const { container } = renderPage();
 
         const { cards, previewLabel } = locales['pt-BR'].projects;
-        const previewLinks = screen.getAllByRole('link', {
-            name: new RegExp(previewLabel, 'i'),
-        });
+        const withPreview = cards.filter((card) => card.preview);
 
-        // Every card now links to its demo page (/projects/:id) unless it
-        // declares an external preview.
-        expect(previewLinks).toHaveLength(cards.length);
+        // Scope to the card grid to avoid the header's social links.
+        const grid = container.querySelector('#projects-grid')!;
+        const previewLinks = Array.from(grid.querySelectorAll('a')).filter((a) =>
+            new RegExp(previewLabel, 'i').test(a.textContent ?? ''),
+        );
+
+        expect(previewLinks).toHaveLength(withPreview.length);
 
         for (const [index, link] of previewLinks.entries()) {
-            const expected = cards[index].preview ?? `/projects/${cards[index].id}`;
+            expect(link).toHaveAttribute('href', withPreview[index].preview!);
 
-            expect(link).toHaveAttribute('href', expected);
+            // External previews open in a new tab; internal ones don't.
+            if (withPreview[index].preview!.startsWith('http')) {
+                expect(link).toHaveAttribute('target', '_blank');
+            } else {
+                expect(link).not.toHaveAttribute('target');
+            }
         }
     });
 

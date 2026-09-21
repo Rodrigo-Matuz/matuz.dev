@@ -4,8 +4,7 @@
     "title": "Coisas que construí.",
     "description": "Uma seleção de trabalhos para clientes, open source e experimentos pessoais — os que valem a pena mostrar.",
     "sourceLabel": "Código",
-    "previewLabel": "Prévia",
-    "demoLabel": "Demo",
+    "previewLabel": "Demo",
     "backToProjects": "Todos os projetos",
     "demo": {
       "videoTitle": "Vídeo de demonstração",
@@ -75,6 +74,7 @@
           ]
         }
       }
-    ]
+    ],
+    "aboutLabel": "Sobre"
   }
 }
