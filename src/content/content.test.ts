@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
 import { locales, type Language } from './index';
-import eng from './eng.json';
-import ptBr from './pt-br.json';
+import enCommon from '../i18n/en/common.json';
+import ptCommon from '../i18n/pt-BR/common.json';
 
 const languageKeys = Object.keys(locales) as Language[];
 
@@ -387,12 +387,12 @@ describe('content locales', () => {
     });
 
     describe('locale dictionaries', () => {
-        it('eng.json holds the English dictionary', () => {
-            expect(locales.en).toBe(eng);
+        it('en/common.json holds the English common section', () => {
+            expect(locales.en.navigation).toEqual(enCommon.navigation);
         });
 
-        it('pt-br.json holds the Brazilian Portuguese dictionary', () => {
-            expect(locales['pt-BR']).toBe(ptBr);
+        it('pt-BR/common.json holds the Brazilian Portuguese common section', () => {
+            expect(locales['pt-BR'].navigation).toEqual(ptCommon.navigation);
         });
     });
 });

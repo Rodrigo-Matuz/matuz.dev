@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "kicker": "Desenvolvedor Full-stack disponível para projetos",
+    "title": "Software para o que precisar ser construído.",
+    "introduction": "Desenvolvo software em diferentes camadas — de landing pages e sites institucionais a plataformas SaaS, APIs, aplicações desktop e os sistemas que conectam tudo isso.",
+    "recordLink": "Veja o que faço",
+    "closingLine": "Do Brasil, trabalhando remotamente com pessoas, equipes e empresas de todos os tamanhos."
+  },
+  "record": {
+    "eyebrow": "O que eu faço",
+    "title": "Um pouco de tudo.",
+    "entries": [
+      {
+        "label": "Web",
+        "title": "Sites e aplicações",
+        "description": "Landing pages, sites institucionais, dashboards, produtos SaaS e aplicações web sob medida."
+      },
+      {
+        "label": "Full-stack",
+        "title": "Do frontend ao backend",
+        "description": "Interfaces, APIs, bancos de dados, integrações, autenticação e os sistemas que conectam tudo."
+      },
+      {
+        "label": "Desktop",
+        "title": "Software para desktop",
+        "description": "Aplicações multiplataforma pensadas para fluxos de trabalho reais, integração com o sistema e desempenho."
+      },
+      {
+        "label": "Sistemas existentes",
+        "title": "Melhorar o que já existe",
+        "description": "Modernização de sistemas legados, correção de problemas, novas funcionalidades e evolução de software existente."
+      }
+    ]
+  },
+  "experience": {
+    "eyebrow": "Experiência",
+    "title": "Experiência construída sobre problemas diferentes.",
+    "description": "Experiência profissional passando por desenvolvimento de software, engenharia de qualidade, sistemas em produção e projetos open source.",
+    "highlights": [
+      "20+ projetos e demandas de software",
+      "Desenvolvimento full-stack envolvendo frontend, backend, bancos de dados e infraestrutura",
+      "Experiência trabalhando ao lado de engenheiros seniores e equipes multidisciplinares",
+      "Software open source utilizado por 30+ servidores e aproximadamente 4.000+ usuários",
+      "AWS Certified Cloud Practitioner"
+    ],
+    "recordLink": "Ver experiência"
+  },
+  "approach": {
+    "eyebrow": "Abordagem",
+    "title": "A solução certa, não apenas mais software.",
+    "description": "Cada projeto tem suas próprias necessidades e limitações. Adapto a abordagem ao problema — seja construindo algo do zero, integrando um sistema existente ou melhorando o que já está funcionando."
+  },
+  "correspondence": {
+    "eyebrow": "Contato",
+    "title": "Tem algo em mente?",
+    "description": "Conheça meus projetos e experiência ou entre em contato para conversarmos sobre o que você quer construir.",
+    "primaryAction": "Iniciar uma conversa",
+    "secondaryAction": "Ver meus projetos",
+    "email": "mail@matuz.me",
+    "emailHref": "mailto:mail@matuz.me"
+  }
+}

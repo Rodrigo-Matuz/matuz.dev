@@ -1,0 +1,45 @@
+{
+  "languageName": "English",
+  "shortLabel": "ENG",
+  "countryCode": "us",
+  "navigation": {
+    "primary": "Primary navigation",
+    "languageSelector": "Choose language",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "notes": "Notes",
+    "contact": "Contact",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "pages": "Pages",
+    "social": "Elsewhere"
+  },
+  "owner": {
+    "displayName": "Rodrigo dos Santos Lima",
+    "location": "Brazil · Full-stack development"
+  },
+  "links": [
+    {
+      "label": "GitHub",
+      "href": "https://www.github.com/rodrigo-matuz",
+      "icon": "github"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/rodrigo-santos-m0117/?locale=en",
+      "icon": "linkedin"
+    },
+    {
+      "label": "Discord",
+      "href": "https://discord.com/users/584503954969198612",
+      "icon": "discord"
+    },
+    {
+      "label": "Notes",
+      "href": "/notes",
+      "icon": "rss"
+    }
+  ],
+  "footer": "Built by Rodrigo-Matuz · Brazil"
+}
