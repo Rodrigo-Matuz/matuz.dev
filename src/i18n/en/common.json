@@ -34,11 +34,6 @@
             "label": "Discord",
             "href": "https://discord.com/users/584503954969198612",
             "icon": "discord"
-        },
-        {
-            "label": "Notes",
-            "href": "/notes",
-            "icon": "rss"
         }
     ],
     "footer": "Built by Rodrigo-Matuz · Brazil"
