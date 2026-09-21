@@ -43,6 +43,10 @@ function detectInitialLanguage(): Language {
 
 let currentLanguage: Language = detectInitialLanguage();
 
+// Sync the document lang attribute with the detected language so the
+// initial state is correct even before any user interaction.
+document.documentElement.lang = currentLanguage;
+
 const listeners = new Set<() => void>();
 
 export function getLanguage(): Language {
