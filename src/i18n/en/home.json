@@ -1,62 +1,62 @@
 {
-  "hero": {
-    "kicker": "Full-stack Developer for hire",
-    "title": "Software for whatever needs building.",
-    "introduction": "I design and build software across the stack — from landing pages and institutional websites to SaaS platforms, APIs, desktop applications, and the systems behind them.",
-    "recordLink": "See what I do",
-    "closingLine": "Based in Brazil, working remotely with individuals, teams, and companies of all sizes."
-  },
-  "record": {
-    "eyebrow": "What I do",
-    "title": "A little bit of everything.",
-    "entries": [
-      {
-        "label": "Web",
-        "title": "Websites & applications",
-        "description": "Landing pages, institutional sites, dashboards, SaaS products, and custom web applications."
-      },
-      {
-        "label": "Full-stack",
-        "title": "Frontend to backend",
-        "description": "Interfaces, APIs, databases, integrations, authentication, and the systems connecting everything together."
-      },
-      {
-        "label": "Desktop",
-        "title": "Desktop software",
-        "description": "Cross-platform applications built around real workflows, system integration, and performance."
-      },
-      {
-        "label": "Existing systems",
-        "title": "Improve what already exists",
-        "description": "Modernizing legacy applications, fixing problems, extending existing systems, and bringing older software forward."
-      }
-    ]
-  },
-  "experience": {
-    "eyebrow": "Experience",
-    "title": "Built across different kinds of problems.",
-    "description": "Professional experience spanning software development, quality engineering, production systems, and open-source projects.",
-    "highlights": [
-      "20+ projects and software demands delivered",
-      "Full-stack development across frontend, backend, databases, and infrastructure",
-      "Experience working alongside senior engineers and multidisciplinary teams",
-      "Open-source software used by 30+ servers and approximately 4,000+ users",
-      "AWS Certified Cloud Practitioner"
-    ],
-    "recordLink": "View experience"
-  },
-  "approach": {
-    "eyebrow": "Approach",
-    "title": "The right solution, not just more software.",
-    "description": "Every project has different constraints. I adapt to the problem, whether that means building something from scratch, integrating with an existing system, or improving what is already there."
-  },
-  "correspondence": {
-    "eyebrow": "Correspondence",
-    "title": "Have something in mind?",
-    "description": "Explore my work, experience, and projects — or get in touch if you want to talk about building something.",
-    "primaryAction": "Start a conversation",
-    "secondaryAction": "View my work",
-    "email": "mail@matuz.me",
-    "emailHref": "mailto:mail@matuz.me"
-  }
+    "hero": {
+        "kicker": "Full-stack Developer for hire",
+        "title": "Software for whatever needs building.",
+        "introduction": "I design and build software across the stack — from landing pages and institutional websites to SaaS platforms, APIs, desktop applications, and the systems behind them.",
+        "recordLink": "See what I do",
+        "closingLine": "Based in Brazil, working remotely with individuals, teams, and companies of all sizes."
+    },
+    "record": {
+        "eyebrow": "What I do",
+        "title": "A little bit of everything.",
+        "entries": [
+            {
+                "label": "Web",
+                "title": "Websites & applications",
+                "description": "Landing pages, institutional sites, dashboards, SaaS products, and custom web applications."
+            },
+            {
+                "label": "Full-stack",
+                "title": "Frontend to backend",
+                "description": "Interfaces, APIs, databases, integrations, authentication, and the systems connecting everything together."
+            },
+            {
+                "label": "Desktop",
+                "title": "Desktop software",
+                "description": "Cross-platform applications built around real workflows, system integration, and performance."
+            },
+            {
+                "label": "Existing systems",
+                "title": "Improve what already exists",
+                "description": "Modernizing legacy applications, fixing problems, extending existing systems, and bringing older software forward."
+            }
+        ]
+    },
+    "experience": {
+        "eyebrow": "Experience",
+        "title": "Built across different kinds of problems.",
+        "description": "Professional experience spanning software development, quality engineering, production systems, and open-source projects.",
+        "highlights": [
+            "20+ projects and software demands delivered",
+            "Full-stack development across frontend, backend, databases, and infrastructure",
+            "Experience working alongside senior engineers and multidisciplinary teams",
+            "Open-source software used by 30+ servers and approximately 4,000+ users",
+            "AWS Certified Cloud Practitioner"
+        ],
+        "recordLink": "View experience"
+    },
+    "approach": {
+        "eyebrow": "Approach",
+        "title": "The right solution, not just more software.",
+        "description": "Every project has different constraints. I adapt to the problem, whether that means building something from scratch, integrating with an existing system, or improving what is already there."
+    },
+    "correspondence": {
+        "eyebrow": "Correspondence",
+        "title": "Have something in mind?",
+        "description": "Explore my work, experience, and projects — or get in touch if you want to talk about building something.",
+        "primaryAction": "Start a conversation",
+        "secondaryAction": "View my work",
+        "email": "mail@matuz.me",
+        "emailHref": "mailto:mail@matuz.me"
+    }
 }

@@ -1,6 +1,6 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from "lucide-react";
 
-import BrandIcon from '$/components/ui/BrandIcon';
+import BrandIcon from "$/components/ui/BrandIcon";
 
 interface ProjectCardProps {
     title: string;
@@ -34,10 +34,10 @@ export function ProjectCard({
     technologies = [],
     github,
     aboutHref,
-    aboutLabel = 'About',
+    aboutLabel = "About",
     preview,
-    sourceLabel = 'Source',
-    previewLabel = 'Demo',
+    sourceLabel = "Source",
+    previewLabel = "Demo",
 }: ProjectCardProps) {
     return (
         <article
@@ -96,9 +96,7 @@ export function ProjectCard({
                             aria-label={`${title} — ${sourceLabel}`}
                             className="w-fit"
                         >
-                            <h3
-                                className="font-display text-2xl leading-tight tracking-[-0.03em] text-foreground transition-colors duration-300 group-hover:text-primary"
-                            >
+                            <h3 className="font-display text-2xl leading-tight tracking-[-0.03em] text-foreground transition-colors duration-300 group-hover:text-primary">
                                 {title}
                             </h3>
                         </a>
@@ -159,8 +157,8 @@ export function ProjectCard({
                             <a
                                 href={preview}
                                 target={
-                                    preview.startsWith('http')
-                                        ? '_blank'
+                                    preview.startsWith("http")
+                                        ? "_blank"
                                         : undefined
                                 }
                                 rel="noreferrer"

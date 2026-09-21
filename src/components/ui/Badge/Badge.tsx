@@ -1,13 +1,7 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 type BadgeVariant =
-    | 'default'
-    | 'blue'
-    | 'purple'
-    | 'red'
-    | 'orange'
-    | 'yellow'
-    | 'green';
+    "default" | "blue" | "purple" | "red" | "orange" | "yellow" | "green";
 
 interface BadgeProps {
     children: ReactNode;
@@ -58,7 +52,7 @@ const variants: Record<BadgeVariant, string> = {
   `,
 };
 
-export function Badge({ children, variant = 'default' }: BadgeProps) {
+export function Badge({ children, variant = "default" }: BadgeProps) {
     return (
         <span
             className={`

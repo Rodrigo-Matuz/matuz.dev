@@ -23,11 +23,12 @@ Internal orientation for working on this codebase. The public overview lives in 
 - `src/App.tsx` — router shell (`react-router`); maps paths to pages and wraps them in `AnimatePresence` for page transitions (`mode="wait"`).
 - `src/pages/` — route-level pages. `HomePage` (`/`), `AboutPage` (`/about`), and `ProjectsPage` (`/projects`); each page composes `PageShell` for the shared chrome and carries its colocated test.
 - `src/components/` — folder-per-component (see `src/components/README.md`):
-  - `layout/` — `Container`, `Section`, `SectionHeading`, `Header`, `Footer`, `PageBackground`, `PageShell`
-  - `ui/` — `Button`, `Eyebrow`, `ArrowLink`, `LanguageMenu`, `Badge`, `Card`, `Divider`, `IconButton`
-  - `content/` — portfolio-specific cards (`ProjectCard`, `SocialLink`, `TechBadge`) awaiting data
+    - `layout/` — `Container`, `Section`, `SectionHeading`, `Header`, `Footer`, `PageBackground`, `PageShell`
+    - `ui/` — `Button`, `Eyebrow`, `ArrowLink`, `LanguageMenu`, `Badge`, `Card`, `Divider`, `IconButton`
+    - `content/` — portfolio-specific cards (`ProjectCard`, `SocialLink`, `TechBadge`) awaiting data
 
-  Each component folder holds the component, its colocated test, and an `index.ts` barrel re-exporting the default. Import as `import Button from '$/components/ui/Button'` — the barrel resolves the folder, so no `Button/Button` repetition.
+    Each component folder holds the component, its colocated test, and an `index.ts` barrel re-exporting the default. Import as `import Button from '$/components/ui/Button'` — the barrel resolves the folder, so no `Button/Button` repetition.
+
 - `src/content/` — bilingual locale dictionaries (`eng.json`, `pt-br.json`), loader (`index.ts`), and structural tests.
 - `src/lib/motion.ts` — central Motion presets (easings, variants, viewport config).
 - `src/index.css` — Tailwind v4 theme tokens, base styles, global utilities.

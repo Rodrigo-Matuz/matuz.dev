@@ -1,27 +1,27 @@
-import { motion } from 'motion/react';
-import { ArrowUpRight } from 'lucide-react';
+import { motion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 
-import Container from '$/components/layout/Container';
-import PageShell from '$/components/layout/PageShell';
-import Section from '$/components/layout/Section';
-import ProjectCard from '$/components/content/ProjectCard';
-import Button from '$/components/ui/Button';
-import Eyebrow from '$/components/ui/Eyebrow';
-import { useLocale } from '$/lib/language';
+import Container from "$/components/layout/Container";
+import PageShell from "$/components/layout/PageShell";
+import Section from "$/components/layout/Section";
+import ProjectCard from "$/components/content/ProjectCard";
+import Button from "$/components/ui/Button";
+import Eyebrow from "$/components/ui/Eyebrow";
+import { useLocale } from "$/lib/language";
 import {
     fadeUp,
     pageVariants,
     staggerContainer,
     viewportOnce,
-} from '$/lib/motion';
-import matuzDevImage from '$/assets/project-matuz-dev.webp';
-import wallpaperPickerImage from '$/assets/project-wallpaper-picker.webp';
+} from "$/lib/motion";
+import matuzDevImage from "$/assets/project-matuz-dev.webp";
+import wallpaperPickerImage from "$/assets/project-wallpaper-picker.webp";
 
 // Card images are Vite asset imports, not locale data — JSON can't hold them.
 // Keyed by the stable card id from the locale dictionaries.
 const cardImages: Record<string, string> = {
-    'wallpaper-picker': wallpaperPickerImage,
-    'matuz-dev': matuzDevImage,
+    "wallpaper-picker": wallpaperPickerImage,
+    "matuz-dev": matuzDevImage,
 };
 
 /**

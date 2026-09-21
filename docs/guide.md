@@ -228,7 +228,7 @@ React-rendered note pages
 ### How it works
 
 1. **Private repo, public site.** The notes repo stays private. The site fetches only a specific tracked folder (e.g. `notes/public/`), so the rest of the vault is never exposed.
-2. **Token handling.** A GitHub fine-grained PAT scoped to *only* the notes repo with *contents: read*. It lives server-side (Heroku config var / serverless env). **The token is never embedded in the frontend bundle or the public site repository.** Frontend requests go through our own endpoint, which attaches the token.
+2. **Token handling.** A GitHub fine-grained PAT scoped to _only_ the notes repo with _contents: read_. It lives server-side (Heroku config var / serverless env). **The token is never embedded in the frontend bundle or the public site repository.** Frontend requests go through our own endpoint, which attaches the token.
 3. **Fetching.** The endpoint lists the tracked folder via the GitHub Contents API, returns note metadata (name, last-updated), and serves individual files as raw Markdown.
 4. **Rendering.** The site parses the Markdown and renders it with a polished reading experience — typography consistent with the site's editorial style, syntax-highlighted code blocks, images and links resolved against the notes repo, YouTube embeds where wanted.
 5. **Caching.** GitHub API rate limits make caching mandatory: cache responses server-side (interval revalidation or ETags/webhooks on push) so reader traffic never burns through the token's rate limit.

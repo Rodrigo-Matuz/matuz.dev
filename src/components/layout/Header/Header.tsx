@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router';
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router";
 
-import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
-import LanguageMenu from '$/components/ui/LanguageMenu';
-import NavMenu from '$/components/ui/NavMenu';
-import SafeLink from '$/components/ui/SafeLink';
-import { locales, type Language } from '$/content';
+import BrandIcon, { isBrandIconName } from "$/components/ui/BrandIcon";
+import LanguageMenu from "$/components/ui/LanguageMenu";
+import NavMenu from "$/components/ui/NavMenu";
+import SafeLink from "$/components/ui/SafeLink";
+import { locales, type Language } from "$/content";
 
 interface HeaderProps {
     language: Language;
@@ -26,10 +26,10 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
     // Internal route links — client-side navigation with page transitions.
     // Shown inline on desktop; inside the NavMenu drawer on mobile.
     const routeLinks = [
-        { to: '/about', label: content.navigation.about },
-        { to: '/projects', label: content.navigation.projects },
-        { to: '/notes', label: content.navigation.notes },
-        { to: '/contact', label: content.navigation.contact },
+        { to: "/about", label: content.navigation.about },
+        { to: "/projects", label: content.navigation.projects },
+        { to: "/notes", label: content.navigation.notes },
+        { to: "/contact", label: content.navigation.contact },
     ];
 
     useEffect(() => {
@@ -51,9 +51,9 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
             lastScrollY = scrollY;
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener("scroll", handleScroll, { passive: true });
 
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     return (
@@ -63,7 +63,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
         border-b border-foreground/10
         bg-background/75 backdrop-blur-md
         transition-transform duration-300 ease-out
-        ${isHidden ? '-translate-y-full' : 'translate-y-0'}
+        ${isHidden ? "-translate-y-full" : "translate-y-0"}
       `}
         >
             <nav
@@ -94,10 +94,10 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                             to={routeLink.to}
                             aria-current={
                                 location.pathname === routeLink.to
-                                    ? 'page'
+                                    ? "page"
                                     : undefined
                             }
-                            className={`text-xs font-medium uppercase tracking-[0.14em] transition-colors ${location.pathname === routeLink.to ? 'text-primary' : 'text-muted hover:text-primary'}`}
+                            className={`text-xs font-medium uppercase tracking-[0.14em] transition-colors ${location.pathname === routeLink.to ? "text-primary" : "text-muted hover:text-primary"}`}
                         >
                             {routeLink.label}
                         </Link>
@@ -112,12 +112,9 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                                 title={link.label}
                                 className="text-muted transition-colors hover:text-primary"
                             >
-                                {typeof link.icon === 'string' &&
+                                {typeof link.icon === "string" &&
                                     isBrandIconName(link.icon) && (
-                                        <BrandIcon
-                                            name={link.icon}
-                                            size={16}
-                                        />
+                                        <BrandIcon name={link.icon} size={16} />
                                     )}
                             </SafeLink>
                         ))}

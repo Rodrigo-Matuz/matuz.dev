@@ -1,36 +1,40 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router';
-import { ArrowLeft } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router";
+import { ArrowLeft } from "lucide-react";
 
-import NoteSidebar from '$/components/notes/NoteSidebar';
-import RelativeTimeTag from '$/components/notes/RelativeTimeTag';
-import CopySourceButton from '$/components/notes/CopySourceButton';
-import Container from '$/components/layout/Container';
-import PageShell from '$/components/layout/PageShell';
-import { useLocale } from '$/lib/language';
+import NoteSidebar from "$/components/notes/NoteSidebar";
+import RelativeTimeTag from "$/components/notes/RelativeTimeTag";
+import CopySourceButton from "$/components/notes/CopySourceButton";
+import Container from "$/components/layout/Container";
+import PageShell from "$/components/layout/PageShell";
+import { useLocale } from "$/lib/language";
 import {
     fetchNoteContent,
     fetchNotesIndex,
     type NoteContent,
     type NoteIndexEntry,
-} from '$/lib/notes';
+} from "$/lib/notes";
 
-type LoadState = 'loading' | 'loaded' | 'error' | 'not-found';
+type LoadState = "loading" | "loaded" | "error" | "not-found";
 
 /**
  * `/notes/:slug` — a single note with the sidebar alongside it.
  * Markdown rendering is handled by the shared NoteMarkdown component.
  */
-export function NotePage({ renderContent }: { renderContent: (content: string) => React.ReactNode }) {
+export function NotePage({
+    renderContent,
+}: {
+    renderContent: (content: string) => React.ReactNode;
+}) {
     const content = useLocale();
     // Route is a splat (/notes/*), so the slug is the full remainder of the
     // path — segments are decoded individually to preserve '/' separators.
     const params = useParams();
-    const splat = params['*'];
+    const splat = params["*"];
     const slug = splat
-        ? splat.split('/').map(decodeURIComponent).join('/')
+        ? splat.split("/").map(decodeURIComponent).join("/")
         : undefined;
-    const [state, setState] = useState<LoadState>('loading');
+    const [state, setState] = useState<LoadState>("loading");
     const [note, setNote] = useState<NoteContent | null>(null);
     const [notes, setNotes] = useState<NoteIndexEntry[]>([]);
 
@@ -53,13 +57,13 @@ export function NotePage({ renderContent }: { renderContent: (content: string) =
 
                 if (result) {
                     setNote(result);
-                    setState('loaded');
+                    setState("loaded");
                 } else {
-                    setState('not-found');
+                    setState("not-found");
                 }
             })
             .catch(() => {
-                if (!cancelled) setState('error');
+                if (!cancelled) setState("error");
             });
 
         return () => {
@@ -79,28 +83,31 @@ export function NotePage({ renderContent }: { renderContent: (content: string) =
                         {content.notes.backToNotes}
                     </Link>
 
-                    {state === 'loading' && (
+                    {state === "loading" && (
                         <p className="mt-16 font-mono text-xs uppercase tracking-[0.18em] text-subtle">
                             …
                         </p>
                     )}
 
-                    {state === 'error' && (
+                    {state === "error" && (
                         <p className="mt-16 text-base text-muted">
                             {content.notes.loadError}
                         </p>
                     )}
 
-                    {state === 'not-found' && (
+                    {state === "not-found" && (
                         <p className="mt-16 text-base text-muted">
                             {content.notes.notFound}
                         </p>
                     )}
 
-                    {state === 'loaded' && note && (
+                    {state === "loaded" && note && (
                         <div className="mt-12 grid gap-12 lg:grid-cols-[16rem_1fr]">
                             <aside className="lg:sticky lg:top-28 lg:self-start">
-                                <NoteSidebar notes={notes} activeSlug={note.slug} />
+                                <NoteSidebar
+                                    notes={notes}
+                                    activeSlug={note.slug}
+                                />
                             </aside>
 
                             <article className="min-w-0">

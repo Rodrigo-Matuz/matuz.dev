@@ -19,7 +19,10 @@ export interface NoteContent extends NoteIndexEntry {
     content: string;
 }
 
-const indexCache: { value: NoteIndexEntry[] | null; promise: Promise<NoteIndexEntry[]> | null } = {
+const indexCache: {
+    value: NoteIndexEntry[] | null;
+    promise: Promise<NoteIndexEntry[]> | null;
+} = {
     value: null,
     promise: null,
 };
@@ -31,11 +34,14 @@ export async function fetchNotesIndex(): Promise<NoteIndexEntry[]> {
     if (indexCache.value) return indexCache.value;
 
     if (!indexCache.promise) {
-        indexCache.promise = fetch('/api/notes')
+        indexCache.promise = fetch("/api/notes")
             .then(async (response) => {
-                if (!response.ok) throw new Error(`Notes index failed (${response.status})`);
+                if (!response.ok)
+                    throw new Error(`Notes index failed (${response.status})`);
 
-                const data = (await response.json()) as { notes: NoteIndexEntry[] };
+                const data = (await response.json()) as {
+                    notes: NoteIndexEntry[];
+                };
 
                 indexCache.value = data.notes;
 
@@ -50,7 +56,9 @@ export async function fetchNotesIndex(): Promise<NoteIndexEntry[]> {
 }
 
 /** Fetch a single note's content. Cached for the session. */
-export async function fetchNoteContent(slug: string): Promise<NoteContent | null> {
+export async function fetchNoteContent(
+    slug: string,
+): Promise<NoteContent | null> {
     const cached = contentCache.get(slug);
 
     if (cached) return cached;

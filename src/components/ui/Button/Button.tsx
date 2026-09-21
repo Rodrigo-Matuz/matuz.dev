@@ -1,15 +1,15 @@
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
-import { Link } from 'react-router';
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
+import { Link } from "react-router";
 
-import { LoaderCircle } from 'lucide-react';
+import { LoaderCircle } from "lucide-react";
 
-type ButtonColor = 'accent' | 'primary' | 'outline';
+type ButtonColor = "accent" | "primary" | "outline";
 
 const colorStyles: Record<ButtonColor, string> = {
-    accent: 'bg-accent text-white hover:bg-accent/85',
-    primary: 'bg-primary text-white hover:bg-primary/85',
+    accent: "bg-accent text-white hover:bg-accent/85",
+    primary: "bg-primary text-white hover:bg-primary/85",
     outline:
-        'border border-foreground/15 text-foreground hover:border-success hover:text-success',
+        "border border-foreground/15 text-foreground hover:border-success hover:text-success",
 };
 
 const baseStyles = `
@@ -22,7 +22,7 @@ const baseStyles = `
 
 type AnchorOnlyProps = Pick<
     AnchorHTMLAttributes<HTMLAnchorElement>,
-    'target' | 'referrerPolicy'
+    "target" | "referrerPolicy"
 >;
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
@@ -41,8 +41,8 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
 
 export function Button({
     children,
-    color = 'accent',
-    className = '',
+    color = "accent",
+    className = "",
     href,
     to,
     loading = false,
@@ -62,11 +62,7 @@ export function Button({
 
     if (href !== undefined) {
         return (
-            <a
-                href={href}
-                className={classes}
-                {...(props as AnchorOnlyProps)}
-            >
+            <a href={href} className={classes} {...(props as AnchorOnlyProps)}>
                 {children}
             </a>
         );
@@ -74,7 +70,7 @@ export function Button({
 
     return (
         <button
-            type={type ?? 'button'}
+            type={type ?? "button"}
             disabled={disabled || loading}
             className={classes}
             {...props}

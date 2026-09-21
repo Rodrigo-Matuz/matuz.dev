@@ -1,80 +1,80 @@
 {
-  "projects": {
-    "eyebrow": "Projects",
-    "title": "Things I've built.",
-    "description": "A selection of client work, open source, and personal experiments — the ones worth showing.",
-    "sourceLabel": "Source",
-    "previewLabel": "Demo",
-    "backToProjects": "All projects",
-    "demo": {
-      "videoTitle": "Demo video",
-      "noVideo": "No demo video available for this project yet — check the source repository for screenshots and details."
-    },
-    "cards": [
-      {
-        "id": "wallpaper-picker",
-        "title": "Wallpaper Picker UI",
-        "description": "A cross-platform desktop application for browsing and applying wallpapers, designed for low resource consumption and deep system integration. Media processing and thumbnail generation are handled through FFmpeg, with multilingual support via i18n.",
-        "technologies": [
-          "Rust",
-          "TypeScript",
-          "Svelte",
-          "Tauri",
-          "FFmpeg",
-          "Tailwind CSS"
-        ],
-        "github": "https://github.com/Rodrigo-Matuz/wallpaper-picker-ui",
+    "projects": {
+        "eyebrow": "Projects",
+        "title": "Things I've built.",
+        "description": "A selection of client work, open source, and personal experiments — the ones worth showing.",
+        "sourceLabel": "Source",
+        "previewLabel": "Demo",
+        "backToProjects": "All projects",
         "demo": {
-          "video": "https://youtu.be/5_KZSFZyBGA",
-          "paragraphs": [
-            "Wallpaper Picker UI is a lightweight Linux desktop application for browsing, previewing, and applying static or animated wallpapers, with a particular focus on live wallpapers through mpvpaper. It provides a clean thumbnail-based interface, automatic video thumbnail generation with FFmpeg, and customizable wallpaper commands, allowing it to fit different desktop setups and scripting workflows.",
-            "Built with Tauri 2, the application combines a Svelte and TypeScript frontend with a Rust backend for native system integration while keeping the application footprint small. It also uses Tauri's capability-based permission system to strictly limit filesystem access, with the app only accessing its own configuration and thumbnail cache.",
-            "The interface includes custom and preset themes, manual light/dark mode, multilingual support, and automatic updates. FFmpeg handles media processing and thumbnail generation, while mpvpaper provides the recommended backend for animated wallpapers."
-          ]
-        }
-      },
-      {
-        "id": "cinema-automation-challenge",
-        "title": "Cinema Automation Challenge - Robot Framework",
-        "description": "This repository was created as part of a test automation challenge for a cinema application, focused on practicing and demonstrating advanced web test automation skills using Robot Framework and Browser Library.",
-        "technologies": [
-          "Python",
-          "Robot Framework",
-          "Playwright",
-          "Requests",
-          "QA"
+            "videoTitle": "Demo video",
+            "noVideo": "No demo video available for this project yet — check the source repository for screenshots and details."
+        },
+        "cards": [
+            {
+                "id": "wallpaper-picker",
+                "title": "Wallpaper Picker UI",
+                "description": "A cross-platform desktop application for browsing and applying wallpapers, designed for low resource consumption and deep system integration. Media processing and thumbnail generation are handled through FFmpeg, with multilingual support via i18n.",
+                "technologies": [
+                    "Rust",
+                    "TypeScript",
+                    "Svelte",
+                    "Tauri",
+                    "FFmpeg",
+                    "Tailwind CSS"
+                ],
+                "github": "https://github.com/Rodrigo-Matuz/wallpaper-picker-ui",
+                "demo": {
+                    "video": "https://youtu.be/5_KZSFZyBGA",
+                    "paragraphs": [
+                        "Wallpaper Picker UI is a lightweight Linux desktop application for browsing, previewing, and applying static or animated wallpapers, with a particular focus on live wallpapers through mpvpaper. It provides a clean thumbnail-based interface, automatic video thumbnail generation with FFmpeg, and customizable wallpaper commands, allowing it to fit different desktop setups and scripting workflows.",
+                        "Built with Tauri 2, the application combines a Svelte and TypeScript frontend with a Rust backend for native system integration while keeping the application footprint small. It also uses Tauri's capability-based permission system to strictly limit filesystem access, with the app only accessing its own configuration and thumbnail cache.",
+                        "The interface includes custom and preset themes, manual light/dark mode, multilingual support, and automatic updates. FFmpeg handles media processing and thumbnail generation, while mpvpaper provides the recommended backend for animated wallpapers."
+                    ]
+                }
+            },
+            {
+                "id": "cinema-automation-challenge",
+                "title": "Cinema Automation Challenge - Robot Framework",
+                "description": "This repository was created as part of a test automation challenge for a cinema application, focused on practicing and demonstrating advanced web test automation skills using Robot Framework and Browser Library.",
+                "technologies": [
+                    "Python",
+                    "Robot Framework",
+                    "Playwright",
+                    "Requests",
+                    "QA"
+                ],
+                "github": "https://github.com/Rodrigo-Matuz/cinema-automation-challenge",
+                "demo": {
+                    "paragraphs": [
+                        "A test automation challenge for a cinema web application, structured with a keyword-driven architecture: test suites, reusable keyword resources, and environment variables are cleanly separated. Authentication (registration, login, logout, profile) and reservation flows (movie search, showtimes, seat selection, checkout) are covered with positive, negative, validation, and smoke tags for selective execution.",
+                        "The suite uses Browser Library (Playwright) for web automation and FakerLibrary for dynamic test data generation. Every test, keyword, and suite is fully documented, and execution produces HTML reports, detailed logs, and automatic screenshots on failure.",
+                        "This project demonstrates layered test architecture, code reuse through shared keywords, parameterized keywords with optional arguments, tag-based organization, and robust error handling — the practices I bring to any automation work."
+                    ]
+                }
+            },
+            {
+                "id": "matuz-dev",
+                "title": "matuz.dev",
+                "description": "This website — a bilingual portfolio built as an SPA with a custom design system, restrained editorial motion, and a fully tested component library.",
+                "technologies": [
+                    "React",
+                    "TypeScript",
+                    "Tailwind CSS",
+                    "Motion",
+                    "Vite"
+                ],
+                "github": "https://github.com/Rodrigo-Matuz/matuz.dev",
+                "preview": "/",
+                "demo": {
+                    "paragraphs": [
+                        "This website is itself one of my projects: a bilingual (pt-BR / English) portfolio built as a React SPA with a custom design system — display-serif headings, mono micro-labels, and a restrained blue-violet palette — plus centralized motion presets that honor prefers-reduced-motion.",
+                        "Everything is composed from a folder-per-component library with colocated tests and barrel exports, covering layout primitives, UI building blocks, and content cards. The notes system fetches Markdown at runtime from a private Obsidian vault through a token-secured Express API and renders it with callouts, math, syntax highlighting, and more.",
+                        "The suite runs 230+ tests with Vitest and Testing Library, and CI gates every push on lint, tests, and the production build. You are looking at the demo right now."
+                    ]
+                }
+            }
         ],
-        "github": "https://github.com/Rodrigo-Matuz/cinema-automation-challenge",
-        "demo": {
-          "paragraphs": [
-            "A test automation challenge for a cinema web application, structured with a keyword-driven architecture: test suites, reusable keyword resources, and environment variables are cleanly separated. Authentication (registration, login, logout, profile) and reservation flows (movie search, showtimes, seat selection, checkout) are covered with positive, negative, validation, and smoke tags for selective execution.",
-            "The suite uses Browser Library (Playwright) for web automation and FakerLibrary for dynamic test data generation. Every test, keyword, and suite is fully documented, and execution produces HTML reports, detailed logs, and automatic screenshots on failure.",
-            "This project demonstrates layered test architecture, code reuse through shared keywords, parameterized keywords with optional arguments, tag-based organization, and robust error handling — the practices I bring to any automation work."
-          ]
-        }
-      },
-      {
-        "id": "matuz-dev",
-        "title": "matuz.dev",
-        "description": "This website — a bilingual portfolio built as an SPA with a custom design system, restrained editorial motion, and a fully tested component library.",
-        "technologies": [
-          "React",
-          "TypeScript",
-          "Tailwind CSS",
-          "Motion",
-          "Vite"
-        ],
-        "github": "https://github.com/Rodrigo-Matuz/matuz.dev",
-        "preview": "/",
-        "demo": {
-          "paragraphs": [
-            "This website is itself one of my projects: a bilingual (pt-BR / English) portfolio built as a React SPA with a custom design system — display-serif headings, mono micro-labels, and a restrained blue-violet palette — plus centralized motion presets that honor prefers-reduced-motion.",
-            "Everything is composed from a folder-per-component library with colocated tests and barrel exports, covering layout primitives, UI building blocks, and content cards. The notes system fetches Markdown at runtime from a private Obsidian vault through a token-secured Express API and renders it with callouts, math, syntax highlighting, and more.",
-            "The suite runs 230+ tests with Vitest and Testing Library, and CI gates every push on lint, tests, and the production build. You are looking at the demo right now."
-          ]
-        }
-      }
-    ],
-    "aboutLabel": "About"
-  }
+        "aboutLabel": "About"
+    }
 }

@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router';
-import { ChevronDown } from 'lucide-react';
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router";
+import { ChevronDown } from "lucide-react";
 
-import { useLocale } from '$/lib/language';
-import type { NoteIndexEntry } from '$/lib/notes';
+import { useLocale } from "$/lib/language";
+import type { NoteIndexEntry } from "$/lib/notes";
 
 interface NoteSidebarProps {
     notes: NoteIndexEntry[];
@@ -22,9 +22,9 @@ function groupByFolder(notes: NoteIndexEntry[]): NoteGroup[] {
     const groups = new Map<string, NoteIndexEntry[]>();
 
     for (const note of notes) {
-        const folder = note.slug.includes('/')
-            ? note.slug.slice(0, note.slug.lastIndexOf('/'))
-            : '';
+        const folder = note.slug.includes("/")
+            ? note.slug.slice(0, note.slug.lastIndexOf("/"))
+            : "";
 
         const bucket = groups.get(folder);
 
@@ -40,7 +40,7 @@ function groupByFolder(notes: NoteIndexEntry[]): NoteGroup[] {
 
 /** Build a locale-safe href for a slug (each path segment encoded). */
 function noteHref(slug: string): string {
-    return `/notes/${slug.split('/').map(encodeURIComponent).join('/')}`;
+    return `/notes/${slug.split("/").map(encodeURIComponent).join("/")}`;
 }
 
 /**
@@ -76,22 +76,22 @@ export function NoteSidebar({ notes, activeSlug }: NoteSidebarProps) {
         };
 
         const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') setIsOpen(false);
+            if (event.key === "Escape") setIsOpen(false);
         };
 
-        document.addEventListener('pointerdown', onPointerDown);
-        document.addEventListener('keydown', onKeyDown);
+        document.addEventListener("pointerdown", onPointerDown);
+        document.addEventListener("keydown", onKeyDown);
 
         return () => {
-            document.removeEventListener('pointerdown', onPointerDown);
-            document.removeEventListener('keydown', onKeyDown);
+            document.removeEventListener("pointerdown", onPointerDown);
+            document.removeEventListener("keydown", onKeyDown);
         };
     }, [isOpen]);
 
     const activeNote = notes.find((note) => note.slug === activeSlug);
 
     const renderGroup = (group: NoteGroup) => (
-        <li key={group.folder || '__root'}>
+        <li key={group.folder || "__root"}>
             {group.folder ? (
                 <p className="mt-4 mb-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-subtle first:mt-0">
                     {group.folder}
@@ -103,13 +103,13 @@ export function NoteSidebar({ notes, activeSlug }: NoteSidebarProps) {
                         <Link
                             to={noteHref(note.slug)}
                             aria-current={
-                                note.slug === activeSlug ? 'page' : undefined
+                                note.slug === activeSlug ? "page" : undefined
                             }
                             onClick={() => setIsOpen(false)}
                             className={`block py-2 font-display text-base tracking-[-0.02em] transition-colors ${
                                 note.slug === activeSlug
-                                    ? 'text-primary'
-                                    : 'text-foreground hover:text-primary'
+                                    ? "text-primary"
+                                    : "text-foreground hover:text-primary"
                             }`}
                         >
                             {note.title}
@@ -136,7 +136,7 @@ export function NoteSidebar({ notes, activeSlug }: NoteSidebarProps) {
                     </span>
                     <ChevronDown
                         size={16}
-                        className={`text-subtle transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                        className={`text-subtle transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     />
                 </button>
 
@@ -152,9 +152,7 @@ export function NoteSidebar({ notes, activeSlug }: NoteSidebarProps) {
             </div>
 
             {/* Desktop: vertical list grouped by folder */}
-            <ul className="hidden lg:block">
-                {groups.map(renderGroup)}
-            </ul>
+            <ul className="hidden lg:block">{groups.map(renderGroup)}</ul>
         </nav>
     );
 }

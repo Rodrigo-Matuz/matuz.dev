@@ -3,76 +3,225 @@
 
 /* Sweet Dracula Monokai — token colors from the official theme
    (github.com/LEFD/sweetdracula-monokai). Base bg #161925, fg #F8F8F2. */
-.hljs { color: #f8f8f2; background: #161925; }
-.hljs-comment, .hljs-quote { color: #6272a4; font-style: italic; }
-.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-doctag, .hljs-name { color: #f92672; }
-.hljs-strong { color: #fd971f; font-weight: 600; }
-.hljs-string, .hljs-regexp, .hljs-addition { color: #e6db74; }
-.hljs-attribute, .hljs-attr { color: #a6e22e; }
-.hljs-number, .hljs-symbol, .hljs-bullet, .hljs-link, .hljs-variable, .hljs-template-variable { color: #ae81ff; }
-.hljs-title, .hljs-title.function_, .hljs-title.class_ { color: #a6e22e; }
-.hljs-type, .hljs-built_in, .hljs-class { color: #66d9ef; }
-.hljs-params { color: #fd971f; font-style: italic; }
-.hljs-constant { color: #ae81ff; }
-.hljs-meta, .hljs-meta .hljs-keyword { color: #f92672; }
-.hljs-deletion { color: #f44747; }
-.hljs-emphasis { font-style: italic; }
-.hljs-section { color: #ae81ff; font-weight: 600; }
-.hljs-tag { color: #f92672; }
-.hljs-tag .hljs-name { color: #f92672; }
-.hljs-tag .hljs-attr { color: #a6e22e; }
-.hljs-selector-class, .hljs-selector-id { color: #66d9ef; }
-.hljs-property { color: #f8f8f2; }
-.hljs-char.escape_ { color: #66d9ef; }
-.hljs-subst { color: #f8f8f2; }
-
-@theme {
-  /* Brand: retain these values unless the visual identity is intentionally changing. */
-  --color-primary: #1e65ff; --color-secondary: #702ef3; --color-accent: #fc1a70; --color-warning: #ff4d00; --color-highlight: #ffff87; --color-success: #a4e400;
-  --color-background: #030a14; --color-surface: #010a17; --color-surface-raised: #001029; --color-surface-hover: #073887; --color-border: #001330;
-  --color-foreground: #f5f5f5; --color-muted: #a1a1aa; --color-subtle: #71717a;
-  --font-sans: "Inter", "Roboto", ui-sans-serif, system-ui, sans-serif; --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace; --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+.hljs {
+    color: #f8f8f2;
+    background: #161925;
+}
+.hljs-comment,
+.hljs-quote {
+    color: #6272a4;
+    font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-name {
+    color: #f92672;
+}
+.hljs-strong {
+    color: #fd971f;
+    font-weight: 600;
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-addition {
+    color: #e6db74;
+}
+.hljs-attribute,
+.hljs-attr {
+    color: #a6e22e;
+}
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-variable,
+.hljs-template-variable {
+    color: #ae81ff;
+}
+.hljs-title,
+.hljs-title.function_,
+.hljs-title.class_ {
+    color: #a6e22e;
+}
+.hljs-type,
+.hljs-built_in,
+.hljs-class {
+    color: #66d9ef;
+}
+.hljs-params {
+    color: #fd971f;
+    font-style: italic;
+}
+.hljs-constant {
+    color: #ae81ff;
+}
+.hljs-meta,
+.hljs-meta .hljs-keyword {
+    color: #f92672;
+}
+.hljs-deletion {
+    color: #f44747;
+}
+.hljs-emphasis {
+    font-style: italic;
+}
+.hljs-section {
+    color: #ae81ff;
+    font-weight: 600;
+}
+.hljs-tag {
+    color: #f92672;
+}
+.hljs-tag .hljs-name {
+    color: #f92672;
+}
+.hljs-tag .hljs-attr {
+    color: #a6e22e;
+}
+.hljs-selector-class,
+.hljs-selector-id {
+    color: #66d9ef;
+}
+.hljs-property {
+    color: #f8f8f2;
+}
+.hljs-char.escape_ {
+    color: #66d9ef;
+}
+.hljs-subst {
+    color: #f8f8f2;
 }
 
-:root { color-scheme: dark; }
-html { background: var(--color-background); font-family: var(--font-sans); font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-body { min-width: 320px; min-height: 100vh; margin: 0; background: var(--color-background); }
-button, a { -webkit-tap-highlight-color: transparent; }
-button { font: inherit; }
-::selection { background: var(--color-secondary); color: white; }
-@utility text-gradient { background: linear-gradient(120deg, var(--color-primary), #9d78ff 55%, var(--color-secondary)); background-clip: text; -webkit-background-clip: text; color: transparent; }
-@utility animate-in { animation: rise-in 700ms cubic-bezier(.22, 1, .36, 1) both; }
-@keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes menu-in { from { opacity: 0; transform: translateY(-4px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
+@theme {
+    /* Brand: retain these values unless the visual identity is intentionally changing. */
+    --color-primary: #1e65ff;
+    --color-secondary: #702ef3;
+    --color-accent: #fc1a70;
+    --color-warning: #ff4d00;
+    --color-highlight: #ffff87;
+    --color-success: #a4e400;
+    --color-background: #030a14;
+    --color-surface: #010a17;
+    --color-surface-raised: #001029;
+    --color-surface-hover: #073887;
+    --color-border: #001330;
+    --color-foreground: #f5f5f5;
+    --color-muted: #a1a1aa;
+    --color-subtle: #71717a;
+    --font-sans: "Inter", "Roboto", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+    --font-display:
+        "Newsreader", "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+        Georgia, serif;
+}
+
+:root {
+    color-scheme: dark;
+}
+html {
+    background: var(--color-background);
+    font-family: var(--font-sans);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+}
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--color-background);
+}
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+button {
+    font: inherit;
+}
+::selection {
+    background: var(--color-secondary);
+    color: white;
+}
+@utility text-gradient {
+    background: linear-gradient(
+        120deg,
+        var(--color-primary),
+        #9d78ff 55%,
+        var(--color-secondary)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+@utility animate-in {
+    animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes menu-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+}
 
 /* Custom scrollbar, cross-browser.
    - Chromium/WebKit: ::-webkit-scrollbar-* pseudo-elements.
    - Firefox: scrollbar-width + scrollbar-color.
    Both keep native behavior (drag, arrows, keyboard) — only the look changes. */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-surface-hover) transparent;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-surface-hover) transparent;
 }
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface-hover);
-  border-radius: 8px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
+    background: var(--color-surface-hover);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
 }
-::-webkit-scrollbar-thumb:hover { background-color: var(--color-primary); }
-::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary);
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
 
 /* Respect prefers-reduced-motion for CSS-driven animation and transitions.
    Motion's JS animations are handled globally by <MotionConfig reducedMotion="user" />
    in App.tsx. */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

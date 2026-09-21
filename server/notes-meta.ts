@@ -40,9 +40,10 @@ const TIMESTAMP = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
  * Extract the header metadata from raw note content.
  * Returns null values when the header is missing or malformed.
  */
-export function parseNoteHeader(
-    raw: string,
-): { created: string | null; updated: string | null } {
+export function parseNoteHeader(raw: string): {
+    created: string | null;
+    updated: string | null;
+} {
     const firstBlock = raw.match(HEADER_BLOCK);
 
     if (firstBlock) {
@@ -56,14 +57,14 @@ export function parseNoteHeader(
         let created: string | null = null;
         let updated: string | null = null;
 
-        for (const line of frontmatter[1].split('\n')) {
+        for (const line of frontmatter[1].split("\n")) {
             const match = line.match(HEADER_LINE);
 
             if (!match) continue;
 
             const value = TIMESTAMP.test(match[2]) ? match[2] : null;
 
-            if (match[1] === 'created') created = value;
+            if (match[1] === "created") created = value;
             else updated = value;
         }
 
@@ -73,7 +74,7 @@ export function parseNoteHeader(
     }
 
     // Tolerant fallback: unfenced created/updated lines at the top.
-    const lines = raw.split('\n');
+    const lines = raw.split("\n");
     let created: string | null = null;
     let updated: string | null = null;
 
@@ -83,9 +84,9 @@ export function parseNoteHeader(
         if (match) {
             const value = TIMESTAMP.test(match[2]) ? match[2] : null;
 
-            if (match[1] === 'created') created = value;
+            if (match[1] === "created") created = value;
             else updated = value;
-        } else if (line.trim() !== '' && created !== null) {
+        } else if (line.trim() !== "" && created !== null) {
             break; // past the header
         }
     }
@@ -98,18 +99,18 @@ export function parseNoteHeader(
  * the Markdown body is rendered.
  */
 export function stripNoteHeader(raw: string): string {
-    const withoutBlock = raw.replace(HEADER_BLOCK, '').replace(/^\s+/, '');
+    const withoutBlock = raw.replace(HEADER_BLOCK, "").replace(/^\s+/, "");
 
     if (withoutBlock !== raw) return withoutBlock;
 
     // YAML frontmatter variant: strip the whole --- block.
     const withoutFrontmatter = raw
-        .replace(FRONTMATTER_BLOCK, '')
-        .replace(/^\s+/, '');
+        .replace(FRONTMATTER_BLOCK, "")
+        .replace(/^\s+/, "");
 
     if (withoutFrontmatter !== raw) return withoutFrontmatter;
 
-    const lines = raw.split('\n');
+    const lines = raw.split("\n");
     let index = 0;
 
     while (index < lines.length) {
@@ -117,14 +118,14 @@ export function stripNoteHeader(raw: string): string {
 
         if (match) {
             index += 1;
-        } else if (lines[index].trim() === '' && index < 4) {
+        } else if (lines[index].trim() === "" && index < 4) {
             index += 1;
         } else {
             break;
         }
     }
 
-    return lines.slice(index).join('\n').replace(/^\s+/, '');
+    return lines.slice(index).join("\n").replace(/^\s+/, "");
 }
 
 /**
@@ -136,13 +137,13 @@ export function deriveTitle(raw: string, filename: string): string {
 
     if (frontmatter) {
         const titleLine = frontmatter[1]
-            .split('\n')
+            .split("\n")
             .find((line) => /^title:\s*\S/.test(line));
 
         if (titleLine) {
-            const value = titleLine.replace(/^title:\s*/, '').trim();
+            const value = titleLine.replace(/^title:\s*/, "").trim();
 
-            if (value) return value.replace(/^["']|["']$/g, '');
+            if (value) return value.replace(/^["']|["']$/g, "");
         }
     }
 
@@ -150,7 +151,7 @@ export function deriveTitle(raw: string, filename: string): string {
 
     if (heading) return heading[1].trim();
 
-    return filename.replace(/\.md$/i, '').replace(/[-_]/g, ' ');
+    return filename.replace(/\.md$/i, "").replace(/[-_]/g, " ");
 }
 
 /**

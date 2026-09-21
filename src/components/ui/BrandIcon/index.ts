@@ -1,6 +1,3 @@
-export { default, BrandIcon } from './BrandIcon';
+export { default, BrandIcon } from "./BrandIcon";
 
-export {
-    isBrandIconName,
-    type BrandIconName,
-} from './brandGlyphs';
+export { isBrandIconName, type BrandIconName } from "./brandGlyphs";

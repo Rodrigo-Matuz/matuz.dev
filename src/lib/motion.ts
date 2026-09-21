@@ -9,7 +9,7 @@
  *   <motion.h1 {...fadeUp}>...</motion.h1>
  */
 
-import type { Transition, Variants } from 'motion/react';
+import type { Transition, Variants } from "motion/react";
 
 /** Signature easing curve for the site — smooth, editorial, no bounce. */
 export const EASE = [0.22, 1, 0.36, 1] as const;
@@ -41,7 +41,7 @@ export const staggerContainer: Variants = {
 };
 
 /** Viewport config for scroll-triggered reveals (animate once, slightly early). */
-export const viewportOnce = { once: true, margin: '-80px' } as const;
+export const viewportOnce = { once: true, margin: "-80px" } as const;
 
 /**
  * Page-level transitions for route changes. `AnimatePresence` swaps pages with

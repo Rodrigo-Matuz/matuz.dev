@@ -3,7 +3,7 @@ name: prose-discipline
 description: "Always-required standard wherever prose is used. Governs human legibility and semantic drift in documentation, instructions, reports, comments, reviews, and agent interaction. Use whenever prose is read, written, reviewed, or transformed."
 license: MIT
 metadata:
-  skill-type: standard
+    skill-type: standard
 ---
 
 # Prose style
@@ -37,10 +37,10 @@ Clarity and compression frequently conflict. Clarity wins.
 
 Prose governed by this standard is:
 
-* calm — no urgency, no alarm, no hype
-* authoritative — states facts, not opinions dressed as facts
-* understated — the structure carries the argument; the prose does not push it
-* pragmatic — oriented toward consequence, not description for its own sake
+- calm — no urgency, no alarm, no hype
+- authoritative — states facts, not opinions dressed as facts
+- understated — the structure carries the argument; the prose does not push it
+- pragmatic — oriented toward consequence, not description for its own sake
 
 Authority is earned through clarity. It is not asserted through volume, repetition, or confident-sounding language.
 
@@ -48,20 +48,20 @@ Authority is earned through clarity. It is not asserted through volume, repetiti
 
 The reader should not need to decode meaning. Every sentence should be clear on first contact.
 
-* introduce a concept before compressing it
-* reduce cognitive load — if two readings of a sentence are possible, eliminate one
-* do not use ambiguity as a stylistic device
-* prefer explicit nouns over pronouns unless the referent is unambiguous
-* the reader should feel guided, not tested
+- introduce a concept before compressing it
+- reduce cognitive load — if two readings of a sentence are possible, eliminate one
+- do not use ambiguity as a stylistic device
+- prefer explicit nouns over pronouns unless the referent is unambiguous
+- the reader should feel guided, not tested
 
 ## Sentence structure
 
-* short declarative sentences for emphasis — use selectively
-* explanation before compression — never the reverse
-* one conceptual move per paragraph
-* paragraphs of one to three sentences as the default
-* one-line paragraphs reserved for structural conclusions, not for every point
-* avoid long runs of one-line paragraphs — they create pressure without context
+- short declarative sentences for emphasis — use selectively
+- explanation before compression — never the reverse
+- one conceptual move per paragraph
+- paragraphs of one to three sentences as the default
+- one-line paragraphs reserved for structural conclusions, not for every point
+- avoid long runs of one-line paragraphs — they create pressure without context
 
 ## Section flow
 
@@ -78,9 +78,9 @@ A section that stops at observation or explanation is unfinished. A section that
 
 A structural line is a compressed statement that resolves a section's argument. It must:
 
-* be preceded by sufficient explanation
-* resolve a clearly established idea
-* feel inevitable given the preceding context
+- be preceded by sufficient explanation
+- resolve a clearly established idea
+- feel inevitable given the preceding context
 
 If a structural line can be removed without loss of meaning, remove it. If it cannot be understood without re-reading the section, expand the section first.
 
@@ -114,20 +114,20 @@ Do not compress before the reader has the context to receive it. Do not substitu
 
 Avoid:
 
-* continuous aphorisms without buildup
-* sentence fragments as substitutes for reasoning
-* repetition that restates rather than advances
+- continuous aphorisms without buildup
+- sentence fragments as substitutes for reasoning
+- repetition that restates rather than advances
 
 Repetition is permitted only when it reinforces doctrine across a document — a short recurring phrase that develops meaning each time it appears.
 
 ## What to avoid
 
-* volume as a substitute for clarity
-* hedging language that avoids commitment
-* passive constructions that obscure the subject
-* filler openings
-* emotional language as pressure
-* persuasion through assertion rather than structure
+- volume as a substitute for clarity
+- hedging language that avoids commitment
+- passive constructions that obscure the subject
+- filler openings
+- emotional language as pressure
+- persuasion through assertion rather than structure
 
 The hedges and filler openings named above read like this:
 
@@ -158,11 +158,11 @@ A review that finds nothing says so.
 
 Before submitting or sending prose, verify:
 
-* can a reader explain this section after one read?
-* is every concept introduced before it is compressed?
-* does each section complete the full observation → explanation → implication → resolution cycle?
-* is the system or process the subject of each paragraph, not a generic human actor?
-* does any structural line resolve its section, or does it merely restate it?
+- can a reader explain this section after one read?
+- is every concept introduced before it is compressed?
+- does each section complete the full observation → explanation → implication → resolution cycle?
+- is the system or process the subject of each paragraph, not a generic human actor?
+- does any structural line resolve its section, or does it merely restate it?
 
 If any check fails, revise before submitting.
 

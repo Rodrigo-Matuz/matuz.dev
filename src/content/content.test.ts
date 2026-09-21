@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { locales, type Language } from './index';
-import enCommon from '../i18n/en/common.json';
-import ptCommon from '../i18n/pt-BR/common.json';
+import { locales, type Language } from "./index";
+import enCommon from "../i18n/en/common.json";
+import ptCommon from "../i18n/pt-BR/common.json";
 
 const languageKeys = Object.keys(locales) as Language[];
 
@@ -13,9 +13,9 @@ const languageKeys = Object.keys(locales) as Language[];
  */
 function shapeOf(value: unknown): string | Record<string, unknown> {
     if (Array.isArray(value)) {
-        return `array(${value.length}):[${value.map(shapeOf).join('|')}]`;
+        return `array(${value.length}):[${value.map(shapeOf).join("|")}]`;
     }
-    if (value !== null && typeof value === 'object') {
+    if (value !== null && typeof value === "object") {
         const entries = Object.entries(value as Record<string, unknown>).map(
             ([key, child]) => [key, shapeOf(child)] as const,
         );
@@ -24,12 +24,12 @@ function shapeOf(value: unknown): string | Record<string, unknown> {
     return typeof value;
 }
 
-describe('content locales', () => {
-    it('exposes exactly the en and pt-BR locales', () => {
-        expect(languageKeys.sort()).toEqual(['en', 'pt-BR']);
+describe("content locales", () => {
+    it("exposes exactly the en and pt-BR locales", () => {
+        expect(languageKeys.sort()).toEqual(["en", "pt-BR"]);
     });
 
-    it('has identical structure across all locales', () => {
+    it("has identical structure across all locales", () => {
         const reference = shapeOf(locales.en);
 
         for (const key of languageKeys) {
@@ -37,7 +37,7 @@ describe('content locales', () => {
         }
     });
 
-    it('has non-empty strings in both locales', () => {
+    it("has non-empty strings in both locales", () => {
         for (const key of languageKeys) {
             const locale = locales[key] as unknown as Record<string, unknown>;
 
@@ -47,35 +47,35 @@ describe('content locales', () => {
         }
     });
 
-    it('maps locales to distinct country codes', () => {
+    it("maps locales to distinct country codes", () => {
         const codes = languageKeys.map((key) => locales[key].countryCode);
 
         expect(new Set(codes).size).toBe(languageKeys.length);
     });
 
-    it('provides navigation labels in both locales', () => {
+    it("provides navigation labels in both locales", () => {
         for (const key of languageKeys) {
             expect(locales[key].navigation.primary).toBeTruthy();
             expect(locales[key].navigation.languageSelector).toBeTruthy();
         }
     });
 
-    it('provides owner identity in both locales', () => {
+    it("provides owner identity in both locales", () => {
         for (const key of languageKeys) {
             expect(locales[key].owner.displayName).toBeTruthy();
             expect(locales[key].owner.location).toBeTruthy();
         }
     });
 
-    it('renders the same owner name in every locale', () => {
+    it("renders the same owner name in every locale", () => {
         // The person's name is a proper noun; it must not be "translated".
         const names = languageKeys.map((key) => locales[key].owner.displayName);
 
         expect(new Set(names).size).toBe(1);
     });
 
-    describe('links', () => {
-        it('has the same link icons in the same order in every locale', () => {
+    describe("links", () => {
+        it("has the same link icons in the same order in every locale", () => {
             // Labels are localized (e.g. "Notes" / "Notas"); icons are the
             // locale-neutral identity of each link.
             const reference = locales.en.links.map((link) => link.icon);
@@ -87,7 +87,7 @@ describe('content locales', () => {
             }
         });
 
-        it('has valid hrefs for every link', () => {
+        it("has valid hrefs for every link", () => {
             for (const key of languageKeys) {
                 for (const link of locales[key].links) {
                     expect(link.href, `${key}:${link.label}`).toMatch(
@@ -97,40 +97,40 @@ describe('content locales', () => {
             }
         });
 
-        it('includes GitHub and LinkedIn links', () => {
+        it("includes GitHub and LinkedIn links", () => {
             for (const key of languageKeys) {
                 const labels = locales[key].links.map((link) => link.label);
 
-                expect(labels).toContain('GitHub');
-                expect(labels).toContain('LinkedIn');
+                expect(labels).toContain("GitHub");
+                expect(labels).toContain("LinkedIn");
             }
         });
 
-        it('includes the Discord profile link', () => {
+        it("includes the Discord profile link", () => {
             for (const key of languageKeys) {
                 const discord = locales[key].links.find(
-                    (link) => link.label === 'Discord',
+                    (link) => link.label === "Discord",
                 );
 
                 expect(discord?.href).toBe(
-                    'https://discord.com/users/584503954969198612',
+                    "https://discord.com/users/584503954969198612",
                 );
             }
         });
 
-        it('points GitHub at the expected profile', () => {
+        it("points GitHub at the expected profile", () => {
             for (const key of languageKeys) {
                 const github = locales[key].links.find(
-                    (link) => link.label === 'GitHub',
+                    (link) => link.label === "GitHub",
                 );
 
-                expect(github?.href).toContain('github.com/rodrigo-matuz');
+                expect(github?.href).toContain("github.com/rodrigo-matuz");
             }
         });
     });
 
-    describe('projects', () => {
-        it('provides heading copy and link labels in both locales', () => {
+    describe("projects", () => {
+        it("provides heading copy and link labels in both locales", () => {
             for (const key of languageKeys) {
                 const projects = locales[key].projects;
 
@@ -142,7 +142,7 @@ describe('content locales', () => {
             }
         });
 
-        it('provides at least three cards with required fields', () => {
+        it("provides at least three cards with required fields", () => {
             for (const key of languageKeys) {
                 const { cards } = locales[key].projects;
 
@@ -162,7 +162,7 @@ describe('content locales', () => {
             }
         });
 
-        it('uses the same card ids in the same order in every locale', () => {
+        it("uses the same card ids in the same order in every locale", () => {
             // Titles may be translated (product names stay, but the pt-BR
             // Discord bot title is localized); ids are the stable key.
             const reference = locales.en.projects.cards.map((card) => card.id);
@@ -174,7 +174,7 @@ describe('content locales', () => {
             }
         });
 
-        it('has unique card ids per locale', () => {
+        it("has unique card ids per locale", () => {
             for (const key of languageKeys) {
                 const ids = locales[key].projects.cards.map((card) => card.id);
 
@@ -182,22 +182,21 @@ describe('content locales', () => {
             }
         });
 
-        it('only gives preview links to cards that declare one', () => {
+        it("only gives preview links to cards that declare one", () => {
             for (const key of languageKeys) {
                 for (const card of locales[key].projects.cards) {
                     if (card.preview !== undefined) {
-                        expect(
-                            card.preview,
-                            `${key}:${card.title}`,
-                        ).toMatch(/^(https?:\/\/|\/)/);
+                        expect(card.preview, `${key}:${card.title}`).toMatch(
+                            /^(https?:\/\/|\/)/,
+                        );
                     }
                 }
             }
         });
     });
 
-    describe('hero', () => {
-        it('provides kicker, title, introduction, record link and closing line', () => {
+    describe("hero", () => {
+        it("provides kicker, title, introduction, record link and closing line", () => {
             for (const key of languageKeys) {
                 expect(locales[key].hero.kicker, key).toBeTruthy();
                 expect(locales[key].hero.title, key).toBeTruthy();
@@ -208,8 +207,8 @@ describe('content locales', () => {
         });
     });
 
-    describe('record', () => {
-        it('provides four entries with label, title and description', () => {
+    describe("record", () => {
+        it("provides four entries with label, title and description", () => {
             for (const key of languageKeys) {
                 expect(locales[key].record.entries).toHaveLength(4);
 
@@ -221,7 +220,7 @@ describe('content locales', () => {
             }
         });
 
-        it('has unique entry labels per locale', () => {
+        it("has unique entry labels per locale", () => {
             for (const key of languageKeys) {
                 const labels = locales[key].record.entries.map(
                     (entry) => entry.label,
@@ -232,8 +231,8 @@ describe('content locales', () => {
         });
     });
 
-    describe('experience', () => {
-        it('provides at least five highlights in both locales', () => {
+    describe("experience", () => {
+        it("provides at least five highlights in both locales", () => {
             for (const key of languageKeys) {
                 expect(
                     locales[key].experience.highlights.length,
@@ -246,37 +245,37 @@ describe('content locales', () => {
             }
         });
 
-        it('mentions the AWS certification in both locales', () => {
+        it("mentions the AWS certification in both locales", () => {
             for (const key of languageKeys) {
-                const highlights = locales[key].experience.highlights.join(' ');
+                const highlights = locales[key].experience.highlights.join(" ");
 
-                expect(highlights).toContain('AWS');
+                expect(highlights).toContain("AWS");
             }
         });
     });
 
-    describe('correspondence', () => {
-        it('uses the real contact email in both locales', () => {
+    describe("correspondence", () => {
+        it("uses the real contact email in both locales", () => {
             for (const key of languageKeys) {
-                expect(locales[key].correspondence.email).toBe(
-                    'mail@matuz.me',
-                );
+                expect(locales[key].correspondence.email).toBe("mail@matuz.me");
                 expect(locales[key].correspondence.emailHref).toBe(
-                    'mailto:mail@matuz.me',
+                    "mailto:mail@matuz.me",
                 );
             }
         });
 
-        it('provides both action labels', () => {
+        it("provides both action labels", () => {
             for (const key of languageKeys) {
                 expect(locales[key].correspondence.primaryAction).toBeTruthy();
-                expect(locales[key].correspondence.secondaryAction).toBeTruthy();
+                expect(
+                    locales[key].correspondence.secondaryAction,
+                ).toBeTruthy();
             }
         });
     });
 
-    describe('contact', () => {
-        it('provides page copy and notes in both locales', () => {
+    describe("contact", () => {
+        it("provides page copy and notes in both locales", () => {
             for (const key of languageKeys) {
                 const contact = locales[key].contact;
 
@@ -289,7 +288,7 @@ describe('content locales', () => {
             }
         });
 
-        it('provides channels with valid hrefs in both locales', () => {
+        it("provides channels with valid hrefs in both locales", () => {
             for (const key of languageKeys) {
                 for (const channel of locales[key].contact.channels) {
                     expect(channel.label, `${key}:${channel.id}`).toBeTruthy();
@@ -302,21 +301,19 @@ describe('content locales', () => {
             }
         });
 
-        it('uses the same channel ids in the same order in every locale', () => {
+        it("uses the same channel ids in the same order in every locale", () => {
             const reference = locales.en.contact.channels.map(
                 (channel) => channel.id,
             );
 
             for (const key of languageKeys) {
                 expect(
-                    locales[key].contact.channels.map(
-                        (channel) => channel.id,
-                    ),
+                    locales[key].contact.channels.map((channel) => channel.id),
                 ).toEqual(reference);
             }
         });
 
-        it('lists email, GitHub, LinkedIn and Discord channels', () => {
+        it("lists email, GitHub, LinkedIn and Discord channels", () => {
             for (const key of languageKeys) {
                 const ids = locales[key].contact.channels.map(
                     (channel) => channel.id,
@@ -324,41 +321,41 @@ describe('content locales', () => {
 
                 expect(ids).toEqual(
                     expect.arrayContaining([
-                        'email',
-                        'github',
-                        'linkedin',
-                        'discord',
+                        "email",
+                        "github",
+                        "linkedin",
+                        "discord",
                     ]),
                 );
             }
         });
 
-        it('points the email channel at the real address', () => {
+        it("points the email channel at the real address", () => {
             for (const key of languageKeys) {
                 const email = locales[key].contact.channels.find(
-                    (channel) => channel.id === 'email',
+                    (channel) => channel.id === "email",
                 );
 
-                expect(email?.href).toBe('mailto:mail@matuz.me');
+                expect(email?.href).toBe("mailto:mail@matuz.me");
             }
         });
 
-        it('points the Discord channel at the profile', () => {
+        it("points the Discord channel at the profile", () => {
             for (const key of languageKeys) {
                 const discord = locales[key].contact.channels.find(
-                    (channel) => channel.id === 'discord',
+                    (channel) => channel.id === "discord",
                 );
 
-                expect(discord?.value).toBe('@matuz');
+                expect(discord?.value).toBe("@matuz");
                 expect(discord?.href).toBe(
-                    'https://discord.com/users/584503954969198612',
+                    "https://discord.com/users/584503954969198612",
                 );
             }
         });
     });
 
-    describe('about', () => {
-        it('provides a beyond-work section in both locales', () => {
+    describe("about", () => {
+        it("provides a beyond-work section in both locales", () => {
             for (const key of languageKeys) {
                 const beyondWork = locales[key].about.whoAmI.beyondWork;
 
@@ -375,24 +372,23 @@ describe('content locales', () => {
             }
         });
 
-        it('mentions NixOS in the beyond-work section', () => {
+        it("mentions NixOS in the beyond-work section", () => {
             for (const key of languageKeys) {
-                const text = locales[
-                    key
-                ].about.whoAmI.beyondWork.paragraphs.join(' ');
+                const text =
+                    locales[key].about.whoAmI.beyondWork.paragraphs.join(" ");
 
-                expect(text).toContain('NixOS');
+                expect(text).toContain("NixOS");
             }
         });
     });
 
-    describe('locale dictionaries', () => {
-        it('en/common.json holds the English common section', () => {
+    describe("locale dictionaries", () => {
+        it("en/common.json holds the English common section", () => {
             expect(locales.en.navigation).toEqual(enCommon.navigation);
         });
 
-        it('pt-BR/common.json holds the Brazilian Portuguese common section', () => {
-            expect(locales['pt-BR'].navigation).toEqual(ptCommon.navigation);
+        it("pt-BR/common.json holds the Brazilian Portuguese common section", () => {
+            expect(locales["pt-BR"].navigation).toEqual(ptCommon.navigation);
         });
     });
 });

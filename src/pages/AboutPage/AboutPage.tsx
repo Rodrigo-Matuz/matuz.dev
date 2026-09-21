@@ -1,20 +1,20 @@
-import { motion } from 'motion/react';
-import { ArrowUpRight } from 'lucide-react';
+import { motion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 
-import Container from '$/components/layout/Container';
-import PageShell from '$/components/layout/PageShell';
-import Section from '$/components/layout/Section';
-import Button from '$/components/ui/Button';
-import Eyebrow from '$/components/ui/Eyebrow';
-import { useLocale } from '$/lib/language';
+import Container from "$/components/layout/Container";
+import PageShell from "$/components/layout/PageShell";
+import Section from "$/components/layout/Section";
+import Button from "$/components/ui/Button";
+import Eyebrow from "$/components/ui/Eyebrow";
+import { useLocale } from "$/lib/language";
 import {
     fadeUp,
     pageVariants,
     staggerContainer,
     viewportOnce,
-} from '$/lib/motion';
+} from "$/lib/motion";
 
-const skillAccentClasses = ['text-primary', 'text-secondary', 'text-accent'];
+const skillAccentClasses = ["text-primary", "text-secondary", "text-accent"];
 
 /**
  * `/about` — what this site is, and who is behind it.
@@ -34,7 +34,9 @@ export function AboutPage() {
                 initial="initial"
                 animate="animate"
                 exit="exit"
-            >                {/* Why this site exists */}
+            >
+                {" "}
+                {/* Why this site exists */}
                 <section className="pb-20 pt-32 sm:pb-24 sm:pt-36">
                     <Container>
                         <motion.div
@@ -71,7 +73,6 @@ export function AboutPage() {
                         </motion.div>
                     </Container>
                 </section>
-
                 {/* Who am I */}
                 <Section id="who-am-i" band="soft">
                     <Container className="py-20 sm:py-28">
@@ -142,7 +143,6 @@ export function AboutPage() {
                         </motion.div>
                     </Container>
                 </Section>
-
                 {/* Credentials */}
                 <Section id="credentials" band="soft">
                     <Container className="py-20 sm:py-28">
@@ -194,7 +194,6 @@ export function AboutPage() {
                         </motion.div>
                     </Container>
                 </Section>
-
                 {/* Beyond work — NixOS, shell, dotfiles */}
                 <Section id="beyond-work" band="soft">
                     <Container className="py-20 sm:py-28">
@@ -231,7 +230,6 @@ export function AboutPage() {
                         </motion.div>
                     </Container>
                 </Section>
-
                 {/* Back to home */}
                 <Section id="about-closing" band="soft">
                     <Container className="py-20 sm:py-28">

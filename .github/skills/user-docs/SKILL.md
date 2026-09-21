@@ -3,9 +3,9 @@ name: user-docs
 description: "Standard for user-facing documentation. Use when writing or changing user guides, how-to pages, or task documentation for end users — not architecture documents, agent standards, PR descriptions, or test reports."
 license: MIT
 metadata:
-  skill-type: deliverable
-  prose-setting: end-user
-  skill-dependency: prose-discipline
+    skill-type: deliverable
+    prose-setting: end-user
+    skill-dependency: prose-discipline
 ---
 
 # User documentation standard
@@ -22,13 +22,13 @@ Leave out code detail unless it changes what the user must do.
 
 Each user guide makes these points clear:
 
-* who the page is for;
-* the task it covers;
-* prerequisites;
-* steps;
-* expected result;
-* common failures;
-* any known uncertainty.
+- who the page is for;
+- the task it covers;
+- prerequisites;
+- steps;
+- expected result;
+- common failures;
+- any known uncertainty.
 
 ## Accuracy
 
@@ -38,14 +38,14 @@ If a feature does not exist yet, call it planned only when the work allows plann
 
 Do not invent:
 
-* commands;
-* flags;
-* config keys;
-* permissions;
-* workflows;
-* screenshots;
-* API fields;
-* file paths.
+- commands;
+- flags;
+- config keys;
+- permissions;
+- workflows;
+- screenshots;
+- API fields;
+- file paths.
 
 ## Safety and privacy
 
@@ -57,10 +57,10 @@ Use clearly fake values in examples. Never expose a real sensitive value.
 
 ## Commands and examples
 
-* Commands must be ready to copy.
-* Keep examples small and accurate.
-* State any setup a command needs.
-* Mark a destructive command before showing it.
+- Commands must be ready to copy.
+- Keep examples small and accurate.
+- State any setup a command needs.
+- Mark a destructive command before showing it.
 
 ## Tone
 

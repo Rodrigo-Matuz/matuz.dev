@@ -1,44 +1,44 @@
 {
-  "contact": {
-    "eyebrow": "Contact",
-    "title": "Let's talk.",
-    "description": "Whether it's a project, a question, or just to say hi — here's where to find me.",
-    "emailNote": "Email is the best way to reach me — I have a catch-all domain, so anything @matuz.me lands in my inbox.",
-    "discordNote": "My Discord is a personal space, but anyone is welcome to message me there (@matuz).",
-    "channels": [
-      {
-        "id": "email",
-        "label": "Email",
-        "value": "mail@matuz.me",
-        "href": "mailto:mail@matuz.me",
-        "icon": "rss",
-        "note": "Preferred — anything @matuz.me reaches me."
-      },
-      {
-        "id": "github",
-        "label": "GitHub",
-        "value": "github.com/rodrigo-matuz",
-        "href": "https://www.github.com/rodrigo-matuz",
-        "icon": "github",
-        "note": "Code, issues, and open-source work."
-      },
-      {
-        "id": "linkedin",
-        "label": "LinkedIn",
-        "value": "in/rodrigo-santos-m0117",
-        "href": "https://www.linkedin.com/in/rodrigo-santos-m0117/?locale=en",
-        "icon": "linkedin",
-        "note": "Professional profile and career history."
-      },
-      {
-        "id": "discord",
-        "label": "Discord",
-        "value": "@matuz",
-        "href": "https://discord.com/users/584503954969198612",
-        "icon": "discord",
-        "note": "Personal space — feel free to message me."
-      }
-    ],
-    "closing": "No forms, no gatekeeping — write whenever you feel like it."
-  }
+    "contact": {
+        "eyebrow": "Contact",
+        "title": "Let's talk.",
+        "description": "Whether it's a project, a question, or just to say hi — here's where to find me.",
+        "emailNote": "Email is the best way to reach me — I have a catch-all domain, so anything @matuz.me lands in my inbox.",
+        "discordNote": "My Discord is a personal space, but anyone is welcome to message me there (@matuz).",
+        "channels": [
+            {
+                "id": "email",
+                "label": "Email",
+                "value": "mail@matuz.me",
+                "href": "mailto:mail@matuz.me",
+                "icon": "rss",
+                "note": "Preferred — anything @matuz.me reaches me."
+            },
+            {
+                "id": "github",
+                "label": "GitHub",
+                "value": "github.com/rodrigo-matuz",
+                "href": "https://www.github.com/rodrigo-matuz",
+                "icon": "github",
+                "note": "Code, issues, and open-source work."
+            },
+            {
+                "id": "linkedin",
+                "label": "LinkedIn",
+                "value": "in/rodrigo-santos-m0117",
+                "href": "https://www.linkedin.com/in/rodrigo-santos-m0117/?locale=en",
+                "icon": "linkedin",
+                "note": "Professional profile and career history."
+            },
+            {
+                "id": "discord",
+                "label": "Discord",
+                "value": "@matuz",
+                "href": "https://discord.com/users/584503954969198612",
+                "icon": "discord",
+                "note": "Personal space — feel free to message me."
+            }
+        ],
+        "closing": "No forms, no gatekeeping — write whenever you feel like it."
+    }
 }

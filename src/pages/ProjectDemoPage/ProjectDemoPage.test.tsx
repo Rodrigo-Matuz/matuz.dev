@@ -1,16 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router';
-import { beforeAll, describe, expect, it, vi } from 'vitest';
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter, Route, Routes } from "react-router";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 
-import { ProjectDemoPage } from './ProjectDemoPage';
-import { locales } from '$/content';
+import { ProjectDemoPage } from "./ProjectDemoPage";
+import { locales } from "$/content";
 
 // jsdom lacks IntersectionObserver, which Motion's whileInView uses.
 beforeAll(() => {
     class MockIntersectionObserver implements IntersectionObserver {
         readonly root = null;
-        readonly rootMargin = '';
-        readonly scrollMargin = '';
+        readonly rootMargin = "";
+        readonly scrollMargin = "";
         readonly thresholds = [];
         disconnect() {}
         observe() {}
@@ -20,7 +20,7 @@ beforeAll(() => {
         }
     }
 
-    vi.stubGlobal('IntersectionObserver', MockIntersectionObserver);
+    vi.stubGlobal("IntersectionObserver", MockIntersectionObserver);
 });
 
 // The page reads :slug, so it must mount inside a Route.
@@ -33,16 +33,16 @@ const renderPage = (slug: string) =>
         </MemoryRouter>,
     );
 
-describe('ProjectDemoPage', () => {
-    it('renders the title and tech tags for a known slug', () => {
-        renderPage('wallpaper-picker');
+describe("ProjectDemoPage", () => {
+    it("renders the title and tech tags for a known slug", () => {
+        renderPage("wallpaper-picker");
 
-        const card = locales['pt-BR'].projects.cards.find(
-            (candidate) => candidate.id === 'wallpaper-picker',
+        const card = locales["pt-BR"].projects.cards.find(
+            (candidate) => candidate.id === "wallpaper-picker",
         );
 
         expect(
-            screen.getByRole('heading', { level: 1, name: card!.title }),
+            screen.getByRole("heading", { level: 1, name: card!.title }),
         ).toBeInTheDocument();
 
         for (const technology of card!.technologies) {
@@ -50,11 +50,11 @@ describe('ProjectDemoPage', () => {
         }
     });
 
-    it('renders the demo paragraphs', () => {
-        renderPage('wallpaper-picker');
+    it("renders the demo paragraphs", () => {
+        renderPage("wallpaper-picker");
 
-        const card = locales['pt-BR'].projects.cards.find(
-            (candidate) => candidate.id === 'wallpaper-picker',
+        const card = locales["pt-BR"].projects.cards.find(
+            (candidate) => candidate.id === "wallpaper-picker",
         );
 
         for (const paragraph of card!.demo!.paragraphs) {
@@ -62,105 +62,103 @@ describe('ProjectDemoPage', () => {
         }
     });
 
-    it('embeds a YouTube iframe when the demo video is a YouTube URL', () => {
+    it("embeds a YouTube iframe when the demo video is a YouTube URL", () => {
         // The wallpaper-picker video is a GitHub attachment (native <video>,
         // next test); assert the YouTube branch with a synthetic card via the
         // matuz-dev slug after temporarily pointing at a YouTube URL is not
         // possible — instead assert no iframe for GitHub videos and rely on
         // the youtubeId unit behavior through the embed branch.
-        renderPage('wallpaper-picker');
+        renderPage("wallpaper-picker");
 
         // GitHub attachment video → native <video>, no iframe.
-        expect(document.querySelector('iframe')).toBeNull();
-        expect(document.querySelector('video')).not.toBeNull();
+        expect(document.querySelector("iframe")).toBeNull();
+        expect(document.querySelector("video")).not.toBeNull();
     });
 
-    it('renders a native video element for GitHub attachment videos', () => {
-        renderPage('wallpaper-picker');
+    it("renders a native video element for GitHub attachment videos", () => {
+        renderPage("wallpaper-picker");
 
         // The wallpaper-picker demo video is a GitHub attachment, not YouTube.
-        const video = document.querySelector('video');
+        const video = document.querySelector("video");
 
         expect(video).not.toBeNull();
-        expect(video?.getAttribute('src')).toContain('github.com');
+        expect(video?.getAttribute("src")).toContain("github.com");
     });
 
-    it('shows the no-video notice for projects without a demo video', () => {
-        renderPage('cinema-automation-challenge');
+    it("shows the no-video notice for projects without a demo video", () => {
+        renderPage("cinema-automation-challenge");
 
         expect(
-            screen.getByText(locales['pt-BR'].projects.demo.noVideo),
+            screen.getByText(locales["pt-BR"].projects.demo.noVideo),
         ).toBeInTheDocument();
-        expect(document.querySelector('iframe')).toBeNull();
+        expect(document.querySelector("iframe")).toBeNull();
     });
 
-    it('links the source to GitHub', () => {
-        renderPage('wallpaper-picker');
+    it("links the source to GitHub", () => {
+        renderPage("wallpaper-picker");
 
-        const card = locales['pt-BR'].projects.cards.find(
-            (candidate) => candidate.id === 'wallpaper-picker',
+        const card = locales["pt-BR"].projects.cards.find(
+            (candidate) => candidate.id === "wallpaper-picker",
         );
 
-        const source = screen.getByRole('link', {
-            name: new RegExp(locales['pt-BR'].projects.sourceLabel, 'i'),
+        const source = screen.getByRole("link", {
+            name: new RegExp(locales["pt-BR"].projects.sourceLabel, "i"),
         });
 
-        expect(source).toHaveAttribute('href', card!.github);
-        expect(source).toHaveAttribute('target', '_blank');
+        expect(source).toHaveAttribute("href", card!.github);
+        expect(source).toHaveAttribute("target", "_blank");
     });
 
-    it('renders the preview link for cards that declare one', () => {
-        renderPage('matuz-dev');
+    it("renders the preview link for cards that declare one", () => {
+        renderPage("matuz-dev");
 
-        const preview = screen.getByRole('link', {
-            name: new RegExp(locales['pt-BR'].projects.previewLabel, 'i'),
+        const preview = screen.getByRole("link", {
+            name: new RegExp(locales["pt-BR"].projects.previewLabel, "i"),
         });
 
-        expect(preview).toHaveAttribute('href', '/');
+        expect(preview).toHaveAttribute("href", "/");
     });
 
-    it('omits the preview link for cards without one', () => {
-        renderPage('cinema-automation-challenge');
+    it("omits the preview link for cards without one", () => {
+        renderPage("cinema-automation-challenge");
 
         expect(
-            screen.queryByRole('link', {
-                name: new RegExp(locales['pt-BR'].projects.previewLabel, 'i'),
+            screen.queryByRole("link", {
+                name: new RegExp(locales["pt-BR"].projects.previewLabel, "i"),
             }),
         ).toBeNull();
     });
 
-    it('links back to the projects index', () => {
-        renderPage('wallpaper-picker');
+    it("links back to the projects index", () => {
+        renderPage("wallpaper-picker");
 
-        const backLinks = screen.getAllByRole('link', {
-            name: new RegExp(locales['pt-BR'].projects.backToProjects, 'i'),
+        const backLinks = screen.getAllByRole("link", {
+            name: new RegExp(locales["pt-BR"].projects.backToProjects, "i"),
         });
 
         expect(backLinks.length).toBeGreaterThan(0);
 
         for (const link of backLinks) {
-            expect(link).toHaveAttribute('href', '/projects');
+            expect(link).toHaveAttribute("href", "/projects");
         }
     });
 
-    it('shows the not-found state for unknown slugs', () => {
-        renderPage('nope');
+    it("shows the not-found state for unknown slugs", () => {
+        renderPage("nope");
 
         expect(
-            screen.getByText(locales['pt-BR'].notes.notFound),
+            screen.getByText(locales["pt-BR"].notes.notFound),
         ).toBeInTheDocument();
         expect(
-            screen.queryByRole('heading', { level: 1 }),
+            screen.queryByRole("heading", { level: 1 }),
         ).not.toBeInTheDocument();
     });
 
-    it('renders the footer with the owner name', () => {
-        renderPage('wallpaper-picker');
+    it("renders the footer with the owner name", () => {
+        renderPage("wallpaper-picker");
 
-        const footer = screen.getByRole('contentinfo');
+        const footer = screen.getByRole("contentinfo");
 
-        expect(footer).toHaveTextContent(
-            locales['pt-BR'].owner.displayName,
-        );
+        expect(footer).toHaveTextContent(locales["pt-BR"].owner.displayName);
     });
 });

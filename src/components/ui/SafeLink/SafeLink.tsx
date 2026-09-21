@@ -1,7 +1,14 @@
-import { useRef, useState, type AnchorHTMLAttributes, type ReactNode } from 'react';
+import {
+    useRef,
+    useState,
+    type AnchorHTMLAttributes,
+    type ReactNode,
+} from "react";
 
-interface SafeLinkProps
-    extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'children'> {
+interface SafeLinkProps extends Omit<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    "href" | "children"
+> {
     /** The real destination — injected into the DOM only after interaction. */
     href: string;
     children: ReactNode;
@@ -18,7 +25,7 @@ interface SafeLinkProps
 export function SafeLink({
     href,
     children,
-    className = '',
+    className = "",
     ...props
 }: SafeLinkProps) {
     const [revealed, setRevealed] = useState(false);
@@ -37,14 +44,14 @@ export function SafeLink({
         <a
             ref={anchorRef}
             href={revealed ? href : undefined}
-            role={revealed ? undefined : 'link'}
+            role={revealed ? undefined : "link"}
             tabIndex={revealed ? undefined : 0}
             onPointerEnter={reveal}
             onPointerDown={reveal}
             onTouchStart={reveal}
             onFocus={reveal}
             onKeyDown={(event) => {
-                if (!revealed && (event.key === 'Enter' || event.key === ' ')) {
+                if (!revealed && (event.key === "Enter" || event.key === " ")) {
                     event.preventDefault();
                     activate();
                 }

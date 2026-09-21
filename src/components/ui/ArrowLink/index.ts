@@ -1,2 +1,1 @@
-export { default } from './ArrowLink';
-
+export { default } from "./ArrowLink";

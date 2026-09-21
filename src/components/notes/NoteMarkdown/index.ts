@@ -1,1 +1,1 @@
-export { NoteMarkdown, default } from './NoteMarkdown';
+export { NoteMarkdown, default } from "./NoteMarkdown";

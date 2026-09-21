@@ -25,21 +25,21 @@ The site is fully bilingual. Brazilian Portuguese is the default language; Engli
 
 ## Tech stack
 
-| Layer | Choice |
-| --- | --- |
-| UI | React 19 + TypeScript |
-| Build | Vite |
-| Styling | Tailwind CSS v4 (CSS-first `@theme`) |
-| Animation | Motion (`motion/react`) |
-| Routing | React Router |
-| Icons | Lucide React (+ local brand glyphs) |
-| Markdown | react-markdown + remark/rehype (GFM, math, deflists, raw HTML) |
-| Math | KaTeX |
-| Server | Express 5 (notes API + static serving) |
-| Testing | Vitest + Testing Library + jsdom |
-| Package manager | Bun |
-| Environment | devenv (Nix) |
-| Hosting | Heroku |
+| Layer           | Choice                                                         |
+| --------------- | -------------------------------------------------------------- |
+| UI              | React 19 + TypeScript                                          |
+| Build           | Vite                                                           |
+| Styling         | Tailwind CSS v4 (CSS-first `@theme`)                           |
+| Animation       | Motion (`motion/react`)                                        |
+| Routing         | React Router                                                   |
+| Icons           | Lucide React (+ local brand glyphs)                            |
+| Markdown        | react-markdown + remark/rehype (GFM, math, deflists, raw HTML) |
+| Math            | KaTeX                                                          |
+| Server          | Express 5 (notes API + static serving)                         |
+| Testing         | Vitest + Testing Library + jsdom                               |
+| Package manager | Bun                                                            |
+| Environment     | devenv (Nix)                                                   |
+| Hosting         | Heroku                                                         |
 
 ## Getting started
 

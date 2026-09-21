@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router';
+import { useEffect } from "react";
+import { useLocation } from "react-router";
 
 /**
  * Hash-scroll handling for the SPA.
@@ -27,7 +27,7 @@ export function HashScroller() {
             const element = document.getElementById(id);
 
             if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
                 return true;
             }
 

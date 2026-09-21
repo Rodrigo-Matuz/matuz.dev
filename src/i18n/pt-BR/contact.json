@@ -1,44 +1,44 @@
 {
-  "contact": {
-    "eyebrow": "Contato",
-    "title": "Vamos conversar.",
-    "description": "Seja um projeto, uma dúvida ou só um oi — é aqui que você me encontra.",
-    "emailNote": "E-mail é a melhor forma de falar comigo — tenho um domínio catch-all, então qualquer coisa @matuz.me chega na minha caixa de entrada.",
-    "discordNote": "Meu Discord é um espaço pessoal, mas qualquer pessoa é bem-vinda para me chamar lá (@matuz).",
-    "channels": [
-      {
-        "id": "email",
-        "label": "E-mail",
-        "value": "mail@matuz.me",
-        "href": "mailto:mail@matuz.me",
-        "icon": "rss",
-        "note": "Preferido — qualquer coisa @matuz.me chega em mim."
-      },
-      {
-        "id": "github",
-        "label": "GitHub",
-        "value": "github.com/rodrigo-matuz",
-        "href": "https://www.github.com/rodrigo-matuz",
-        "icon": "github",
-        "note": "Código, issues e trabalho open source."
-      },
-      {
-        "id": "linkedin",
-        "label": "LinkedIn",
-        "value": "in/rodrigo-santos-m0117",
-        "href": "https://www.linkedin.com/in/rodrigo-santos-m0117/?locale=pt-BR",
-        "icon": "linkedin",
-        "note": "Perfil profissional e histórico de carreira."
-      },
-      {
-        "id": "discord",
-        "label": "Discord",
-        "value": "@matuz",
-        "href": "https://discord.com/users/584503954969198612",
-        "icon": "discord",
-        "note": "Espaço pessoal — sinta-se livre para me chamar."
-      }
-    ],
-    "closing": "Sem formulários, sem burocracia — escreva quando quiser."
-  }
+    "contact": {
+        "eyebrow": "Contato",
+        "title": "Vamos conversar.",
+        "description": "Seja um projeto, uma dúvida ou só um oi — é aqui que você me encontra.",
+        "emailNote": "E-mail é a melhor forma de falar comigo — tenho um domínio catch-all, então qualquer coisa @matuz.me chega na minha caixa de entrada.",
+        "discordNote": "Meu Discord é um espaço pessoal, mas qualquer pessoa é bem-vinda para me chamar lá (@matuz).",
+        "channels": [
+            {
+                "id": "email",
+                "label": "E-mail",
+                "value": "mail@matuz.me",
+                "href": "mailto:mail@matuz.me",
+                "icon": "rss",
+                "note": "Preferido — qualquer coisa @matuz.me chega em mim."
+            },
+            {
+                "id": "github",
+                "label": "GitHub",
+                "value": "github.com/rodrigo-matuz",
+                "href": "https://www.github.com/rodrigo-matuz",
+                "icon": "github",
+                "note": "Código, issues e trabalho open source."
+            },
+            {
+                "id": "linkedin",
+                "label": "LinkedIn",
+                "value": "in/rodrigo-santos-m0117",
+                "href": "https://www.linkedin.com/in/rodrigo-santos-m0117/?locale=pt-BR",
+                "icon": "linkedin",
+                "note": "Perfil profissional e histórico de carreira."
+            },
+            {
+                "id": "discord",
+                "label": "Discord",
+                "value": "@matuz",
+                "href": "https://discord.com/users/584503954969198612",
+                "icon": "discord",
+                "note": "Espaço pessoal — sinta-se livre para me chamar."
+            }
+        ],
+        "closing": "Sem formulários, sem burocracia — escreva quando quiser."
+    }
 }

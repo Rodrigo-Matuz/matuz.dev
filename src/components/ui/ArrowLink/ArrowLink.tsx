@@ -1,18 +1,21 @@
-import type { AnchorHTMLAttributes, ReactNode } from 'react';
-import { Link } from 'react-router';
+import type { AnchorHTMLAttributes, ReactNode } from "react";
+import { Link } from "react-router";
 
-import { ArrowDownRight } from 'lucide-react';
+import { ArrowDownRight } from "lucide-react";
 
-type ArrowLinkHover = 'primary' | 'accent' | 'secondary' | 'success';
+type ArrowLinkHover = "primary" | "accent" | "secondary" | "success";
 
 const hoverStyles: Record<ArrowLinkHover, string> = {
-    primary: 'hover:text-primary',
-    accent: 'hover:text-accent',
-    secondary: 'hover:text-secondary',
-    success: 'hover:text-success',
+    primary: "hover:text-primary",
+    accent: "hover:text-accent",
+    secondary: "hover:text-secondary",
+    success: "hover:text-success",
 };
 
-interface ArrowLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
+interface ArrowLinkProps extends Omit<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    "href"
+> {
     children: ReactNode;
     hover?: ArrowLinkHover;
     /**
@@ -25,8 +28,8 @@ interface ArrowLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, '
 
 export function ArrowLink({
     children,
-    hover = 'primary',
-    className = '',
+    hover = "primary",
+    className = "",
     to,
     href,
     ...props

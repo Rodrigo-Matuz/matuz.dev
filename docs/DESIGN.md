@@ -6,17 +6,17 @@ The homepage should feel quiet, precise, and editorial. Its reference is the for
 
 ## Tailwind theme tokens
 
-| Role | Token | Value |
-| --- | --- | --- |
-| Primary action / links | `primary` | `#1e65ff` |
-| Violet depth / selection | `secondary` | `#702ef3` |
-| Accent only | `accent` | `#fc1a70` |
-| Page background | `background` | `#050505` |
-| Default surface | `surface` | `#101010` |
-| Raised surface | `surface-raised` | `#151515` |
-| Divider | `border` | `#252525` |
-| Main text | `foreground` | `#f5f5f5` |
-| Supporting text | `muted` / `subtle` | `#a1a1aa` / `#71717a` |
+| Role                     | Token              | Value                 |
+| ------------------------ | ------------------ | --------------------- |
+| Primary action / links   | `primary`          | `#1e65ff`             |
+| Violet depth / selection | `secondary`        | `#702ef3`             |
+| Accent only              | `accent`           | `#fc1a70`             |
+| Page background          | `background`       | `#050505`             |
+| Default surface          | `surface`          | `#101010`             |
+| Raised surface           | `surface-raised`   | `#151515`             |
+| Divider                  | `border`           | `#252525`             |
+| Main text                | `foreground`       | `#f5f5f5`             |
+| Supporting text          | `muted` / `subtle` | `#a1a1aa` / `#71717a` |
 
 Use tokens as Tailwind classes, e.g. `text-primary`, `bg-surface`, and `border-border`. The canonical definitions live in `index.css` under `@theme`.
 
@@ -28,11 +28,11 @@ Use tokens as Tailwind classes, e.g. `text-primary`, `bg-surface`, and `border-b
 
 Loaded via Google Fonts in `index.html`:
 
-| Role | Font | Stack token |
-| --- | --- | --- |
-| Body / UI | Inter | `--font-sans` |
-| Mono micro-labels | JetBrains Mono | `--font-mono` |
-| Display serif headings | Newsreader | `--font-display` |
+| Role                   | Font           | Stack token      |
+| ---------------------- | -------------- | ---------------- |
+| Body / UI              | Inter          | `--font-sans`    |
+| Mono micro-labels      | JetBrains Mono | `--font-mono`    |
+| Display serif headings | Newsreader     | `--font-display` |
 
 `font-display` is used for headings and editorial statements; `font-mono` for the small uppercase document-like labels. System fallbacks remain in the stacks for offline/failure cases.
 

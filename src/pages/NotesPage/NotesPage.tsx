@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
-import NoteSidebar from '$/components/notes/NoteSidebar';
-import Container from '$/components/layout/Container';
-import PageShell from '$/components/layout/PageShell';
-import Eyebrow from '$/components/ui/Eyebrow';
-import { useLocale } from '$/lib/language';
-import { fetchNotesIndex, type NoteIndexEntry } from '$/lib/notes';
+import NoteSidebar from "$/components/notes/NoteSidebar";
+import Container from "$/components/layout/Container";
+import PageShell from "$/components/layout/PageShell";
+import Eyebrow from "$/components/ui/Eyebrow";
+import { useLocale } from "$/lib/language";
+import { fetchNotesIndex, type NoteIndexEntry } from "$/lib/notes";
 
-type LoadState = 'loading' | 'loaded' | 'error';
+type LoadState = "loading" | "loaded" | "error";
 
 /**
  * `/notes` — index of public notes, newest first, with the sidebar list.
  */
 export function NotesPage() {
     const content = useLocale();
-    const [state, setState] = useState<LoadState>('loading');
+    const [state, setState] = useState<LoadState>("loading");
     const [notes, setNotes] = useState<NoteIndexEntry[]>([]);
 
     useEffect(() => {
@@ -26,12 +26,12 @@ export function NotesPage() {
                 if (cancelled) return;
 
                 setNotes(index);
-                setState('loaded');
+                setState("loaded");
             })
             .catch(() => {
                 if (cancelled) return;
 
-                setState('error');
+                setState("error");
             });
 
         return () => {
@@ -55,25 +55,25 @@ export function NotesPage() {
                         {content.notes.languageNotice}
                     </p>
 
-                    {state === 'loading' && (
+                    {state === "loading" && (
                         <p className="mt-16 font-mono text-xs uppercase tracking-[0.18em] text-subtle">
                             …
                         </p>
                     )}
 
-                    {state === 'error' && (
+                    {state === "error" && (
                         <p className="mt-16 text-base text-muted">
                             {content.notes.loadError}
                         </p>
                     )}
 
-                    {state === 'loaded' && notes.length === 0 && (
+                    {state === "loaded" && notes.length === 0 && (
                         <p className="mt-16 text-base text-muted">
                             {content.notes.empty}
                         </p>
                     )}
 
-                    {state === 'loaded' && notes.length > 0 && (
+                    {state === "loaded" && notes.length > 0 && (
                         <div className="mt-16 grid gap-12 lg:grid-cols-[16rem_1fr]">
                             <aside className="lg:sticky lg:top-28 lg:self-start">
                                 <NoteSidebar notes={notes} />
@@ -88,9 +88,9 @@ export function NotesPage() {
                                         >
                                             <Link
                                                 to={`/notes/${note.slug
-                                                    .split('/')
+                                                    .split("/")
                                                     .map(encodeURIComponent)
-                                                    .join('/')}`}
+                                                    .join("/")}`}
                                                 className="group block py-5 transition-colors"
                                             >
                                                 <span className="font-display text-xl tracking-[-0.02em] text-foreground transition-colors group-hover:text-primary">

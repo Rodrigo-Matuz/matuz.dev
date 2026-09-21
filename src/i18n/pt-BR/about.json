@@ -1,64 +1,61 @@
 {
-  "about": {
-    "eyebrow": "Sobre",
-    "title": "O que é este site — e quem está por trás dele.",
-    "sitePurpose": [
-      "matuz.dev é meu canto na web: um portfólio, um registro de trabalho e um lugar para pensar em voz alta sobre software.",
-      "Ele existe por dois motivos. Primeiro, para que qualquer pessoa considerando trabalhar comigo veja o que eu construo, como trabalho e no que acredito — sem intermediários. Segundo, como um projeto em si: tudo aqui é projetado, construído e mantido por mim, do design system ao pipeline de deploy.",
-      "Se quiser a versão curta: eu construo software para o que precisar ser construído, e este site é onde esse trabalho fala por si."
-    ],
-    "whoAmI": {
-      "eyebrow": "Quem sou",
-      "title": "Oi, eu sou o Rodrigo.",
-      "intro": "Sou engenheiro de software full-stack, do Brasil, trabalhando remotamente com pessoas, equipes e empresas de todos os tamanhos. Prezo pela engenharia pragmática: a solução certa para o problema em questão — seja construir algo do zero, integrar com o que já existe ou melhorar com cuidado um sistema legado.",
-      "bio": [
-        "Sou bacharel em Engenharia de Software pela UniCesumar e construo software profissionalmente desde 2024, pelo meu próprio estúdio, a MTZ Soft — cobrindo o ciclo completo: requisitos, desenvolvimento, testes, publicação, infraestrutura e manutenção em produção.",
-        "Antes disso, liderei squads de qualidade na Compass UOL, coordenando testadores em cinco produtos web e combinando testes funcionais, exploratórios e orientados a risco com automação em Robot Framework e Postman. Essa experiência moldou como escrevo software hoje: testabilidade, documentação clara e modos de falha respeitosos são requisitos, não detalhes.",
-        "No open source, contribuí com cerca de 30% das funcionalidades de um bot de Discord e servidor web usado por mais de 30 servidores e aproximadamente 4.000 usuários, e mantenho um aplicativo desktop de wallpapers multiplataforma construído com Rust, Tauri e FFmpeg."
-      ],
-      "skills": {
-        "eyebrow": "Ferramentas",
-        "title": "O que eu uso",
-        "groups": [
-          {
-            "label": "Linguagens",
-            "items": "Python, TypeScript, JavaScript, Java, C, C++, Rust, Bash"
-          },
-          {
-            "label": "Backend & dados",
-            "items": "Node.js, Django, APIs REST, PostgreSQL, SQL, Redis, Prisma ORM, Celery"
-          },
-          {
-            "label": "Frontend & DevOps",
-            "items": "React, Next.js, Tailwind CSS, Git, GitHub, Linux, AWS, CI/CD"
-          }
-        ]
-      },
-      "certificates": {
-        "eyebrow": "Certificados & idiomas",
-        "title": "Credenciais",
-        "items": [
-          "Bacharelado em Engenharia de Software — UniCesumar, 2026",
-          "AWS Certified Cloud Practitioner — Amazon Web Services, 2025",
-          "EF SET — C1 Effective Proficiency (Inglês), 2026",
-          "Início Rápido em Teste e QA — Udemy, 2025",
-          "Fundamentos de Scrum e Kanban — Udemy, 2025"
+    "about": {
+        "eyebrow": "Sobre",
+        "title": "O que é este site — e quem está por trás dele.",
+        "sitePurpose": [
+            "matuz.dev é meu canto na web: um portfólio, um registro de trabalho e um lugar para pensar em voz alta sobre software.",
+            "Ele existe por dois motivos. Primeiro, para que qualquer pessoa considerando trabalhar comigo veja o que eu construo, como trabalho e no que acredito — sem intermediários. Segundo, como um projeto em si: tudo aqui é projetado, construído e mantido por mim, do design system ao pipeline de deploy.",
+            "Se quiser a versão curta: eu construo software para o que precisar ser construído, e este site é onde esse trabalho fala por si."
         ],
-        "languages": [
-          "Português — nativo",
-          "Inglês — C1 (EF SET)"
-        ]
-      },
-      "beyondWork": {
-        "eyebrow": "Além do trabalho",
-        "title": "O que eu mexo por fora.",
-        "paragraphs": [
-          "Fora do trabalho com clientes, uso NixOS na minha máquina pessoal — aprendendo meu caminho por ele e reconstruindo meu ambiente aos poucos como configuração declarativa. Reprodutibilidade como hábito diário, não só palavra da moda.",
-          "Meu desktop roda a Caelestia shell, e em breve devo publicar minha configuração Nix e meus dotfiles — quando estiverem apresentáveis o suficiente para serem lidos por estranhos.",
-          "Esse lado não tem prazo nem entregável: é onde eu quebro as coisas de propósito e depois anoto como consertei."
-        ]
-      },
-      "closing": "O resto está na página inicial — o que eu faço, como trabalho e como falar comigo."
+        "whoAmI": {
+            "eyebrow": "Quem sou",
+            "title": "Oi, eu sou o Rodrigo.",
+            "intro": "Sou engenheiro de software full-stack, do Brasil, trabalhando remotamente com pessoas, equipes e empresas de todos os tamanhos. Prezo pela engenharia pragmática: a solução certa para o problema em questão — seja construir algo do zero, integrar com o que já existe ou melhorar com cuidado um sistema legado.",
+            "bio": [
+                "Sou bacharel em Engenharia de Software pela UniCesumar e construo software profissionalmente desde 2024, pelo meu próprio estúdio, a MTZ Soft — cobrindo o ciclo completo: requisitos, desenvolvimento, testes, publicação, infraestrutura e manutenção em produção.",
+                "Antes disso, liderei squads de qualidade na Compass UOL, coordenando testadores em cinco produtos web e combinando testes funcionais, exploratórios e orientados a risco com automação em Robot Framework e Postman. Essa experiência moldou como escrevo software hoje: testabilidade, documentação clara e modos de falha respeitosos são requisitos, não detalhes.",
+                "No open source, contribuí com cerca de 30% das funcionalidades de um bot de Discord e servidor web usado por mais de 30 servidores e aproximadamente 4.000 usuários, e mantenho um aplicativo desktop de wallpapers multiplataforma construído com Rust, Tauri e FFmpeg."
+            ],
+            "skills": {
+                "eyebrow": "Ferramentas",
+                "title": "O que eu uso",
+                "groups": [
+                    {
+                        "label": "Linguagens",
+                        "items": "Python, TypeScript, JavaScript, Java, C, C++, Rust, Bash"
+                    },
+                    {
+                        "label": "Backend & dados",
+                        "items": "Node.js, Django, APIs REST, PostgreSQL, SQL, Redis, Prisma ORM, Celery"
+                    },
+                    {
+                        "label": "Frontend & DevOps",
+                        "items": "React, Next.js, Tailwind CSS, Git, GitHub, Linux, AWS, CI/CD"
+                    }
+                ]
+            },
+            "certificates": {
+                "eyebrow": "Certificados & idiomas",
+                "title": "Credenciais",
+                "items": [
+                    "Bacharelado em Engenharia de Software — UniCesumar, 2026",
+                    "AWS Certified Cloud Practitioner — Amazon Web Services, 2025",
+                    "EF SET — C1 Effective Proficiency (Inglês), 2026",
+                    "Início Rápido em Teste e QA — Udemy, 2025",
+                    "Fundamentos de Scrum e Kanban — Udemy, 2025"
+                ],
+                "languages": ["Português — nativo", "Inglês — C1 (EF SET)"]
+            },
+            "beyondWork": {
+                "eyebrow": "Além do trabalho",
+                "title": "O que eu mexo por fora.",
+                "paragraphs": [
+                    "Fora do trabalho com clientes, uso NixOS na minha máquina pessoal — aprendendo meu caminho por ele e reconstruindo meu ambiente aos poucos como configuração declarativa. Reprodutibilidade como hábito diário, não só palavra da moda.",
+                    "Meu desktop roda a Caelestia shell, e em breve devo publicar minha configuração Nix e meus dotfiles — quando estiverem apresentáveis o suficiente para serem lidos por estranhos.",
+                    "Esse lado não tem prazo nem entregável: é onde eu quebro as coisas de propósito e depois anoto como consertei."
+                ]
+            },
+            "closing": "O resto está na página inicial — o que eu faço, como trabalho e como falar comigo."
+        }
     }
-  }
 }

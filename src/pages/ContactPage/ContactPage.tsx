@@ -1,21 +1,26 @@
-import { motion } from 'motion/react';
-import { ArrowUpRight } from 'lucide-react';
+import { motion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 
-import Container from '$/components/layout/Container';
-import PageShell from '$/components/layout/PageShell';
-import Section from '$/components/layout/Section';
-import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
-import Eyebrow from '$/components/ui/Eyebrow';
-import SafeLink from '$/components/ui/SafeLink';
-import { useLocale } from '$/lib/language';
+import Container from "$/components/layout/Container";
+import PageShell from "$/components/layout/PageShell";
+import Section from "$/components/layout/Section";
+import BrandIcon, { isBrandIconName } from "$/components/ui/BrandIcon";
+import Eyebrow from "$/components/ui/Eyebrow";
+import SafeLink from "$/components/ui/SafeLink";
+import { useLocale } from "$/lib/language";
 import {
     fadeUp,
     pageVariants,
     staggerContainer,
     viewportOnce,
-} from '$/lib/motion';
+} from "$/lib/motion";
 
-const channelAccentClasses = ['text-primary', 'text-secondary', 'text-accent', 'text-success'];
+const channelAccentClasses = [
+    "text-primary",
+    "text-secondary",
+    "text-accent",
+    "text-success",
+];
 
 /**
  * `/contact` — where to find me. Email-first by design: the owner prefers
@@ -90,8 +95,8 @@ export function ContactPage() {
                                         <SafeLink
                                             href={channel.href}
                                             target={
-                                                channel.href.startsWith('http')
-                                                    ? '_blank'
+                                                channel.href.startsWith("http")
+                                                    ? "_blank"
                                                     : undefined
                                             }
                                             rel="noreferrer"
@@ -99,7 +104,7 @@ export function ContactPage() {
                                         >
                                             <span className="flex items-center gap-3">
                                                 {typeof channel.icon ===
-                                                    'string' &&
+                                                    "string" &&
                                                     isBrandIconName(
                                                         channel.icon,
                                                     ) && (
@@ -124,9 +129,7 @@ export function ContactPage() {
                                             </span>
 
                                             <span className="hidden items-center gap-4 text-[10px] font-medium uppercase tracking-[0.16em] text-subtle transition-colors sm:flex">
-                                                <span>
-                                                    0{index + 1}
-                                                </span>
+                                                <span>0{index + 1}</span>
                                                 <ArrowUpRight
                                                     size={18}
                                                     className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"

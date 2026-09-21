@@ -1,5 +1,5 @@
-import { useLanguage } from '$/lib/language';
-import { formatRelativeTime, parseTimestamp } from '$/lib/relative-time';
+import { useLanguage } from "$/lib/language";
+import { formatRelativeTime, parseTimestamp } from "$/lib/relative-time";
 
 interface RelativeTimeTagProps {
     /** `YYYY-MM-DDTHH:mm` timestamp, or null when missing. */
@@ -14,15 +14,19 @@ interface RelativeTimeTagProps {
  * Hovering reveals the exact date/time via a native tooltip.
  * Renders nothing when the timestamp is missing or malformed.
  */
-export function RelativeTimeTag({ timestamp, label, className = '' }: RelativeTimeTagProps) {
+export function RelativeTimeTag({
+    timestamp,
+    label,
+    className = "",
+}: RelativeTimeTagProps) {
     const language = useLanguage();
     const date = parseTimestamp(timestamp);
 
     if (!date) return null;
 
     const absolute = date.toLocaleString(language, {
-        dateStyle: 'medium',
-        timeStyle: 'short',
+        dateStyle: "medium",
+        timeStyle: "short",
     });
 
     return (

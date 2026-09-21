@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 interface SectionHeadingProps {
     eyebrow?: ReactNode;
@@ -9,7 +9,7 @@ interface SectionHeadingProps {
      * "split" renders a two-column grid: eyebrow + title + description on the
      * left, `children` on the right (matching the record/experience sections).
      */
-    layout?: 'stacked' | 'split';
+    layout?: "stacked" | "split";
     /** Optional link/button rendered after the description in the left column. */
     action?: ReactNode;
     className?: string;
@@ -20,9 +20,9 @@ export function SectionHeading({
     eyebrow,
     title,
     description,
-    layout = 'stacked',
+    layout = "stacked",
     action,
-    className = '',
+    className = "",
     children,
 }: SectionHeadingProps) {
     const heading = (
@@ -40,7 +40,7 @@ export function SectionHeading({
         </>
     );
 
-    if (layout === 'split') {
+    if (layout === "split") {
         return (
             <div
                 className={`grid gap-12 lg:grid-cols-[0.8fr_1.6fr] lg:gap-20 ${className}`}

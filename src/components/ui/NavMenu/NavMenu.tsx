@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { Link, useLocation } from 'react-router';
-import { X } from 'lucide-react';
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { Link, useLocation } from "react-router";
+import { X } from "lucide-react";
 
-import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
-import SafeLink from '$/components/ui/SafeLink';
-import { locales, type Language } from '$/content';
+import BrandIcon, { isBrandIconName } from "$/components/ui/BrandIcon";
+import SafeLink from "$/components/ui/SafeLink";
+import { locales, type Language } from "$/content";
 
 interface NavMenuProps {
     language: Language;
@@ -24,11 +24,11 @@ export function NavMenu({ language }: NavMenuProps) {
     const location = useLocation();
 
     const routeLinks = [
-        { to: '/', label: content.navigation.home },
-        { to: '/about', label: content.navigation.about },
-        { to: '/projects', label: content.navigation.projects },
-        { to: '/notes', label: content.navigation.notes },
-        { to: '/contact', label: content.navigation.contact },
+        { to: "/", label: content.navigation.home },
+        { to: "/about", label: content.navigation.about },
+        { to: "/projects", label: content.navigation.projects },
+        { to: "/notes", label: content.navigation.notes },
+        { to: "/contact", label: content.navigation.contact },
     ];
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export function NavMenu({ language }: NavMenuProps) {
                 (containerRef.current &&
                     containerRef.current.contains(target)) ||
                 (target instanceof Element &&
-                    target.closest('#nav-menu') !== null);
+                    target.closest("#nav-menu") !== null);
 
             if (!isInsideMenu) {
                 setIsOpen(false);
@@ -51,18 +51,18 @@ export function NavMenu({ language }: NavMenuProps) {
         };
 
         const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') {
+            if (event.key === "Escape") {
                 setIsOpen(false);
                 triggerRef.current?.focus();
             }
         };
 
-        document.addEventListener('pointerdown', onPointerDown);
-        document.addEventListener('keydown', onKeyDown);
+        document.addEventListener("pointerdown", onPointerDown);
+        document.addEventListener("keydown", onKeyDown);
 
         return () => {
-            document.removeEventListener('pointerdown', onPointerDown);
-            document.removeEventListener('keydown', onKeyDown);
+            document.removeEventListener("pointerdown", onPointerDown);
+            document.removeEventListener("keydown", onKeyDown);
         };
     }, [isOpen]);
 
@@ -83,13 +83,13 @@ export function NavMenu({ language }: NavMenuProps) {
                     className="flex w-4 flex-col gap-[3px]"
                 >
                     <span
-                        className={`h-px w-full bg-current transition-transform duration-200 ${isOpen ? 'translate-y-[4px] rotate-45' : ''}`}
+                        className={`h-px w-full bg-current transition-transform duration-200 ${isOpen ? "translate-y-[4px] rotate-45" : ""}`}
                     />
                     <span
-                        className={`h-px w-full bg-current transition-opacity duration-200 ${isOpen ? 'opacity-0' : ''}`}
+                        className={`h-px w-full bg-current transition-opacity duration-200 ${isOpen ? "opacity-0" : ""}`}
                     />
                     <span
-                        className={`h-px w-full bg-current transition-transform duration-200 ${isOpen ? '-translate-y-[4px] -rotate-45' : ''}`}
+                        className={`h-px w-full bg-current transition-transform duration-200 ${isOpen ? "-translate-y-[4px] -rotate-45" : ""}`}
                     />
                 </span>
                 <span className="hidden sm:inline">
@@ -105,85 +105,85 @@ export function NavMenu({ language }: NavMenuProps) {
                         aria-label={content.navigation.primary}
                         className="fixed inset-y-0 right-0 z-30 w-64 origin-top-right animate-[menu-in_160ms_ease-out] overflow-y-auto border-l border-foreground/10 bg-background pt-20 shadow-[-24px_0_60px_-24px_rgba(0,0,0,0.8)] backdrop-blur-md"
                     >
-                    <div className="flex items-center justify-between border-b border-foreground/10 px-4 py-3">
-                        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-subtle">
-                            {content.navigation.primary}
-                        </span>
-                        <button
-                            type="button"
-                            aria-label={content.navigation.closeMenu}
-                            onClick={() => {
-                                setIsOpen(false);
-                                triggerRef.current?.focus();
-                            }}
-                            className="text-subtle transition-colors hover:text-foreground"
-                        >
-                            <X size={16} />
-                        </button>
-                    </div>
+                        <div className="flex items-center justify-between border-b border-foreground/10 px-4 py-3">
+                            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-subtle">
+                                {content.navigation.primary}
+                            </span>
+                            <button
+                                type="button"
+                                aria-label={content.navigation.closeMenu}
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    triggerRef.current?.focus();
+                                }}
+                                className="text-subtle transition-colors hover:text-foreground"
+                            >
+                                <X size={16} />
+                            </button>
+                        </div>
 
-                    <div className="px-4 py-3">
-                        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-subtle">
-                            {content.navigation.pages}
-                        </p>
-                        <ul className="mt-2">
-                            {routeLinks.map((routeLink) => (
-                                <li key={routeLink.to}>
-                                    <Link
-                                        to={routeLink.to}
-                                        role="menuitem"
-                                        aria-current={
-                                            location.pathname ===
-                                            routeLink.to
-                                                ? 'page'
-                                                : undefined
-                                        }
-                                        onClick={() => setIsOpen(false)}
-                                        className={`block py-2 font-display text-lg tracking-[-0.02em] transition-colors ${location.pathname === routeLink.to ? 'text-primary' : 'text-foreground hover:text-primary'}`}
-                                    >
-                                        {routeLink.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        <div className="px-4 py-3">
+                            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-subtle">
+                                {content.navigation.pages}
+                            </p>
+                            <ul className="mt-2">
+                                {routeLinks.map((routeLink) => (
+                                    <li key={routeLink.to}>
+                                        <Link
+                                            to={routeLink.to}
+                                            role="menuitem"
+                                            aria-current={
+                                                location.pathname ===
+                                                routeLink.to
+                                                    ? "page"
+                                                    : undefined
+                                            }
+                                            onClick={() => setIsOpen(false)}
+                                            className={`block py-2 font-display text-lg tracking-[-0.02em] transition-colors ${location.pathname === routeLink.to ? "text-primary" : "text-foreground hover:text-primary"}`}
+                                        >
+                                            {routeLink.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    <div className="border-t border-foreground/10 px-4 py-3">
-                        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-subtle">
-                            {content.navigation.social}
-                        </p>
-                        <ul className="mt-2">
-                            {content.links.map((link) => (
-                                <li key={link.label}>
-                                    <SafeLink
-                                        href={link.href}
-                                        role="menuitem"
-                                        target={
-                                            link.href.startsWith('http')
-                                                ? '_blank'
-                                                : undefined
-                                        }
-                                        rel="noreferrer"
-                                        onClick={() => setIsOpen(false)}
-                                        className="group flex items-center gap-3 py-2 text-sm text-muted transition-colors hover:text-foreground"
-                                    >
-                                        {typeof link.icon === 'string' &&
-                                            isBrandIconName(link.icon) && (
-                                                <BrandIcon
-                                                    name={link.icon}
-                                                    size={14}
-                                                    className="shrink-0 opacity-70 transition-opacity group-hover:opacity-100"
-                                                />
-                                            )}
-                                        {link.label}
-                                    </SafeLink>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>,
-                document.body,
-            )}
+                        <div className="border-t border-foreground/10 px-4 py-3">
+                            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-subtle">
+                                {content.navigation.social}
+                            </p>
+                            <ul className="mt-2">
+                                {content.links.map((link) => (
+                                    <li key={link.label}>
+                                        <SafeLink
+                                            href={link.href}
+                                            role="menuitem"
+                                            target={
+                                                link.href.startsWith("http")
+                                                    ? "_blank"
+                                                    : undefined
+                                            }
+                                            rel="noreferrer"
+                                            onClick={() => setIsOpen(false)}
+                                            className="group flex items-center gap-3 py-2 text-sm text-muted transition-colors hover:text-foreground"
+                                        >
+                                            {typeof link.icon === "string" &&
+                                                isBrandIconName(link.icon) && (
+                                                    <BrandIcon
+                                                        name={link.icon}
+                                                        size={14}
+                                                        className="shrink-0 opacity-70 transition-opacity group-hover:opacity-100"
+                                                    />
+                                                )}
+                                            {link.label}
+                                        </SafeLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>,
+                    document.body,
+                )}
         </div>
     );
 }

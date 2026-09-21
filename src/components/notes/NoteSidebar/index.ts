@@ -1,1 +1,1 @@
-export { NoteSidebar, default } from './NoteSidebar';
+export { NoteSidebar, default } from "./NoteSidebar";

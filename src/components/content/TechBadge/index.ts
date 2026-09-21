@@ -1,2 +1,1 @@
-export { default } from './TechBadge';
-
+export { default } from "./TechBadge";

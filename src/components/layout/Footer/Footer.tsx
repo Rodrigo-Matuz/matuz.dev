@@ -1,4 +1,4 @@
-import { locales, type Language } from '$/content';
+import { locales, type Language } from "$/content";
 
 interface FooterProps {
     language: Language;

@@ -1,64 +1,61 @@
 {
-  "about": {
-    "eyebrow": "About",
-    "title": "What this site is — and who is behind it.",
-    "sitePurpose": [
-      "matuz.dev is my corner of the web: a portfolio, a working record, and a place to think out loud about software.",
-      "It exists for two reasons. First, so that anyone considering working with me can see what I build, how I work, and what I care about — without a recruiter in the middle. Second, as a project in its own right: everything here is designed, built, and maintained by me, from the design system to the deployment pipeline.",
-      "If you want the short version: I build software for whatever needs building, and this site is where that work speaks for itself."
-    ],
-    "whoAmI": {
-      "eyebrow": "Who am I",
-      "title": "Hi, I'm Rodrigo.",
-      "intro": "I'm a full-stack software engineer based in Brazil, working remotely with individuals, teams, and companies of all sizes. I care about pragmatic engineering: the right solution for the problem at hand, whether that is building something from scratch, integrating with what exists, or carefully improving a legacy system.",
-      "bio": [
-        "I hold a Bachelor's degree in Software Engineering from UniCesumar, and I've been building software professionally since 2024 through my own practice, MTZ Soft — covering the full lifecycle: requirements, development, testing, release, infrastructure, and production maintenance.",
-        "Before that, I led quality engineering squads at Compass UOL, coordinating testers across five web products and combining functional, exploratory, and risk-based testing with automation in Robot Framework and Postman. That experience shaped how I write software today: testability, clear documentation, and respectful failure modes are features, not afterthoughts.",
-        "On the open-source side, I contributed roughly 30% of the features of a Discord bot and web server used by 30+ servers and around 4,000 users, and I maintain a cross-platform desktop wallpaper application built with Rust, Tauri, and FFmpeg."
-      ],
-      "skills": {
-        "eyebrow": "Toolkit",
-        "title": "What I work with",
-        "groups": [
-          {
-            "label": "Languages",
-            "items": "Python, TypeScript, JavaScript, Java, C, C++, Rust, Bash"
-          },
-          {
-            "label": "Backend & data",
-            "items": "Node.js, Django, REST APIs, PostgreSQL, SQL, Redis, Prisma ORM, Celery"
-          },
-          {
-            "label": "Frontend & DevOps",
-            "items": "React, Next.js, Tailwind CSS, Git, GitHub, Linux, AWS, CI/CD"
-          }
-        ]
-      },
-      "certificates": {
-        "eyebrow": "Certificates & languages",
-        "title": "Credentials",
-        "items": [
-          "B.Sc. Software Engineering — UniCesumar, 2026",
-          "AWS Certified Cloud Practitioner — Amazon Web Services, 2025",
-          "EF SET — C1 Effective Proficiency (English), 2026",
-          "Início Rápido em Teste e QA — Udemy, 2025",
-          "Fundamentos de Scrum e Kanban — Udemy, 2025"
+    "about": {
+        "eyebrow": "About",
+        "title": "What this site is — and who is behind it.",
+        "sitePurpose": [
+            "matuz.dev is my corner of the web: a portfolio, a working record, and a place to think out loud about software.",
+            "It exists for two reasons. First, so that anyone considering working with me can see what I build, how I work, and what I care about — without a recruiter in the middle. Second, as a project in its own right: everything here is designed, built, and maintained by me, from the design system to the deployment pipeline.",
+            "If you want the short version: I build software for whatever needs building, and this site is where that work speaks for itself."
         ],
-        "languages": [
-          "Portuguese — native",
-          "English — C1 (EF SET)"
-        ]
-      },
-      "beyondWork": {
-        "eyebrow": "Beyond work",
-        "title": "What I tinker with.",
-        "paragraphs": [
-          "Outside of client work I run NixOS on my personal machine — currently learning my way around it and slowly rebuilding my environment as declarative configuration. Reproducibility as a daily habit, not just a buzzword.",
-          "My desktop runs the Caelestia shell, and I'm planning to publish my Nix configuration and dotfiles soon — once they're presentable enough to be read by strangers.",
-          "This side of things has no deadline and no deliverable: it's where I break things on purpose, then write down how I fixed them."
-        ]
-      },
-      "closing": "The rest is on the home page — what I do, how I work, and how to reach me."
+        "whoAmI": {
+            "eyebrow": "Who am I",
+            "title": "Hi, I'm Rodrigo.",
+            "intro": "I'm a full-stack software engineer based in Brazil, working remotely with individuals, teams, and companies of all sizes. I care about pragmatic engineering: the right solution for the problem at hand, whether that is building something from scratch, integrating with what exists, or carefully improving a legacy system.",
+            "bio": [
+                "I hold a Bachelor's degree in Software Engineering from UniCesumar, and I've been building software professionally since 2024 through my own practice, MTZ Soft — covering the full lifecycle: requirements, development, testing, release, infrastructure, and production maintenance.",
+                "Before that, I led quality engineering squads at Compass UOL, coordinating testers across five web products and combining functional, exploratory, and risk-based testing with automation in Robot Framework and Postman. That experience shaped how I write software today: testability, clear documentation, and respectful failure modes are features, not afterthoughts.",
+                "On the open-source side, I contributed roughly 30% of the features of a Discord bot and web server used by 30+ servers and around 4,000 users, and I maintain a cross-platform desktop wallpaper application built with Rust, Tauri, and FFmpeg."
+            ],
+            "skills": {
+                "eyebrow": "Toolkit",
+                "title": "What I work with",
+                "groups": [
+                    {
+                        "label": "Languages",
+                        "items": "Python, TypeScript, JavaScript, Java, C, C++, Rust, Bash"
+                    },
+                    {
+                        "label": "Backend & data",
+                        "items": "Node.js, Django, REST APIs, PostgreSQL, SQL, Redis, Prisma ORM, Celery"
+                    },
+                    {
+                        "label": "Frontend & DevOps",
+                        "items": "React, Next.js, Tailwind CSS, Git, GitHub, Linux, AWS, CI/CD"
+                    }
+                ]
+            },
+            "certificates": {
+                "eyebrow": "Certificates & languages",
+                "title": "Credentials",
+                "items": [
+                    "B.Sc. Software Engineering — UniCesumar, 2026",
+                    "AWS Certified Cloud Practitioner — Amazon Web Services, 2025",
+                    "EF SET — C1 Effective Proficiency (English), 2026",
+                    "Início Rápido em Teste e QA — Udemy, 2025",
+                    "Fundamentos de Scrum e Kanban — Udemy, 2025"
+                ],
+                "languages": ["Portuguese — native", "English — C1 (EF SET)"]
+            },
+            "beyondWork": {
+                "eyebrow": "Beyond work",
+                "title": "What I tinker with.",
+                "paragraphs": [
+                    "Outside of client work I run NixOS on my personal machine — currently learning my way around it and slowly rebuilding my environment as declarative configuration. Reproducibility as a daily habit, not just a buzzword.",
+                    "My desktop runs the Caelestia shell, and I'm planning to publish my Nix configuration and dotfiles soon — once they're presentable enough to be read by strangers.",
+                    "This side of things has no deadline and no deliverable: it's where I break things on purpose, then write down how I fixed them."
+                ]
+            },
+            "closing": "The rest is on the home page — what I do, how I work, and how to reach me."
+        }
     }
-  }
 }
