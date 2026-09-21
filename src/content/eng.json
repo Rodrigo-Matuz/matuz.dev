@@ -123,9 +123,9 @@
         "demo": {
           "video": "https://github.com/user-attachments/assets/7af456ba-116f-4141-b67b-48ebf16dc9c6",
           "paragraphs": [
-            "Wallpaper Picker UI is a lightweight desktop app for browsing, selecting, and applying wallpapers — built around animated/live wallpapers driven by mpvpaper. It previews wallpapers in a clean thumbnail grid, generates thumbnails automatically through FFmpeg, and lets you customize the exact command executed when applying a wallpaper, so it adapts to any setup or script.",
-            "It is built with Tauri 2 and follows a strict capability-based permission model: the app can only touch its own configuration file and thumbnail cache — nothing else on the system. It ships with theme support (pre-made and custom themes, manual dark/light toggle), multi-language support (English, Português, Deutsch, Français, Español), and a built-in updater.",
-            "The stack is Rust on the backend for native system integration and memory safety, with Svelte + TypeScript on the frontend. FFmpeg handles media processing and thumbnail generation; mpvpaper is the recommended engine for animated wallpapers."
+            "Wallpaper Picker UI is a lightweight Linux desktop application for browsing, previewing, and applying static or animated wallpapers, with a particular focus on live wallpapers through mpvpaper. It provides a clean thumbnail-based interface, automatic video thumbnail generation with FFmpeg, and customizable wallpaper commands, allowing it to fit different desktop setups and scripting workflows.",
+            "Built with Tauri 2, the application combines a Svelte and TypeScript frontend with a Rust backend for native system integration while keeping the application footprint small. It also uses Tauri's capability-based permission system to strictly limit filesystem access, with the app only accessing its own configuration and thumbnail cache.",
+            "The interface includes custom and preset themes, manual light/dark mode, multilingual support, and automatic updates. FFmpeg handles media processing and thumbnail generation, while mpvpaper provides the recommended backend for animated wallpapers."
           ]
         }
       },
