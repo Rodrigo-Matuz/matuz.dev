@@ -83,7 +83,9 @@ export function LanguageMenu({
                 className={`inline-flex items-center gap-1.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] transition-colors sm:text-[11px] ${isOpen ? 'text-foreground' : 'text-muted hover:text-primary'}`}
             >
                 <Flag code={content.countryCode} />
-                <span>{content.shortLabel}</span>
+                {/* nowrap: "PT-BR" must never wrap mid-label (it would break
+                    across two lines in the narrow mobile header). */}
+                <span className="whitespace-nowrap">{content.shortLabel}</span>
                 <ChevronDown
                     size={12}
                     className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}

@@ -22,7 +22,10 @@ function AppRoutes() {
         // AnimatePresence keeps the outgoing page mounted while its exit
         // animation plays — the crossfade that makes route changes feel like
         // one continuous site rather than hard document loads.
-        <AnimatePresence mode="wait" initial={false}>
+        // `initial` stays enabled (default true) so the FIRST page load also
+        // animates in; with initial={false} the home page would render
+        // statically and only animate after navigating away and back.
+        <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/about" element={<AboutPage />} />
