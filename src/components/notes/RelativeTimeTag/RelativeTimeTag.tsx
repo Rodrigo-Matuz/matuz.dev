@@ -11,6 +11,7 @@ interface RelativeTimeTagProps {
 
 /**
  * "Updated 2d ago" style tag in the site's mono/subtle vocabulary.
+ * Hovering reveals the exact date/time via a native tooltip.
  * Renders nothing when the timestamp is missing or malformed.
  */
 export function RelativeTimeTag({ timestamp, label, className = '' }: RelativeTimeTagProps) {
@@ -19,8 +20,14 @@ export function RelativeTimeTag({ timestamp, label, className = '' }: RelativeTi
 
     if (!date) return null;
 
+    const absolute = date.toLocaleString(language, {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+    });
+
     return (
         <span
+            title={`${label}: ${absolute}`}
             className={`font-mono text-[10px] uppercase tracking-[0.14em] text-subtle ${className}`}
         >
             {label} {formatRelativeTime(date, language)}
