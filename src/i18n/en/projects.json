@@ -25,7 +25,7 @@
         ],
         "github": "https://github.com/Rodrigo-Matuz/wallpaper-picker-ui",
         "demo": {
-          "video": "https://github.com/user-attachments/assets/7af456ba-116f-4141-b67b-48ebf16dc9c6",
+          "video": "https://youtu.be/5_KZSFZyBGA",
           "paragraphs": [
             "Wallpaper Picker UI is a lightweight Linux desktop application for browsing, previewing, and applying static or animated wallpapers, with a particular focus on live wallpapers through mpvpaper. It provides a clean thumbnail-based interface, automatic video thumbnail generation with FFmpeg, and customizable wallpaper commands, allowing it to fit different desktop setups and scripting workflows.",
             "Built with Tauri 2, the application combines a Svelte and TypeScript frontend with a Rust backend for native system integration while keeping the application footprint small. It also uses Tauri's capability-based permission system to strictly limit filesystem access, with the app only accessing its own configuration and thumbnail cache.",
