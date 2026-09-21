@@ -97,7 +97,7 @@ export function LanguageMenu({
                     id="language-menu"
                     role="menu"
                     aria-label={content.navigation.languageSelector}
-                    className="absolute right-0 top-[calc(100%+0.75rem)] z-30 w-56 origin-top-right animate-[menu-in_160ms_ease-out] border border-foreground/10 bg-background/90 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.8)] backdrop-blur-md"
+                    className="absolute right-0 top-[calc(100%+0.75rem)] z-30 w-56 origin-top-right animate-[menu-in_160ms_ease-out] border border-foreground/10 bg-background shadow-[0_24px_60px_-24px_rgba(0,0,0,0.8)] backdrop-blur-md"
                 >
                     {languageOptions.map((option, index) => {
                         const optionContent = locales[option];
