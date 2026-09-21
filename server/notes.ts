@@ -9,7 +9,7 @@
  *   NOTES_PATH         — tracked folder inside the vault (default: blog)
  */
 
-import crypto from "node:crypto";
+import crypto from 'node:crypto';
 
 import {
     deriveTitle,
@@ -17,7 +17,7 @@ import {
     sortNotes,
     stripNoteHeader,
     type NoteMeta,
-} from "./notes-meta.js";
+} from './notes-meta.js';
 
 export type NoteIndexEntry = NoteMeta;
 
@@ -25,22 +25,22 @@ export interface NoteContent extends NoteMeta {
     content: string;
 }
 
-const GITHUB_API = "https://api.github.com";
+const GITHUB_API = 'https://api.github.com';
 
 const config = {
     get token() {
-        return process.env.NOTES_GITHUB_TOKEN ?? "";
+        return process.env.NOTES_GITHUB_TOKEN ?? '';
     },
     get repo() {
-        return process.env.NOTES_REPO ?? "";
+        return process.env.NOTES_REPO ?? '';
     },
     get path() {
-        return process.env.NOTES_PATH ?? "blog";
+        return process.env.NOTES_PATH ?? 'blog';
     },
 };
 
 export function isNotesConfigured(): boolean {
-    return config.token !== "" && config.repo !== "";
+    return config.token !== '' && config.repo !== '';
 }
 
 /** Convert a repo path under NOTES_PATH into a URL slug (no .md, no leading /). */
@@ -49,7 +49,7 @@ function pathToSlug(path: string): string {
         ? path.slice(config.path.length + 1)
         : path;
 
-    return withoutBase.replace(/\.md$/i, "").replace(/\\/g, "/");
+    return withoutBase.replace(/\.md$/i, '').replace(/\\/g, '/');
 }
 
 /**
@@ -59,7 +59,7 @@ function pathToSlug(path: string): string {
  * title keeps the ID stable as long as the path is unchanged.
  */
 function shortId(path: string): string {
-    return crypto.createHash("sha256").update(path).digest("hex").slice(0, 8);
+    return crypto.createHash('sha256').update(path).digest('hex').slice(0, 8);
 }
 
 interface CacheEntry<T> {
@@ -78,7 +78,7 @@ const INDEX_TTL = 5 * 60 * 1000;
 
 interface GithubContentsItem {
     path: string;
-    type: "file" | "dir";
+    type: 'file' | 'dir';
     sha: string;
 }
 
@@ -90,12 +90,12 @@ interface GithubContentsResponse {
 
 function githubHeaders(etag: string | null): Record<string, string> {
     const headers: Record<string, string> = {
-        Accept: "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28",
+        Accept: 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
     };
 
     if (config.token) headers.Authorization = `Bearer ${config.token}`;
-    if (etag) headers["If-None-Match"] = etag;
+    if (etag) headers['If-None-Match'] = etag;
 
     return headers;
 }
@@ -110,7 +110,7 @@ async function githubGet(
     return {
         status: response.status,
         data,
-        etag: response.headers.get("etag"),
+        etag: response.headers.get('etag'),
     };
 }
 
@@ -131,9 +131,9 @@ async function listMarkdownFiles(
     const files: string[] = [];
 
     for (const item of items) {
-        if (item.type === "file" && item.path.toLowerCase().endsWith(".md")) {
+        if (item.type === 'file' && item.path.toLowerCase().endsWith('.md')) {
             files.push(item.path);
-        } else if (item.type === "dir") {
+        } else if (item.type === 'dir') {
             // Nested folders are flattened into the chronological list.
             const nested = await listMarkdownFiles(item.path);
 
@@ -154,20 +154,20 @@ async function fetchFile(
 
     if (status === 404) return null;
 
-    if (status === 304) return { raw: "", etag }; // caller keeps cached value
+    if (status === 304) return { raw: '', etag }; // caller keeps cached value
 
-    if (status !== 200 || typeof data !== "object" || data === null) {
+    if (status !== 200 || typeof data !== 'object' || data === null) {
         throw new Error(`GitHub fetch failed for ${path} (status ${status})`);
     }
 
     const payload = data as GithubContentsResponse;
 
-    if (payload.encoding !== "base64" || typeof payload.content !== "string") {
+    if (payload.encoding !== 'base64' || typeof payload.content !== 'string') {
         throw new Error(`Unexpected encoding for ${path}`);
     }
 
     return {
-        raw: Buffer.from(payload.content, "base64").toString("utf-8"),
+        raw: Buffer.from(payload.content, 'base64').toString('utf-8'),
         etag: newEtag,
     };
 }
@@ -192,7 +192,7 @@ export async function getNotesIndex(): Promise<NoteIndexEntry[]> {
 
         const { raw } = result;
         const header = parseNoteHeader(raw);
-        const filename = path.split("/").pop() ?? path;
+        const filename = path.split('/').pop() ?? path;
 
         entries.push({
             slug: pathToSlug(path),
@@ -234,7 +234,7 @@ export async function getNoteContent(
     if (cached) {
         const revalidated = await fetchFile(path, cached.etag);
 
-        if (revalidated && revalidated.raw === "") {
+        if (revalidated && revalidated.raw === '') {
             return cached.value; // 304 — still current
         }
     }

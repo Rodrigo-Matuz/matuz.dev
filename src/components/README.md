@@ -12,8 +12,8 @@ ui/Button/
 Import via the folder — the barrel resolves it, so there's no `Button/Button` repetition:
 
 ```ts
-import Button from "$/components/ui/Button";
-import type { ButtonProps } from "$/components/ui/Button"; // named type re-exports
+import Button from '$/components/ui/Button';
+import type { ButtonProps } from '$/components/ui/Button'; // named type re-exports
 ```
 
 This folder is split by responsibility:

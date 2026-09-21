@@ -1,1 +1,1 @@
-export { NotesPage, default } from "./NotesPage";
+export { NotesPage, default } from './NotesPage';

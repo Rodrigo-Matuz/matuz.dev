@@ -1,1 +1,1 @@
-export { RelativeTimeTag, default } from "./RelativeTimeTag";
+export { RelativeTimeTag, default } from './RelativeTimeTag';

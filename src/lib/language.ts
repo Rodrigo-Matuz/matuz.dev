@@ -6,9 +6,9 @@
  * `useSyncExternalStore` (React 18+ idiom, no context/redux needed).
  */
 
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore } from 'react';
 
-import { locales, type Language } from "$/content";
+import { locales, type Language } from '$/content';
 
 export type { Language };
 
@@ -20,9 +20,9 @@ export type { Language };
  */
 function detectInitialLanguage(): Language {
     try {
-        const stored = localStorage.getItem("matuz.dev:language");
+        const stored = localStorage.getItem('matuz.dev:language');
 
-        if (stored === "en" || stored === "pt-BR") {
+        if (stored === 'en' || stored === 'pt-BR') {
             return stored;
         }
     } catch {
@@ -34,11 +34,11 @@ function detectInitialLanguage(): Language {
     for (const tag of languages) {
         const normalized = tag.toLowerCase();
 
-        if (normalized.startsWith("pt")) return "pt-BR";
-        if (normalized.startsWith("en")) return "en";
+        if (normalized.startsWith('pt')) return 'pt-BR';
+        if (normalized.startsWith('en')) return 'en';
     }
 
-    return "en";
+    return 'en';
 }
 
 let currentLanguage: Language = detectInitialLanguage();
@@ -58,7 +58,7 @@ export function setLanguage(language: Language): void {
     // Persist the explicit choice so browser detection doesn't override it
     // on the next visit.
     try {
-        localStorage.setItem("matuz.dev:language", language);
+        localStorage.setItem('matuz.dev:language', language);
     } catch {
         // localStorage unavailable — language still applies for this session.
     }

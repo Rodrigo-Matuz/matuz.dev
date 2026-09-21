@@ -34,7 +34,7 @@ export async function fetchNotesIndex(): Promise<NoteIndexEntry[]> {
     if (indexCache.value) return indexCache.value;
 
     if (!indexCache.promise) {
-        indexCache.promise = fetch("/api/notes")
+        indexCache.promise = fetch('/api/notes')
             .then(async (response) => {
                 if (!response.ok)
                     throw new Error(`Notes index failed (${response.status})`);

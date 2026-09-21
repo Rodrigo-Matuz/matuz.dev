@@ -12,7 +12,7 @@ pages/HomePage/
 Import via the folder — the barrel resolves it, avoiding `HomePage/HomePage` repetition:
 
 ```ts
-import HomePage from "$/pages/HomePage";
+import HomePage from '$/pages/HomePage';
 ```
 
 Current pages: `HomePage` (`/`), `AboutPage` (`/about`), `ProjectsPage` (`/projects`), `ContactPage` (`/contact`), `NotesPage` (`/notes`), and `NotePage` (`/notes/:slug`, splat route rendering through `NoteMarkdown`). Routes are registered in `src/App.tsx`, where `AnimatePresence` crossfades between them on route change. When adding a page, create a matching folder here, add its route, and wrap the page content in `PageShell` (header, background, footer, language-switch fade) — the page body itself is a `motion.article` using the `pageVariants` preset from `$/lib/motion` so its exit animation plays.

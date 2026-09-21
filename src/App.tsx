@@ -1,15 +1,15 @@
-import { AnimatePresence, MotionConfig } from "motion/react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router";
+import { AnimatePresence, MotionConfig } from 'motion/react';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
 
-import { AboutPage } from "$/pages/AboutPage";
-import { ContactPage } from "$/pages/ContactPage";
-import { HomePage } from "$/pages/HomePage";
-import { NotePage } from "$/pages/NotePage";
-import { NotesPage } from "$/pages/NotesPage";
-import { ProjectsPage } from "$/pages/ProjectsPage";
-import { ProjectDemoPage } from "$/pages/ProjectDemoPage";
-import NoteMarkdown from "$/components/notes/NoteMarkdown";
-import HashScroller from "$/lib/hash-scroller";
+import { AboutPage } from '$/pages/AboutPage';
+import { ContactPage } from '$/pages/ContactPage';
+import { HomePage } from '$/pages/HomePage';
+import { NotePage } from '$/pages/NotePage';
+import { NotesPage } from '$/pages/NotesPage';
+import { ProjectsPage } from '$/pages/ProjectsPage';
+import { ProjectDemoPage } from '$/pages/ProjectDemoPage';
+import NoteMarkdown from '$/components/notes/NoteMarkdown';
+import HashScroller from '$/lib/hash-scroller';
 
 function NotePageRoute() {
     return (

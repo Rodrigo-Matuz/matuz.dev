@@ -1,32 +1,32 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter, Route, Routes } from "react-router";
-import { beforeAll, describe, expect, it, vi } from "vitest";
+import { render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter, Route, Routes } from 'react-router';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 
-import { NotePage } from "./NotePage";
-import { locales } from "$/content";
-import * as notesLib from "$/lib/notes";
+import { NotePage } from './NotePage';
+import { locales } from '$/content';
+import * as notesLib from '$/lib/notes';
 
-vi.mock("$/lib/notes", () => ({
+vi.mock('$/lib/notes', () => ({
     fetchNotesIndex: vi.fn(),
     fetchNoteContent: vi.fn(),
 }));
 
 const mockIndex: notesLib.NoteIndexEntry[] = [
     {
-        slug: "my-note",
-        id: "my-note",
-        title: "My note",
-        created: "2026-09-19T07:54",
-        updated: "2026-09-19T07:54",
+        slug: 'my-note',
+        id: 'my-note',
+        title: 'My note',
+        created: '2026-09-19T07:54',
+        updated: '2026-09-19T07:54',
     },
 ];
 
 const mockNote: notesLib.NoteContent = {
     ...mockIndex[0],
-    content: "# Heading\n\nBody text.",
+    content: '# Heading\n\nBody text.',
 };
 
-const renderPage = (slug = "my-note") =>
+const renderPage = (slug = 'my-note') =>
     render(
         <MemoryRouter initialEntries={[`/notes/${slug}`]}>
             {/* NotePage reads the splat param, so it must mount inside a Route. */}
@@ -46,8 +46,8 @@ const renderPage = (slug = "my-note") =>
 beforeAll(() => {
     class MockIntersectionObserver implements IntersectionObserver {
         readonly root = null;
-        readonly rootMargin = "";
-        readonly scrollMargin = "";
+        readonly rootMargin = '';
+        readonly scrollMargin = '';
         readonly thresholds = [];
         disconnect() {}
         observe() {}
@@ -57,19 +57,19 @@ beforeAll(() => {
         }
     }
 
-    vi.stubGlobal("IntersectionObserver", MockIntersectionObserver);
+    vi.stubGlobal('IntersectionObserver', MockIntersectionObserver);
 });
 
-describe("NotePage", () => {
-    it("renders the note title and metadata once loaded", async () => {
+describe('NotePage', () => {
+    it('renders the note title and metadata once loaded', async () => {
         vi.mocked(notesLib.fetchNotesIndex).mockResolvedValue(mockIndex);
         vi.mocked(notesLib.fetchNoteContent).mockResolvedValue(mockNote);
 
         renderPage();
 
         await waitFor(() => {
-            expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-                "My note",
+            expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+                'My note',
             );
         });
 
@@ -79,43 +79,43 @@ describe("NotePage", () => {
         expect(screen.getAllByText(/Atualizada\s/).length).toBeGreaterThan(0);
     });
 
-    it("renders the note content through the provided renderer", async () => {
+    it('renders the note content through the provided renderer', async () => {
         vi.mocked(notesLib.fetchNotesIndex).mockResolvedValue(mockIndex);
         vi.mocked(notesLib.fetchNoteContent).mockResolvedValue(mockNote);
 
         renderPage();
 
         await waitFor(() => {
-            const pre = screen.getByRole("article").querySelector("pre");
+            const pre = screen.getByRole('article').querySelector('pre');
 
             expect(pre?.textContent).toBe(mockNote.content);
         });
     });
 
-    it("shows the not-found state for unknown slugs", async () => {
+    it('shows the not-found state for unknown slugs', async () => {
         vi.mocked(notesLib.fetchNotesIndex).mockResolvedValue(mockIndex);
         vi.mocked(notesLib.fetchNoteContent).mockResolvedValue(null);
 
-        renderPage("nope");
+        renderPage('nope');
 
         await waitFor(() => {
             expect(
-                screen.getByText(locales["pt-BR"].notes.notFound),
+                screen.getByText(locales['pt-BR'].notes.notFound),
             ).toBeInTheDocument();
         });
     });
 
-    it("shows the error state when the fetch fails", async () => {
+    it('shows the error state when the fetch fails', async () => {
         vi.mocked(notesLib.fetchNotesIndex).mockResolvedValue(mockIndex);
         vi.mocked(notesLib.fetchNoteContent).mockRejectedValue(
-            new Error("boom"),
+            new Error('boom'),
         );
 
         renderPage();
 
         await waitFor(() => {
             expect(
-                screen.getByText(locales["pt-BR"].notes.loadError),
+                screen.getByText(locales['pt-BR'].notes.loadError),
             ).toBeInTheDocument();
         });
     });

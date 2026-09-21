@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes } from 'react';
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
     interactive?: boolean;
@@ -7,7 +7,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 export function Card({
     children,
     interactive = false,
-    className = "",
+    className = '',
     ...props
 }: CardProps) {
     return (
@@ -29,7 +29,7 @@ export function Card({
               hover:border-foreground/12
               hover:bg-surface-raised
             `
-                : ""
+                : ''
         }
 
         ${className}

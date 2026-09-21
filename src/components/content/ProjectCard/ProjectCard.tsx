@@ -1,6 +1,6 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from 'lucide-react';
 
-import BrandIcon from "$/components/ui/BrandIcon";
+import BrandIcon from '$/components/ui/BrandIcon';
 
 interface ProjectCardProps {
     title: string;
@@ -34,10 +34,10 @@ export function ProjectCard({
     technologies = [],
     github,
     aboutHref,
-    aboutLabel = "About",
+    aboutLabel = 'About',
     preview,
-    sourceLabel = "Source",
-    previewLabel = "Demo",
+    sourceLabel = 'Source',
+    previewLabel = 'Demo',
 }: ProjectCardProps) {
     return (
         <article
@@ -157,8 +157,8 @@ export function ProjectCard({
                             <a
                                 href={preview}
                                 target={
-                                    preview.startsWith("http")
-                                        ? "_blank"
+                                    preview.startsWith('http')
+                                        ? '_blank'
                                         : undefined
                                 }
                                 rel="noreferrer"

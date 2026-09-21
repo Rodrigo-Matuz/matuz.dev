@@ -1,56 +1,56 @@
-import { motion } from "motion/react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import BrandIcon, { isBrandIconName } from "$/components/ui/BrandIcon";
-import SafeLink from "$/components/ui/SafeLink";
-import Container from "$/components/layout/Container";
-import PageShell from "$/components/layout/PageShell";
-import Section from "$/components/layout/Section";
-import SectionHeading from "$/components/layout/SectionHeading";
-import ArrowLink from "$/components/ui/ArrowLink";
-import Button from "$/components/ui/Button";
-import Eyebrow from "$/components/ui/Eyebrow";
-import { useLocale } from "$/lib/language";
+import { motion } from 'motion/react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
+import SafeLink from '$/components/ui/SafeLink';
+import Container from '$/components/layout/Container';
+import PageShell from '$/components/layout/PageShell';
+import Section from '$/components/layout/Section';
+import SectionHeading from '$/components/layout/SectionHeading';
+import ArrowLink from '$/components/ui/ArrowLink';
+import Button from '$/components/ui/Button';
+import Eyebrow from '$/components/ui/Eyebrow';
+import { useLocale } from '$/lib/language';
 import {
     fadeUp,
     pageVariants,
     staggerContainer,
     viewportOnce,
-} from "$/lib/motion";
-import backgroundImage from "$/assets/hero-background.webp";
+} from '$/lib/motion';
+import backgroundImage from '$/assets/hero-background.webp';
 
 // Per-item accents. All of these are light enough to read on the dark
 // background — do not swap for darker shades of the brand palette.
 const serviceAccentClasses = [
-    "text-primary",
-    "text-secondary",
-    "text-accent",
-    "text-warning",
+    'text-primary',
+    'text-secondary',
+    'text-accent',
+    'text-warning',
 ];
 const experienceAccentClasses = [
-    "text-success",
-    "text-highlight",
-    "text-secondary",
-    "text-accent",
-    "text-warning",
-    "text-primary",
+    'text-success',
+    'text-highlight',
+    'text-secondary',
+    'text-accent',
+    'text-warning',
+    'text-primary',
 ];
 // `hover:` (not `group-hover:`) — group-hover only styles descendants of the
 // group, so it would never apply to the anchor itself.
 const correspondenceHoverClasses = [
-    "hover:text-secondary",
-    "hover:text-primary",
-    "hover:text-accent",
-    "hover:text-warning",
-    "hover:text-success",
-    "hover:text-highlight",
+    'hover:text-secondary',
+    'hover:text-primary',
+    'hover:text-accent',
+    'hover:text-warning',
+    'hover:text-success',
+    'hover:text-highlight',
 ];
 const correspondenceMetaHoverClasses = [
-    "group-hover:text-secondary",
-    "group-hover:text-primary",
-    "group-hover:text-accent",
-    "group-hover:text-warning",
-    "group-hover:text-success",
-    "group-hover:text-highlight",
+    'group-hover:text-secondary',
+    'group-hover:text-primary',
+    'group-hover:text-accent',
+    'group-hover:text-warning',
+    'group-hover:text-success',
+    'group-hover:text-highlight',
 ];
 
 export function HomePage() {
@@ -296,7 +296,7 @@ export function HomePage() {
                                         className={`group flex items-center justify-between py-5 transition-colors ${correspondenceHoverClasses[index % correspondenceHoverClasses.length]}`}
                                     >
                                         <span className="flex items-center gap-4">
-                                            {typeof link.icon === "string" &&
+                                            {typeof link.icon === 'string' &&
                                                 isBrandIconName(link.icon) && (
                                                     <BrandIcon
                                                         name={link.icon}

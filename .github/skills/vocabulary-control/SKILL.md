@@ -1,6 +1,6 @@
 ---
 name: vocabulary-control
-description: "Control terminology and prevent documentation drift. Use when introducing, renaming, or retiring a term in governing text, design, schema, or instructions; when the same fact appears in two documents; or when reviewing text for restatement, silent renames, or parallel rules."
+description: 'Control terminology and prevent documentation drift. Use when introducing, renaming, or retiring a term in governing text, design, schema, or instructions; when the same fact appears in two documents; or when reviewing text for restatement, silent renames, or parallel rules.'
 license: MIT
 metadata:
     skill-type: standard

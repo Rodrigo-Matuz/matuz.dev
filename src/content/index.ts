@@ -5,4 +5,4 @@
  * tests stable.
  */
 
-export { locales, type Language } from "../i18n";
+export { locales, type Language } from '../i18n';

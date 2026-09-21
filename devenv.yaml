@@ -1,5 +1,5 @@
 # Keep the project environment compatible with the current devenv release line.
-require_version: ">=2.2"
+require_version: '>=2.2'
 
 inputs:
     nixpkgs:

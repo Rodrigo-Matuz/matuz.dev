@@ -1,19 +1,19 @@
-import { Link, useParams } from "react-router";
-import { motion } from "motion/react";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { Link, useParams } from 'react-router';
+import { motion } from 'motion/react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 
-import Container from "$/components/layout/Container";
-import PageShell from "$/components/layout/PageShell";
-import Section from "$/components/layout/Section";
-import BrandIcon from "$/components/ui/BrandIcon";
-import Eyebrow from "$/components/ui/Eyebrow";
-import { useLocale } from "$/lib/language";
+import Container from '$/components/layout/Container';
+import PageShell from '$/components/layout/PageShell';
+import Section from '$/components/layout/Section';
+import BrandIcon from '$/components/ui/BrandIcon';
+import Eyebrow from '$/components/ui/Eyebrow';
+import { useLocale } from '$/lib/language';
 import {
     fadeUp,
     pageVariants,
     staggerContainer,
     viewportOnce,
-} from "$/lib/motion";
+} from '$/lib/motion';
 
 /** Extract a YouTube video ID from common URL shapes; null when not YouTube. */
 function youtubeId(href: string): string | null {
@@ -69,7 +69,7 @@ export function ProjectDemoPage() {
 
     const videoId = card.demo?.video ? youtubeId(card.demo.video) : null;
     const isGitHubVideo = Boolean(
-        card.demo?.video && !videoId && card.demo.video.includes("github.com"),
+        card.demo?.video && !videoId && card.demo.video.includes('github.com'),
     );
 
     return (
@@ -141,8 +141,8 @@ export function ProjectDemoPage() {
                                     <a
                                         href={card.preview}
                                         target={
-                                            card.preview.startsWith("http")
-                                                ? "_blank"
+                                            card.preview.startsWith('http')
+                                                ? '_blank'
                                                 : undefined
                                         }
                                         rel="noreferrer"

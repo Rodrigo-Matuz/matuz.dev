@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { AlertTriangle, Flame, Info, Lightbulb, Pencil } from "lucide-react";
+import type { ReactNode } from 'react';
+import { AlertTriangle, Flame, Info, Lightbulb, Pencil } from 'lucide-react';
 
 /**
  * Obsidian-style callouts: blockquotes whose first line is
@@ -20,90 +20,90 @@ export interface CalloutStyle {
 
 export const CALLOUT_STYLES: Record<string, CalloutStyle> = {
     note: {
-        panel: "border-primary/40 bg-primary/5",
-        icon: "text-primary",
+        panel: 'border-primary/40 bg-primary/5',
+        icon: 'text-primary',
         Icon: Info,
-        fallbackTitle: "Note",
+        fallbackTitle: 'Note',
     },
     info: {
-        panel: "border-primary/40 bg-primary/5",
-        icon: "text-primary",
+        panel: 'border-primary/40 bg-primary/5',
+        icon: 'text-primary',
         Icon: Info,
-        fallbackTitle: "Info",
+        fallbackTitle: 'Info',
     },
     abstract: {
-        panel: "border-success/40 bg-success/5",
-        icon: "text-success",
+        panel: 'border-success/40 bg-success/5',
+        icon: 'text-success',
         Icon: Pencil,
-        fallbackTitle: "Abstract",
+        fallbackTitle: 'Abstract',
     },
     tip: {
-        panel: "border-success/40 bg-success/5",
-        icon: "text-success",
+        panel: 'border-success/40 bg-success/5',
+        icon: 'text-success',
         Icon: Lightbulb,
-        fallbackTitle: "Tip",
+        fallbackTitle: 'Tip',
     },
     success: {
-        panel: "border-success/40 bg-success/5",
-        icon: "text-success",
+        panel: 'border-success/40 bg-success/5',
+        icon: 'text-success',
         Icon: Lightbulb,
-        fallbackTitle: "Success",
+        fallbackTitle: 'Success',
     },
     question: {
-        panel: "border-highlight/40 bg-highlight/5",
-        icon: "text-highlight",
+        panel: 'border-highlight/40 bg-highlight/5',
+        icon: 'text-highlight',
         Icon: Pencil,
-        fallbackTitle: "Question",
+        fallbackTitle: 'Question',
     },
     warning: {
-        panel: "border-warning/40 bg-warning/5",
-        icon: "text-warning",
+        panel: 'border-warning/40 bg-warning/5',
+        icon: 'text-warning',
         Icon: AlertTriangle,
-        fallbackTitle: "Warning",
+        fallbackTitle: 'Warning',
     },
     caution: {
-        panel: "border-warning/40 bg-warning/5",
-        icon: "text-warning",
+        panel: 'border-warning/40 bg-warning/5',
+        icon: 'text-warning',
         Icon: AlertTriangle,
-        fallbackTitle: "Caution",
+        fallbackTitle: 'Caution',
     },
     danger: {
-        panel: "border-accent/40 bg-accent/5",
-        icon: "text-accent",
+        panel: 'border-accent/40 bg-accent/5',
+        icon: 'text-accent',
         Icon: Flame,
-        fallbackTitle: "Danger",
+        fallbackTitle: 'Danger',
     },
     error: {
-        panel: "border-accent/40 bg-accent/5",
-        icon: "text-accent",
+        panel: 'border-accent/40 bg-accent/5',
+        icon: 'text-accent',
         Icon: Flame,
-        fallbackTitle: "Error",
+        fallbackTitle: 'Error',
     },
     bug: {
-        panel: "border-accent/40 bg-accent/5",
-        icon: "text-accent",
+        panel: 'border-accent/40 bg-accent/5',
+        icon: 'text-accent',
         Icon: Flame,
-        fallbackTitle: "Bug",
+        fallbackTitle: 'Bug',
     },
     example: {
-        panel: "border-secondary/40 bg-secondary/5",
-        icon: "text-secondary",
+        panel: 'border-secondary/40 bg-secondary/5',
+        icon: 'text-secondary',
         Icon: Pencil,
-        fallbackTitle: "Example",
+        fallbackTitle: 'Example',
     },
     quote: {
-        panel: "border-foreground/20 bg-foreground/5",
-        icon: "text-muted",
+        panel: 'border-foreground/20 bg-foreground/5',
+        icon: 'text-muted',
         Icon: Pencil,
-        fallbackTitle: "Quote",
+        fallbackTitle: 'Quote',
     },
 };
 
 export const DEFAULT_CALLOUT: CalloutStyle = {
-    panel: "border-foreground/20 bg-foreground/5",
-    icon: "text-foreground",
+    panel: 'border-foreground/20 bg-foreground/5',
+    icon: 'text-foreground',
     Icon: Info,
-    fallbackTitle: "Note",
+    fallbackTitle: 'Note',
 };
 
 /** Match `> [!type] title` (with optional `-`/`+` fold marker). */
@@ -113,7 +113,7 @@ export interface ParsedCallout {
     style: CalloutStyle;
     title: string;
     /** `-` collapses, `+` expands; undefined means not foldable. */
-    fold: "-" | "+" | undefined;
+    fold: '-' | '+' | undefined;
 }
 
 /** Parse a callout header line; null when the blockquote is not a callout. */
@@ -127,7 +127,7 @@ export function parseCalloutHeader(firstLine: string): ParsedCallout | null {
     return {
         style,
         title: match[3].trim() || style.fallbackTitle,
-        fold: match[2] as "-" | "+" | undefined,
+        fold: match[2] as '-' | '+' | undefined,
     };
 }
 
@@ -149,7 +149,7 @@ export function renderCallout(
     if (fold) {
         return (
             <details
-                open={fold === "+"}
+                open={fold === '+'}
                 className={`mt-6 rounded-sm border px-4 py-3 first:mt-0 ${style.panel}`}
             >
                 <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">

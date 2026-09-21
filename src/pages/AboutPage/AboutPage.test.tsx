@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
-import { beforeAll, describe, expect, it, vi } from "vitest";
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 
-import { AboutPage } from "./AboutPage";
-import { locales } from "$/content";
+import { AboutPage } from './AboutPage';
+import { locales } from '$/content';
 
 // PageShell's Header reads the router location; pages must render inside one.
 const renderPage = () =>
@@ -17,8 +17,8 @@ const renderPage = () =>
 beforeAll(() => {
     class MockIntersectionObserver implements IntersectionObserver {
         readonly root = null;
-        readonly rootMargin = "";
-        readonly scrollMargin = "";
+        readonly rootMargin = '';
+        readonly scrollMargin = '';
         readonly thresholds = [];
         disconnect() {}
         observe() {}
@@ -28,51 +28,51 @@ beforeAll(() => {
         }
     }
 
-    vi.stubGlobal("IntersectionObserver", MockIntersectionObserver);
+    vi.stubGlobal('IntersectionObserver', MockIntersectionObserver);
 });
 
-describe("AboutPage", () => {
-    it("renders the page title from the default locale (pt-BR)", () => {
+describe('AboutPage', () => {
+    it('renders the page title from the default locale (pt-BR)', () => {
         renderPage();
 
-        const heading = screen.getByRole("heading", { level: 1 });
+        const heading = screen.getByRole('heading', { level: 1 });
 
-        expect(heading).toHaveTextContent(locales["pt-BR"].about.title);
+        expect(heading).toHaveTextContent(locales['pt-BR'].about.title);
     });
 
-    it("explains what the site is for", () => {
+    it('explains what the site is for', () => {
         renderPage();
 
-        for (const paragraph of locales["pt-BR"].about.sitePurpose) {
+        for (const paragraph of locales['pt-BR'].about.sitePurpose) {
             expect(screen.getByText(paragraph)).toBeInTheDocument();
         }
     });
 
-    it("presents the who-am-I section", () => {
+    it('presents the who-am-I section', () => {
         renderPage();
 
         expect(
-            screen.getByText(locales["pt-BR"].about.whoAmI.intro),
+            screen.getByText(locales['pt-BR'].about.whoAmI.intro),
         ).toBeInTheDocument();
 
-        for (const paragraph of locales["pt-BR"].about.whoAmI.bio) {
+        for (const paragraph of locales['pt-BR'].about.whoAmI.bio) {
             expect(screen.getByText(paragraph)).toBeInTheDocument();
         }
     });
 
-    it("lists every skill group", () => {
+    it('lists every skill group', () => {
         renderPage();
 
-        for (const group of locales["pt-BR"].about.whoAmI.skills.groups) {
+        for (const group of locales['pt-BR'].about.whoAmI.skills.groups) {
             expect(screen.getByText(group.label)).toBeInTheDocument();
             expect(screen.getByText(group.items)).toBeInTheDocument();
         }
     });
 
-    it("lists certificates and languages", () => {
+    it('lists certificates and languages', () => {
         renderPage();
 
-        const { certificates } = locales["pt-BR"].about.whoAmI;
+        const { certificates } = locales['pt-BR'].about.whoAmI;
 
         for (const certificate of certificates.items) {
             expect(screen.getByText(certificate)).toBeInTheDocument();
@@ -83,25 +83,25 @@ describe("AboutPage", () => {
         }
     });
 
-    it("links back to the home page", () => {
+    it('links back to the home page', () => {
         renderPage();
 
-        const backLink = screen.getByRole("link", {
+        const backLink = screen.getByRole('link', {
             name: new RegExp(
-                locales["pt-BR"].correspondence.secondaryAction,
-                "i",
+                locales['pt-BR'].correspondence.secondaryAction,
+                'i',
             ),
         });
 
         // Renders as a react-router Link; the resolved anchor href is the path.
-        expect(backLink).toHaveAttribute("href", "/");
+        expect(backLink).toHaveAttribute('href', '/');
     });
 
-    it("renders the footer with the owner name", () => {
+    it('renders the footer with the owner name', () => {
         renderPage();
 
-        const footer = screen.getByRole("contentinfo");
+        const footer = screen.getByRole('contentinfo');
 
-        expect(footer).toHaveTextContent(locales["pt-BR"].owner.displayName);
+        expect(footer).toHaveTextContent(locales['pt-BR'].owner.displayName);
     });
 });

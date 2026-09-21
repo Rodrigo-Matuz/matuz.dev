@@ -1,15 +1,15 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
-import ReactMarkdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
-import rehypeKatex from "rehype-katex";
-import rehypeRaw from "rehype-raw";
-import rehypeSlug from "rehype-slug";
-import remarkDeflist from "remark-deflist";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
+import ReactMarkdown from 'react-markdown';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeKatex from 'rehype-katex';
+import rehypeRaw from 'rehype-raw';
+import rehypeSlug from 'rehype-slug';
+import remarkDeflist from 'remark-deflist';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 
-import { CALLOUT_STYLES, DEFAULT_CALLOUT } from "./callouts";
+import { CALLOUT_STYLES, DEFAULT_CALLOUT } from './callouts';
 
 interface NoteMarkdownProps {
     content: string;
@@ -20,7 +20,7 @@ interface NoteMarkdownProps {
  * that must never appear in reading view.
  */
 function stripComments(markdown: string): string {
-    return markdown.replace(/%%[\s\S]*?%%/g, "");
+    return markdown.replace(/%%[\s\S]*?%%/g, '');
 }
 
 /**
@@ -28,7 +28,7 @@ function stripComments(markdown: string): string {
  * highlight syntax). Content inside is preserved verbatim.
  */
 function preprocessHighlights(markdown: string): string {
-    return markdown.replace(/==([^=\n]+)==/g, "<mark>$1</mark>");
+    return markdown.replace(/==([^=\n]+)==/g, '<mark>$1</mark>');
 }
 
 /**
@@ -37,7 +37,7 @@ function preprocessHighlights(markdown: string): string {
  * Done as a string transform because remark has no native callout syntax.
  */
 function preprocessCallouts(markdown: string): string {
-    const lines = markdown.split("\n");
+    const lines = markdown.split('\n');
     const out: string[] = [];
     let i = 0;
 
@@ -55,25 +55,25 @@ function preprocessCallouts(markdown: string): string {
         // Collect the whole blockquote block.
         const block: string[] = [];
 
-        while (i < lines.length && lines[i].startsWith(">")) {
-            block.push(lines[i].replace(/^>\s?/, ""));
+        while (i < lines.length && lines[i].startsWith('>')) {
+            block.push(lines[i].replace(/^>\s?/, ''));
             i += 1;
         }
 
         const [, type, fold, title] = calloutMatch;
-        const body = block.slice(1).join("\n");
+        const body = block.slice(1).join('\n');
         const isFoldable = fold !== undefined;
-        const openAttr = fold === "+" ? " open" : "";
+        const openAttr = fold === '+' ? ' open' : '';
 
         out.push(
             isFoldable
                 ? `<details data-callout="${type}" data-callout-title="${title}"${openAttr}>\n<summary>${title}</summary>\n\n${body}\n\n</details>`
                 : `<div data-callout="${type}" data-callout-title="${title}">\n\n${body}\n\n</div>`,
         );
-        out.push("");
+        out.push('');
     }
 
-    return out.join("\n");
+    return out.join('\n');
 }
 
 /** Extract a YouTube video ID from common URL shapes; null when not YouTube. */
@@ -256,7 +256,7 @@ export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
                         <a
                             href={href}
                             target={
-                                href?.startsWith("http") ? "_blank" : undefined
+                                href?.startsWith('http') ? '_blank' : undefined
                             }
                             rel="noreferrer"
                             className="text-success underline decoration-success/40 underline-offset-4 transition-colors hover:decoration-success"
@@ -300,7 +300,7 @@ export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
                     const className = (props as { className?: string })
                         .className;
 
-                    if (className?.includes("footnotes")) {
+                    if (className?.includes('footnotes')) {
                         return (
                             <section
                                 {...props}
@@ -319,7 +319,7 @@ export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
                     </blockquote>
                 ),
                 code: ({ className, children }) => {
-                    const isBlock = className?.includes("language-");
+                    const isBlock = className?.includes('language-');
 
                     if (isBlock) {
                         return (
@@ -356,7 +356,7 @@ export function NoteMarkdown({ content }: NoteMarkdownProps): ReactNode {
                 img: ({ alt, src }) => (
                     <img
                         src={src}
-                        alt={alt ?? ""}
+                        alt={alt ?? ''}
                         loading="lazy"
                         className="mt-6 rounded-sm border border-foreground/10"
                     />

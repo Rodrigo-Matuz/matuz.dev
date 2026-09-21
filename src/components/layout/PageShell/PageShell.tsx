@@ -1,11 +1,11 @@
-import { motion, useAnimationControls } from "motion/react";
-import type { ReactNode } from "react";
+import { motion, useAnimationControls } from 'motion/react';
+import type { ReactNode } from 'react';
 
-import Footer from "$/components/layout/Footer";
-import Header from "$/components/layout/Header";
-import PageBackground from "$/components/layout/PageBackground";
-import { EASE } from "$/lib/motion";
-import { setLanguage, useLanguage, type Language } from "$/lib/language";
+import Footer from '$/components/layout/Footer';
+import Header from '$/components/layout/Header';
+import PageBackground from '$/components/layout/PageBackground';
+import { EASE } from '$/lib/motion';
+import { setLanguage, useLanguage, type Language } from '$/lib/language';
 
 interface PageShellProps {
     /** Page background image; omit for the plain gradient treatment. */

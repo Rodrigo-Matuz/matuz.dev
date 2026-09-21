@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import { Link, useLocation } from "react-router";
-import { X } from "lucide-react";
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { Link, useLocation } from 'react-router';
+import { X } from 'lucide-react';
 
-import BrandIcon, { isBrandIconName } from "$/components/ui/BrandIcon";
-import SafeLink from "$/components/ui/SafeLink";
-import { locales, type Language } from "$/content";
+import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
+import SafeLink from '$/components/ui/SafeLink';
+import { locales, type Language } from '$/content';
 
 interface NavMenuProps {
     language: Language;
@@ -24,11 +24,11 @@ export function NavMenu({ language }: NavMenuProps) {
     const location = useLocation();
 
     const routeLinks = [
-        { to: "/", label: content.navigation.home },
-        { to: "/about", label: content.navigation.about },
-        { to: "/projects", label: content.navigation.projects },
-        { to: "/notes", label: content.navigation.notes },
-        { to: "/contact", label: content.navigation.contact },
+        { to: '/', label: content.navigation.home },
+        { to: '/about', label: content.navigation.about },
+        { to: '/projects', label: content.navigation.projects },
+        { to: '/notes', label: content.navigation.notes },
+        { to: '/contact', label: content.navigation.contact },
     ];
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export function NavMenu({ language }: NavMenuProps) {
                 (containerRef.current &&
                     containerRef.current.contains(target)) ||
                 (target instanceof Element &&
-                    target.closest("#nav-menu") !== null);
+                    target.closest('#nav-menu') !== null);
 
             if (!isInsideMenu) {
                 setIsOpen(false);
@@ -51,18 +51,18 @@ export function NavMenu({ language }: NavMenuProps) {
         };
 
         const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
+            if (event.key === 'Escape') {
                 setIsOpen(false);
                 triggerRef.current?.focus();
             }
         };
 
-        document.addEventListener("pointerdown", onPointerDown);
-        document.addEventListener("keydown", onKeyDown);
+        document.addEventListener('pointerdown', onPointerDown);
+        document.addEventListener('keydown', onKeyDown);
 
         return () => {
-            document.removeEventListener("pointerdown", onPointerDown);
-            document.removeEventListener("keydown", onKeyDown);
+            document.removeEventListener('pointerdown', onPointerDown);
+            document.removeEventListener('keydown', onKeyDown);
         };
     }, [isOpen]);
 
@@ -83,13 +83,13 @@ export function NavMenu({ language }: NavMenuProps) {
                     className="flex w-4 flex-col gap-[3px]"
                 >
                     <span
-                        className={`h-px w-full bg-current transition-transform duration-200 ${isOpen ? "translate-y-[4px] rotate-45" : ""}`}
+                        className={`h-px w-full bg-current transition-transform duration-200 ${isOpen ? 'translate-y-[4px] rotate-45' : ''}`}
                     />
                     <span
-                        className={`h-px w-full bg-current transition-opacity duration-200 ${isOpen ? "opacity-0" : ""}`}
+                        className={`h-px w-full bg-current transition-opacity duration-200 ${isOpen ? 'opacity-0' : ''}`}
                     />
                     <span
-                        className={`h-px w-full bg-current transition-transform duration-200 ${isOpen ? "-translate-y-[4px] -rotate-45" : ""}`}
+                        className={`h-px w-full bg-current transition-transform duration-200 ${isOpen ? '-translate-y-[4px] -rotate-45' : ''}`}
                     />
                 </span>
                 <span className="hidden sm:inline">
@@ -135,11 +135,11 @@ export function NavMenu({ language }: NavMenuProps) {
                                             aria-current={
                                                 location.pathname ===
                                                 routeLink.to
-                                                    ? "page"
+                                                    ? 'page'
                                                     : undefined
                                             }
                                             onClick={() => setIsOpen(false)}
-                                            className={`block py-2 font-display text-lg tracking-[-0.02em] transition-colors ${location.pathname === routeLink.to ? "text-primary" : "text-foreground hover:text-primary"}`}
+                                            className={`block py-2 font-display text-lg tracking-[-0.02em] transition-colors ${location.pathname === routeLink.to ? 'text-primary' : 'text-foreground hover:text-primary'}`}
                                         >
                                             {routeLink.label}
                                         </Link>
@@ -159,15 +159,15 @@ export function NavMenu({ language }: NavMenuProps) {
                                             href={link.href}
                                             role="menuitem"
                                             target={
-                                                link.href.startsWith("http")
-                                                    ? "_blank"
+                                                link.href.startsWith('http')
+                                                    ? '_blank'
                                                     : undefined
                                             }
                                             rel="noreferrer"
                                             onClick={() => setIsOpen(false)}
                                             className="group flex items-center gap-3 py-2 text-sm text-muted transition-colors hover:text-foreground"
                                         >
-                                            {typeof link.icon === "string" &&
+                                            {typeof link.icon === 'string' &&
                                                 isBrandIconName(link.icon) && (
                                                     <BrandIcon
                                                         name={link.icon}

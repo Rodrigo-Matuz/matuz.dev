@@ -1,11 +1,11 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
-import Footer from "./Footer";
-import { locales } from "$/content";
+import Footer from './Footer';
+import { locales } from '$/content';
 
-describe("Footer", () => {
-    it("renders the owner name", () => {
+describe('Footer', () => {
+    it('renders the owner name', () => {
         render(<Footer language="en" />);
 
         expect(
@@ -13,7 +13,7 @@ describe("Footer", () => {
         ).toBeInTheDocument();
     });
 
-    it("renders the localized footer text with the current year", () => {
+    it('renders the localized footer text with the current year', () => {
         render(<Footer language="en" />);
 
         const year = new Date().getFullYear().toString();
@@ -23,7 +23,7 @@ describe("Footer", () => {
         );
     });
 
-    it("localizes the footer text per language", () => {
+    it('localizes the footer text per language', () => {
         render(<Footer language="pt-BR" />);
 
         expect(
@@ -31,9 +31,9 @@ describe("Footer", () => {
         ).toBeInTheDocument();
     });
 
-    it("renders as a footer landmark", () => {
+    it('renders as a footer landmark', () => {
         render(<Footer language="en" />);
 
-        expect(screen.getByRole("contentinfo")).toBeInTheDocument();
+        expect(screen.getByRole('contentinfo')).toBeInTheDocument();
     });
 });

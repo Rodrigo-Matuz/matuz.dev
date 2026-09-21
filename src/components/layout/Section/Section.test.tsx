@@ -1,10 +1,10 @@
-import { render } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
-import Section from "./Section";
+import Section from './Section';
 
-describe("Section", () => {
-    it("renders as a section element with children", () => {
+describe('Section', () => {
+    it('renders as a section element with children', () => {
         const { container } = render(
             <Section>
                 <h2>Title</h2>
@@ -13,27 +13,27 @@ describe("Section", () => {
 
         const section = container.firstElementChild as HTMLElement;
 
-        expect(section.tagName).toBe("SECTION");
-        expect(section.querySelector("h2")?.textContent).toBe("Title");
+        expect(section.tagName).toBe('SECTION');
+        expect(section.querySelector('h2')?.textContent).toBe('Title');
     });
 
-    it("has no band background by default", () => {
+    it('has no band background by default', () => {
         const { container } = render(<Section>Content</Section>);
 
         const section = container.firstElementChild as HTMLElement;
 
-        expect(section).not.toHaveClass("bg-background");
-        expect(section).not.toHaveClass("bg-surface");
+        expect(section).not.toHaveClass('bg-background');
+        expect(section).not.toHaveClass('bg-surface');
     });
 
-    it("applies the solid band treatment when band is true", () => {
+    it('applies the solid band treatment when band is true', () => {
         const { container } = render(<Section band>Content</Section>);
 
         const section = container.firstElementChild as HTMLElement;
 
-        expect(section).toHaveClass("bg-background");
-        expect(section).not.toHaveClass("backdrop-blur-md");
-        expect(section).toHaveClass("border-y");
+        expect(section).toHaveClass('bg-background');
+        expect(section).not.toHaveClass('backdrop-blur-md');
+        expect(section).toHaveClass('border-y');
     });
 
     it('applies the soft band treatment when band is "soft"', () => {
@@ -41,17 +41,17 @@ describe("Section", () => {
 
         const section = container.firstElementChild as HTMLElement;
 
-        expect(section).toHaveClass("bg-surface");
-        expect(section).not.toHaveClass("backdrop-blur-md");
+        expect(section).toHaveClass('bg-surface');
+        expect(section).not.toHaveClass('backdrop-blur-md');
     });
 
-    it("forwards the id for anchor navigation", () => {
+    it('forwards the id for anchor navigation', () => {
         const { container } = render(<Section id="record">Content</Section>);
 
-        expect(container.firstElementChild).toHaveAttribute("id", "record");
+        expect(container.firstElementChild).toHaveAttribute('id', 'record');
     });
 
-    it("merges custom classes with the band classes", () => {
+    it('merges custom classes with the band classes', () => {
         const { container } = render(
             <Section band className="extra-class">
                 Content
@@ -60,7 +60,7 @@ describe("Section", () => {
 
         const section = container.firstElementChild as HTMLElement;
 
-        expect(section).toHaveClass("extra-class");
-        expect(section).toHaveClass("bg-background");
+        expect(section).toHaveClass('extra-class');
+        expect(section).toHaveClass('bg-background');
     });
 });

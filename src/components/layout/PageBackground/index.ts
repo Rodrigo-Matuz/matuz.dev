@@ -1,1 +1,1 @@
-export { default } from "./PageBackground";
+export { default } from './PageBackground';

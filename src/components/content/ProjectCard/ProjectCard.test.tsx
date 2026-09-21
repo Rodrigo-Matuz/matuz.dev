@@ -1,47 +1,47 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
-import ProjectCard from "./ProjectCard";
+import ProjectCard from './ProjectCard';
 
 const baseProps = {
-    title: "Wallpaper Picker UI",
-    description: "A cross-platform desktop wallpaper application.",
+    title: 'Wallpaper Picker UI',
+    description: 'A cross-platform desktop wallpaper application.',
 };
 
-describe("ProjectCard", () => {
-    it("renders the title and description", () => {
+describe('ProjectCard', () => {
+    it('renders the title and description', () => {
         render(<ProjectCard {...baseProps} />);
 
         expect(
-            screen.getByRole("heading", { name: baseProps.title }),
+            screen.getByRole('heading', { name: baseProps.title }),
         ).toBeInTheDocument();
         expect(screen.getByText(baseProps.description)).toBeInTheDocument();
     });
 
-    it("renders technology tags as a list", () => {
+    it('renders technology tags as a list', () => {
         render(
             <ProjectCard
                 {...baseProps}
-                technologies={["Rust", "Tauri", "FFmpeg"]}
+                technologies={['Rust', 'Tauri', 'FFmpeg']}
             />,
         );
 
-        const list = screen.getByRole("list", { name: baseProps.title });
+        const list = screen.getByRole('list', { name: baseProps.title });
 
         expect(list).toBeInTheDocument();
 
-        for (const technology of ["Rust", "Tauri", "FFmpeg"]) {
+        for (const technology of ['Rust', 'Tauri', 'FFmpeg']) {
             expect(screen.getByText(technology)).toBeInTheDocument();
         }
     });
 
-    it("omits the technology list when none are given", () => {
+    it('omits the technology list when none are given', () => {
         render(<ProjectCard {...baseProps} />);
 
-        expect(screen.queryByRole("list")).not.toBeInTheDocument();
+        expect(screen.queryByRole('list')).not.toBeInTheDocument();
     });
 
-    it("links the source to GitHub with a localized label", () => {
+    it('links the source to GitHub with a localized label', () => {
         render(
             <ProjectCard
                 {...baseProps}
@@ -51,16 +51,16 @@ describe("ProjectCard", () => {
         );
 
         // The footer label link; the title also links to the source (next test).
-        const source = screen.getAllByRole("link", { name: /código/i })[0];
+        const source = screen.getAllByRole('link', { name: /código/i })[0];
 
         expect(source).toHaveAttribute(
-            "href",
-            "https://github.com/Rodrigo-Matuz",
+            'href',
+            'https://github.com/Rodrigo-Matuz',
         );
-        expect(source).toHaveAttribute("target", "_blank");
+        expect(source).toHaveAttribute('target', '_blank');
     });
 
-    it("makes the title a link to the source", () => {
+    it('makes the title a link to the source', () => {
         render(
             <ProjectCard
                 {...baseProps}
@@ -70,37 +70,37 @@ describe("ProjectCard", () => {
         );
 
         // The title link's accessible name combines the title and the label.
-        const titleLink = screen.getByRole("link", {
-            name: new RegExp(`${baseProps.title}.*código`, "i"),
+        const titleLink = screen.getByRole('link', {
+            name: new RegExp(`${baseProps.title}.*código`, 'i'),
         });
 
         expect(titleLink).toHaveAttribute(
-            "href",
-            "https://github.com/Rodrigo-Matuz",
+            'href',
+            'https://github.com/Rodrigo-Matuz',
         );
-        expect(titleLink).toHaveAttribute("target", "_blank");
+        expect(titleLink).toHaveAttribute('target', '_blank');
         expect(titleLink).toHaveTextContent(baseProps.title);
     });
 
-    it("keeps the title as plain heading without a source link", () => {
+    it('keeps the title as plain heading without a source link', () => {
         render(<ProjectCard {...baseProps} />);
 
         expect(
-            screen.getByRole("heading", { name: baseProps.title }),
+            screen.getByRole('heading', { name: baseProps.title }),
         ).toBeInTheDocument();
-        expect(screen.queryByRole("link")).not.toBeInTheDocument();
+        expect(screen.queryByRole('link')).not.toBeInTheDocument();
     });
 
-    it("highlights the card with the primary color on hover", () => {
+    it('highlights the card with the primary color on hover', () => {
         const { container } = render(<ProjectCard {...baseProps} />);
 
         const card = container.firstElementChild as HTMLElement;
 
-        expect(card).toHaveClass("hover:border-primary/30");
-        expect(card).toHaveClass("hover:bg-surface-raised");
+        expect(card).toHaveClass('hover:border-primary/30');
+        expect(card).toHaveClass('hover:bg-surface-raised');
     });
 
-    it("opens external preview links in a new tab", () => {
+    it('opens external preview links in a new tab', () => {
         render(
             <ProjectCard
                 {...baseProps}
@@ -109,22 +109,22 @@ describe("ProjectCard", () => {
             />,
         );
 
-        const preview = screen.getByRole("link", { name: /demo/i });
+        const preview = screen.getByRole('link', { name: /demo/i });
 
-        expect(preview).toHaveAttribute("href", "https://example.com");
-        expect(preview).toHaveAttribute("target", "_blank");
+        expect(preview).toHaveAttribute('href', 'https://example.com');
+        expect(preview).toHaveAttribute('target', '_blank');
     });
 
-    it("keeps internal preview links in the same tab", () => {
+    it('keeps internal preview links in the same tab', () => {
         render(<ProjectCard {...baseProps} preview="/" />);
 
-        const preview = screen.getByRole("link", { name: /demo/i });
+        const preview = screen.getByRole('link', { name: /demo/i });
 
-        expect(preview).toHaveAttribute("href", "/");
-        expect(preview).not.toHaveAttribute("target");
+        expect(preview).toHaveAttribute('href', '/');
+        expect(preview).not.toHaveAttribute('target');
     });
 
-    it("links the About label to the expanded-card page", () => {
+    it('links the About label to the expanded-card page', () => {
         render(
             <ProjectCard
                 {...baseProps}
@@ -133,35 +133,35 @@ describe("ProjectCard", () => {
             />,
         );
 
-        const about = screen.getByRole("link", { name: /sobre/i });
+        const about = screen.getByRole('link', { name: /sobre/i });
 
-        expect(about).toHaveAttribute("href", "/projects/wallpaper-picker");
-        expect(about).not.toHaveAttribute("target");
+        expect(about).toHaveAttribute('href', '/projects/wallpaper-picker');
+        expect(about).not.toHaveAttribute('target');
     });
 
-    it("omits the About link without aboutHref", () => {
+    it('omits the About link without aboutHref', () => {
         render(<ProjectCard {...baseProps} />);
 
-        expect(screen.queryByRole("link", { name: /about/i })).toBeNull();
+        expect(screen.queryByRole('link', { name: /about/i })).toBeNull();
     });
 
-    it("renders no links without github or preview", () => {
+    it('renders no links without github or preview', () => {
         render(<ProjectCard {...baseProps} />);
 
-        expect(screen.queryByRole("link")).not.toBeInTheDocument();
+        expect(screen.queryByRole('link')).not.toBeInTheDocument();
     });
 
-    it("renders the optional image as a decorative band", () => {
+    it('renders the optional image as a decorative band', () => {
         render(<ProjectCard {...baseProps} image="/preview.webp" />);
 
-        const image = screen.getByAltText("");
+        const image = screen.getByAltText('');
 
-        expect(image).toHaveAttribute("src", "/preview.webp");
+        expect(image).toHaveAttribute('src', '/preview.webp');
 
         // The image sits in a dedicated band above the card body.
-        const band = image.closest("div");
+        const band = image.closest('div');
 
-        expect(band).toHaveClass("overflow-hidden");
-        expect(band).toHaveClass("border-b");
+        expect(band).toHaveClass('overflow-hidden');
+        expect(band).toHaveClass('border-b');
     });
 });

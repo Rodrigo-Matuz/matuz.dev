@@ -1,25 +1,25 @@
-import { motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { motion } from 'motion/react';
+import { ArrowUpRight } from 'lucide-react';
 
-import Container from "$/components/layout/Container";
-import PageShell from "$/components/layout/PageShell";
-import Section from "$/components/layout/Section";
-import BrandIcon, { isBrandIconName } from "$/components/ui/BrandIcon";
-import Eyebrow from "$/components/ui/Eyebrow";
-import SafeLink from "$/components/ui/SafeLink";
-import { useLocale } from "$/lib/language";
+import Container from '$/components/layout/Container';
+import PageShell from '$/components/layout/PageShell';
+import Section from '$/components/layout/Section';
+import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
+import Eyebrow from '$/components/ui/Eyebrow';
+import SafeLink from '$/components/ui/SafeLink';
+import { useLocale } from '$/lib/language';
 import {
     fadeUp,
     pageVariants,
     staggerContainer,
     viewportOnce,
-} from "$/lib/motion";
+} from '$/lib/motion';
 
 const channelAccentClasses = [
-    "text-primary",
-    "text-secondary",
-    "text-accent",
-    "text-success",
+    'text-primary',
+    'text-secondary',
+    'text-accent',
+    'text-success',
 ];
 
 /**
@@ -95,8 +95,8 @@ export function ContactPage() {
                                         <SafeLink
                                             href={channel.href}
                                             target={
-                                                channel.href.startsWith("http")
-                                                    ? "_blank"
+                                                channel.href.startsWith('http')
+                                                    ? '_blank'
                                                     : undefined
                                             }
                                             rel="noreferrer"
@@ -104,7 +104,7 @@ export function ContactPage() {
                                         >
                                             <span className="flex items-center gap-3">
                                                 {typeof channel.icon ===
-                                                    "string" &&
+                                                    'string' &&
                                                     isBrandIconName(
                                                         channel.icon,
                                                     ) && (

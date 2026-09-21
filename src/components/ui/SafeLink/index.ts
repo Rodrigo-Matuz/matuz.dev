@@ -1,1 +1,1 @@
-export { SafeLink, default } from "./SafeLink";
+export { SafeLink, default } from './SafeLink';

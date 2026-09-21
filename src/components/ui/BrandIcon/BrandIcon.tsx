@@ -1,8 +1,8 @@
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react';
 
-import { glyphs, type BrandIconName } from "./brandGlyphs";
+import { glyphs, type BrandIconName } from './brandGlyphs';
 
-interface BrandIconProps extends Omit<SVGProps<SVGSVGElement>, "name"> {
+interface BrandIconProps extends Omit<SVGProps<SVGSVGElement>, 'name'> {
     name: BrandIconName;
     size?: number;
 }

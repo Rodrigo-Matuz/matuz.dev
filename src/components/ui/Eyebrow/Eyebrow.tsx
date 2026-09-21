@@ -1,24 +1,24 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 export type EyebrowColor =
-    "primary" | "secondary" | "accent" | "warning" | "success" | "highlight";
+    'primary' | 'secondary' | 'accent' | 'warning' | 'success' | 'highlight';
 
 const colorStyles: Record<EyebrowColor, string> = {
-    primary: "text-primary",
-    secondary: "text-secondary",
-    accent: "text-accent",
-    warning: "text-warning",
-    success: "text-success",
-    highlight: "text-highlight",
+    primary: 'text-primary',
+    secondary: 'text-secondary',
+    accent: 'text-accent',
+    warning: 'text-warning',
+    success: 'text-success',
+    highlight: 'text-highlight',
 };
 
 const lineStyles: Record<EyebrowColor, string> = {
-    primary: "bg-primary",
-    secondary: "bg-secondary",
-    accent: "bg-accent",
-    warning: "bg-warning",
-    success: "bg-success",
-    highlight: "bg-highlight",
+    primary: 'bg-primary',
+    secondary: 'bg-secondary',
+    accent: 'bg-accent',
+    warning: 'bg-warning',
+    success: 'bg-success',
+    highlight: 'bg-highlight',
 };
 
 interface EyebrowProps {
@@ -30,9 +30,9 @@ interface EyebrowProps {
 
 export function Eyebrow({
     children,
-    color = "primary",
+    color = 'primary',
     line = false,
-    className = "",
+    className = '',
 }: EyebrowProps) {
     return (
         <p

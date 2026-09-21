@@ -1,6 +1,6 @@
 ---
 name: prose-discipline
-description: "Always-required standard wherever prose is used. Governs human legibility and semantic drift in documentation, instructions, reports, comments, reviews, and agent interaction. Use whenever prose is read, written, reviewed, or transformed."
+description: 'Always-required standard wherever prose is used. Governs human legibility and semantic drift in documentation, instructions, reports, comments, reviews, and agent interaction. Use whenever prose is read, written, reviewed, or transformed.'
 license: MIT
 metadata:
     skill-type: standard

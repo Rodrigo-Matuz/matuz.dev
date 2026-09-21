@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "katex/dist/katex.min.css";
+@import 'tailwindcss';
+@import 'katex/dist/katex.min.css';
 
 /* Sweet Dracula Monokai — token colors from the official theme
    (github.com/LEFD/sweetdracula-monokai). Base bg #161925, fg #F8F8F2. */
@@ -110,10 +110,10 @@
     --color-foreground: #f5f5f5;
     --color-muted: #a1a1aa;
     --color-subtle: #71717a;
-    --font-sans: "Inter", "Roboto", ui-sans-serif, system-ui, sans-serif;
-    --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+    --font-sans: 'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
     --font-display:
-        "Newsreader", "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+        'Newsreader', 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua',
         Georgia, serif;
 }
 

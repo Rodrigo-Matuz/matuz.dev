@@ -6,12 +6,12 @@
  */
 
 const UNITS: { unit: Intl.RelativeTimeFormatUnit; seconds: number }[] = [
-    { unit: "year", seconds: 31557600 },
-    { unit: "month", seconds: 2629800 },
-    { unit: "week", seconds: 604800 },
-    { unit: "day", seconds: 86400 },
-    { unit: "hour", seconds: 3600 },
-    { unit: "minute", seconds: 60 },
+    { unit: 'year', seconds: 31557600 },
+    { unit: 'month', seconds: 2629800 },
+    { unit: 'week', seconds: 604800 },
+    { unit: 'day', seconds: 86400 },
+    { unit: 'hour', seconds: 3600 },
+    { unit: 'minute', seconds: 60 },
 ];
 
 /** Parse a `YYYY-MM-DDTHH:mm` local timestamp; returns null when invalid. */
@@ -30,7 +30,7 @@ export function formatRelativeTime(
     now: Date = new Date(),
 ): string {
     const formatter = new Intl.RelativeTimeFormat(locale, {
-        numeric: "always",
+        numeric: 'always',
     });
     const diffSeconds = Math.round((date.getTime() - now.getTime()) / 1000);
     const absolute = Math.abs(diffSeconds);
@@ -41,5 +41,5 @@ export function formatRelativeTime(
         }
     }
 
-    return formatter.format(Math.round(diffSeconds / 60), "minute");
+    return formatter.format(Math.round(diffSeconds / 60), 'minute');
 }

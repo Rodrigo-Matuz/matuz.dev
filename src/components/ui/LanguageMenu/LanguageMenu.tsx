@@ -1,15 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
-import { Check, ChevronDown } from "lucide-react";
+import { Check, ChevronDown } from 'lucide-react';
 
 // Import only the flags we use — importing the full flag-icons CSS would bundle
 // every country's SVG into the build. Vite gives us asset URLs for these.
-import brFlag from "flag-icons/flags/4x3/br.svg";
-import usFlag from "flag-icons/flags/4x3/us.svg";
+import brFlag from 'flag-icons/flags/4x3/br.svg';
+import usFlag from 'flag-icons/flags/4x3/us.svg';
 
-import { locales, type Language } from "$/content";
+import { locales, type Language } from '$/content';
 
-const languageOptions: Language[] = ["en", "pt-BR"];
+const languageOptions: Language[] = ['en', 'pt-BR'];
 
 const flagSources: Record<string, string> = {
     br: brFlag,
@@ -55,18 +55,18 @@ export function LanguageMenu({
         };
 
         const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
+            if (event.key === 'Escape') {
                 setIsOpen(false);
                 triggerRef.current?.focus();
             }
         };
 
-        document.addEventListener("pointerdown", onPointerDown);
-        document.addEventListener("keydown", onKeyDown);
+        document.addEventListener('pointerdown', onPointerDown);
+        document.addEventListener('keydown', onKeyDown);
 
         return () => {
-            document.removeEventListener("pointerdown", onPointerDown);
-            document.removeEventListener("keydown", onKeyDown);
+            document.removeEventListener('pointerdown', onPointerDown);
+            document.removeEventListener('keydown', onKeyDown);
         };
     }, [isOpen]);
 
@@ -80,7 +80,7 @@ export function LanguageMenu({
                 aria-controls="language-menu"
                 aria-label={content.navigation.languageSelector}
                 onClick={() => setIsOpen((open) => !open)}
-                className={`inline-flex items-center gap-1.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] transition-colors sm:text-[11px] ${isOpen ? "text-foreground" : "text-muted hover:text-primary"}`}
+                className={`inline-flex items-center gap-1.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] transition-colors sm:text-[11px] ${isOpen ? 'text-foreground' : 'text-muted hover:text-primary'}`}
             >
                 <Flag code={content.countryCode} />
                 {/* nowrap: "PT-BR" must never wrap mid-label (it would break
@@ -88,7 +88,7 @@ export function LanguageMenu({
                 <span className="whitespace-nowrap">{content.shortLabel}</span>
                 <ChevronDown
                     size={12}
-                    className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                    className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
                 />
             </button>
 
@@ -115,7 +115,7 @@ export function LanguageMenu({
                                     setIsOpen(false);
                                     triggerRef.current?.focus();
                                 }}
-                                className={`group flex w-full items-center gap-3 px-4 py-3 text-left transition-colors ${index > 0 ? "border-t border-foreground/10" : ""} ${isSelected ? "text-foreground" : "text-muted hover:bg-foreground/5 hover:text-foreground"}`}
+                                className={`group flex w-full items-center gap-3 px-4 py-3 text-left transition-colors ${index > 0 ? 'border-t border-foreground/10' : ''} ${isSelected ? 'text-foreground' : 'text-muted hover:bg-foreground/5 hover:text-foreground'}`}
                             >
                                 <Flag code={optionContent.countryCode} />
                                 <span className="flex-1 font-display text-base leading-none tracking-[-0.02em]">
