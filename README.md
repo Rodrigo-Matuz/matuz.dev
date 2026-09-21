@@ -19,7 +19,7 @@ The site is fully bilingual. Brazilian Portuguese is the default language; Engli
 - **Bilingual by design** — every visible string lives in locale dictionaries (`pt-br.json` / `eng.json`), with tests enforcing structural parity between languages.
 - **Notes system** — Markdown notes written in a private Obsidian vault, fetched at runtime through a token-secured API and rendered with a rich reading experience: Obsidian callouts, LaTeX math (KaTeX), syntax-highlighted code blocks (Sweet Dracula Monokai), footnotes, definition lists, task lists, inline HTML, YouTube embeds, and hidden `%% comments %%`. Folder-grouped sidebar on desktop, dropdown navigation on mobile. Each note has a **copy source** action that puts the entire raw `.md` file on the reader's clipboard.
 - **Component kit** — a folder-per-component library (layout primitives, UI building blocks, content cards) with colocated tests and barrel exports.
-- **Tested** — 200+ tests with Vitest + Testing Library, colocated with their subjects, covering the UI, the markdown pipeline, and the notes metadata parser.
+- **Tested** — 251 tests with Vitest + Testing Library, colocated with their subjects, covering the UI, the markdown pipeline, and the notes metadata parser.
 - **Scrape-resistant contact** — email and profile links render without a static `href`; the destination is injected only on hover/touch/focus, so crawlers that parse raw HTML never harvest the address while real visitors lose nothing (keyboard activation included).
 - **CI-gated** — GitHub Actions runs lint, tests, and the production build on every push and PR.
 

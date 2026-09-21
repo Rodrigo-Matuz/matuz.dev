@@ -409,8 +409,8 @@ Only build these when they actually become interesting.
 - [x] Footer
 - [x] About
 - [x] Projects
-- [ ] Contact
-- [ ] Social links
+- [x] Contact
+- [x] Social links
 
 ### Phase 3 — Visual Polish
 
@@ -426,24 +426,24 @@ Only build these when they actually become interesting.
 
 ### Phase 4 — Notes
 
-- [ ] Create private Obsidian notes repository with a tracked public folder
-- [ ] Generate fine-grained PAT (contents: read, single repo)
-- [ ] Build fetch endpoint (server holds the token, frontend never does)
-- [ ] Implement caching / rate-limit strategy
-- [ ] Render Markdown with site-consistent typography
-- [ ] Add images, links, YouTube embeds
-- [ ] Create notes index and individual note pages
+- [x] Create private Obsidian notes repository with a tracked public folder
+- [x] Generate fine-grained PAT (contents: read, single repo)
+- [x] Build fetch endpoint (server holds the token, frontend never does)
+- [x] Implement caching / rate-limit strategy
+- [x] Render Markdown with site-consistent typography
+- [x] Add images, links, YouTube embeds
+- [x] Create notes index and individual note pages
 
 ### Phase 5 — Deployment
 
 - [x] GitHub Actions CI (lint + test + build on push/PR)
 - [ ] Connect GitHub
-- [ ] Configure Heroku (incl. config vars / secrets)
-- [ ] Configure domain
-- [ ] Test production build
+- [x] Configure Heroku (incl. config vars / secrets)
+- [x] Configure domain
+- [x] Test production build
 - [ ] Test mobile
 - [ ] Test accessibility
-- [ ] Deploy
+- [x] Deploy
 
 ### Phase 6 — Playground
 
