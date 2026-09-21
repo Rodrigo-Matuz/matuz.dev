@@ -7,6 +7,7 @@ import { HomePage } from '$/pages/HomePage';
 import { NotePage } from '$/pages/NotePage';
 import { NotesPage } from '$/pages/NotesPage';
 import { ProjectsPage } from '$/pages/ProjectsPage';
+import { ProjectDemoPage } from '$/pages/ProjectDemoPage';
 import NoteMarkdown from '$/components/notes/NoteMarkdown';
 import HashScroller from '$/lib/hash-scroller';
 
@@ -26,6 +27,7 @@ function AppRoutes() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/projects/:slug" element={<ProjectDemoPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/notes" element={<NotesPage />} />
                 {/* Splat so nested slugs (user1/FileNameTitle) match. */}

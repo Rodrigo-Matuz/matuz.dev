@@ -107,20 +107,41 @@
     "description": "Uma seleção de trabalhos para clientes, open source e experimentos pessoais — os que valem a pena mostrar.",
     "sourceLabel": "Código",
     "previewLabel": "Prévia",
+    "demoLabel": "Demo",
+    "backToProjects": "Todos os projetos",
+    "demo": {
+      "videoTitle": "Vídeo de demonstração",
+      "noVideo": "Ainda não há vídeo de demonstração para este projeto — confira o repositório de código para screenshots e detalhes."
+    },
     "cards": [
       {
         "id": "wallpaper-picker",
         "title": "Wallpaper Picker UI",
         "description": "Aplicação desktop multiplataforma para navegar e aplicar wallpapers, pensada para baixo consumo de recursos e integração profunda com o sistema. Processamento de mídia e geração de miniaturas via FFmpeg, com suporte multilíngue via i18n.",
         "technologies": ["Rust", "TypeScript", "Svelte", "Tauri", "FFmpeg", "Tailwind CSS"],
-        "github": "https://github.com/Rodrigo-Matuz/wallpaper-picker-ui"
+        "github": "https://github.com/Rodrigo-Matuz/wallpaper-picker-ui",
+        "demo": {
+          "video": "https://github.com/user-attachments/assets/7af456ba-116f-4141-b67b-48ebf16dc9c6",
+          "paragraphs": [
+            "Wallpaper Picker UI é um app desktop leve para navegar, selecionar e aplicar wallpapers — construído em torno de wallpapers animados/ao vivo via mpvpaper. Ele pré-visualiza wallpapers numa grade limpa de miniaturas, gera thumbnails automaticamente via FFmpeg e permite customizar o comando exato executado ao aplicar um wallpaper, adaptando-se a qualquer setup ou script.",
+            "É construído com Tauri 2 e segue um modelo de permissões baseado em capacidades: o app só pode tocar seu próprio arquivo de configuração e cache de thumbnails — nada mais no sistema. Vem com suporte a temas (temas prontos e customizados, alternância manual claro/escuro), suporte multilíngue (English, Português, Deutsch, Français, Español) e atualizador integrado.",
+            "A stack é Rust no backend para integração nativa e segurança de memória, com Svelte + TypeScript no frontend. FFmpeg cuida do processamento de mídia e geração de miniaturas; mpvpaper é o motor recomendado para wallpapers animados."
+          ]
+        }
       },
       {
         "id": "cinema-automation-challenge",
         "title": "Cinema Automation Challenge - Robot Framework",
         "description": "Este repositório foi criado como parte do desafio de automação de testes para uma aplicação de cinema, com o objetivo de praticar e demonstrar conhecimentos avançados em automação de testes web utilizando o Robot Framework com Browser Library.",
         "technologies": ["Python", "Robot Framework", "Playwright", "Requests", "QA"],
-        "github": "https://github.com/Rodrigo-Matuz/cinema-automation-challenge"
+        "github": "https://github.com/Rodrigo-Matuz/cinema-automation-challenge",
+        "demo": {
+          "paragraphs": [
+            "Um desafio de automação de testes para uma aplicação web de cinema, estruturado com arquitetura keyword-driven: suítes de teste, recursos de keywords reutilizáveis e variáveis de ambiente ficam separados de forma limpa. Autenticação (cadastro, login, logout, perfil) e fluxos de reserva (busca de filmes, horários, seleção de assentos, checkout) são cobertos com tags positive, negative, validation e smoke para execução seletiva.",
+            "A suíte usa Browser Library (Playwright) para automação web e FakerLibrary para geração dinâmica de dados de teste. Todo teste, keyword e suíte é totalmente documentado, e a execução produz relatórios HTML, logs detalhados e screenshots automáticos em falhas.",
+            "Este projeto demonstra arquitetura de testes em camadas, reuso de código via keywords compartilhadas, keywords parametrizadas com argumentos opcionais, organização por tags e tratamento robusto de erros — as práticas que levo para qualquer trabalho de automação."
+          ]
+        }
       },
       {
         "id": "matuz-dev",
@@ -128,7 +149,14 @@
         "description": "Este site — um portfólio bilíngue construído como SPA com design system próprio, movimento editorial contido e um kit de componentes totalmente testado.",
         "technologies": ["React", "TypeScript", "Tailwind CSS", "Motion", "Vite"],
         "github": "https://github.com/Rodrigo-Matuz/matuz.dev",
-        "preview": "/"
+        "preview": "/",
+        "demo": {
+          "paragraphs": [
+            "Este site é ele mesmo um dos meus projetos: um portfólio bilíngue (pt-BR / English) construído como SPA React com design system próprio — títulos em serifa display, micro-rótulos em mono e uma paleta azul-violeta contida — além de presets de animação centralizados que respeitam prefers-reduced-motion.",
+            "Tudo é composto a partir de uma biblioteca folder-per-component com testes colocados e barrel exports, cobrindo primitivas de layout, blocos de UI e cards de conteúdo. O sistema de notas busca Markdown em runtime de um vault privado do Obsidian através de uma API Express com token seguro e renderiza com callouts, matemática, syntax highlighting e mais.",
+            "A suíte roda mais de 230 testes com Vitest e Testing Library, e o CI barra todo push em lint, testes e build de produção. Você está olhando para a demo agora mesmo."
+          ]
+        }
       }
     ]
   },

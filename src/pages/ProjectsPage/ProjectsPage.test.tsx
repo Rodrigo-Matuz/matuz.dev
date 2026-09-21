@@ -98,19 +98,22 @@ describe('ProjectsPage', () => {
         }
     });
 
-    it('renders the optional preview link only for cards that have one', () => {
+    it('gives every card a preview link (demo page or external)', () => {
         renderPage();
 
         const { cards, previewLabel } = locales['pt-BR'].projects;
-        const withPreview = cards.filter((card) => card.preview);
         const previewLinks = screen.getAllByRole('link', {
             name: new RegExp(previewLabel, 'i'),
         });
 
-        expect(previewLinks).toHaveLength(withPreview.length);
+        // Every card now links to its demo page (/projects/:id) unless it
+        // declares an external preview.
+        expect(previewLinks).toHaveLength(cards.length);
 
         for (const [index, link] of previewLinks.entries()) {
-            expect(link).toHaveAttribute('href', withPreview[index].preview);
+            const expected = cards[index].preview ?? `/projects/${cards[index].id}`;
+
+            expect(link).toHaveAttribute('href', expected);
         }
     });
 
