@@ -16,11 +16,13 @@ import {
 } from '$/lib/motion';
 import matuzDevImage from '$/assets/project-matuz-dev.webp';
 import wallpaperPickerImage from '$/assets/project-wallpaper-picker.webp';
+import kanatypeImage from '$/assets/project-kanatype.webp';
 
 // Card images are Vite asset imports, not locale data — JSON can't hold them.
 // Keyed by the stable card id from the locale dictionaries.
 const cardImages: Record<string, string> = {
     'wallpaper-picker': wallpaperPickerImage,
+    'kanatype': kanatypeImage,
     'matuz-dev': matuzDevImage,
 };
 
