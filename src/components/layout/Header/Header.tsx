@@ -58,6 +58,10 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
 
     return (
         <header
+            // Inert when slid off-screen: keeps the (still rendered) links
+            // out of the tab order so focus can never land on an invisible
+            // header while scrolling.
+            inert={isHidden}
             className={`
         fixed inset-x-0 top-0 z-20
         border-b border-foreground/10

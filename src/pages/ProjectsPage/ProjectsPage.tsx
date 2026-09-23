@@ -22,7 +22,7 @@ import kanatypeImage from '$/assets/project-kanatype.webp';
 // Keyed by the stable card id from the locale dictionaries.
 const cardImages: Record<string, string> = {
     'wallpaper-picker': wallpaperPickerImage,
-    'kanatype': kanatypeImage,
+    kanatype: kanatypeImage,
     'matuz-dev': matuzDevImage,
 };
 

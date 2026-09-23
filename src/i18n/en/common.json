@@ -13,7 +13,8 @@
         "menu": "Menu",
         "closeMenu": "Close menu",
         "pages": "Pages",
-        "social": "Elsewhere"
+        "social": "Elsewhere",
+        "skipToContent": "Skip to content"
     },
     "owner": {
         "displayName": "Rodrigo dos Santos Lima",

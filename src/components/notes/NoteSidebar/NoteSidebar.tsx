@@ -53,6 +53,7 @@ export function NoteSidebar({ notes, activeSlug }: NoteSidebarProps) {
     const groups = groupByFolder(notes);
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLButtonElement>(null);
     // Track the previous active slug to close the dropdown after navigation
     // without a setState-in-effect (render-time state adjustment).
     const [prevSlug, setPrevSlug] = useState(activeSlug);
@@ -76,7 +77,10 @@ export function NoteSidebar({ notes, activeSlug }: NoteSidebarProps) {
         };
 
         const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') setIsOpen(false);
+            if (event.key === 'Escape') {
+                setIsOpen(false);
+                triggerRef.current?.focus();
+            }
         };
 
         document.addEventListener('pointerdown', onPointerDown);
@@ -90,7 +94,9 @@ export function NoteSidebar({ notes, activeSlug }: NoteSidebarProps) {
 
     const activeNote = notes.find((note) => note.slug === activeSlug);
 
-    const renderGroup = (group: NoteGroup) => (
+    // Inside the mobile dropdown the list renders as an ARIA menu, so its
+    // links must carry menuitem; the desktop list is plain navigation.
+    const renderGroup = (group: NoteGroup, inMenu = false) => (
         <li key={group.folder || '__root'}>
             {group.folder ? (
                 <p className="mt-4 mb-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-subtle first:mt-0">
@@ -102,6 +108,7 @@ export function NoteSidebar({ notes, activeSlug }: NoteSidebarProps) {
                     <li key={note.slug}>
                         <Link
                             to={noteHref(note.slug)}
+                            role={inMenu ? 'menuitem' : undefined}
                             aria-current={
                                 note.slug === activeSlug ? 'page' : undefined
                             }
@@ -125,9 +132,11 @@ export function NoteSidebar({ notes, activeSlug }: NoteSidebarProps) {
             {/* Mobile: dropdown, styled like the header's NavMenu */}
             <div ref={containerRef} className="relative lg:hidden">
                 <button
+                    ref={triggerRef}
                     type="button"
                     aria-expanded={isOpen}
                     aria-haspopup="menu"
+                    aria-controls="notes-menu"
                     onClick={() => setIsOpen((open) => !open)}
                     className="flex w-full items-center justify-between rounded-sm border border-foreground/10 bg-surface px-4 py-3 text-left"
                 >
@@ -142,17 +151,23 @@ export function NoteSidebar({ notes, activeSlug }: NoteSidebarProps) {
 
                 {isOpen && (
                     <div
+                        id="notes-menu"
                         role="menu"
                         aria-label={content.notes.eyebrow}
                         className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-30 max-h-[70vh] overflow-y-auto border border-foreground/10 bg-background p-4 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.8)] backdrop-blur-md"
                     >
-                        <ul>{groups.map(renderGroup)}</ul>
+                        <ul>
+                            {groups.map((group) => renderGroup(group, true))}
+                        </ul>
                     </div>
                 )}
             </div>
 
-            {/* Desktop: vertical list grouped by folder */}
-            <ul className="hidden lg:block">{groups.map(renderGroup)}</ul>
+            {/* Desktop: vertical list grouped by folder. map is wrapped so
+                the array index never reaches renderGroup's `inMenu` slot. */}
+            <ul className="hidden lg:block">
+                {groups.map((group) => renderGroup(group))}
+            </ul>
         </nav>
     );
 }

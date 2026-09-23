@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import Footer from '$/components/layout/Footer';
 import Header from '$/components/layout/Header';
 import PageBackground from '$/components/layout/PageBackground';
+import { locales } from '$/content';
 import { EASE } from '$/lib/motion';
 import { setLanguage, useLanguage, type Language } from '$/lib/language';
 
@@ -35,6 +36,15 @@ export function PageShell({ backgroundSrc, children }: PageShellProps) {
     return (
         <div className="relative isolate flex min-h-screen flex-col overflow-hidden bg-background text-foreground">
             <PageBackground src={backgroundSrc} />
+
+            {/* Keyboard shortcut past the header: visually hidden until it
+                receives focus (first Tab stop on every page). */}
+            <a
+                href="#top"
+                className="fixed left-4 top-4 z-50 -translate-y-24 bg-background px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-foreground shadow-lg transition-transform focus:translate-y-0"
+            >
+                {locales[language].navigation.skipToContent}
+            </a>
 
             <Header
                 language={language}

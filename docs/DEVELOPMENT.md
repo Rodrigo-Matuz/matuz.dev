@@ -22,18 +22,18 @@ Internal orientation for working on this codebase. The public overview lives in 
 - `src/main.tsx` — entry point, mounts `App`.
 - `src/App.tsx` — router shell (`react-router`); maps paths to pages and wraps them in `AnimatePresence` for page transitions (`mode="wait"`). Routes: `/`, `/about`, `/projects`, `/projects/:id`, `/contact`, `/notes`, `/notes/*` (splat → NotePage).
 - `src/pages/` — route-level pages, **named** exports via barrel (`export { HomePage }`). Each page composes `PageShell` for the shared chrome and carries its colocated test.
-  - `HomePage` (`/`)
-  - `AboutPage` (`/about`)
-  - `ProjectsPage` (`/projects`)
-  - `ProjectDemoPage` (`/projects/:id`)
-  - `ContactPage` (`/contact`)
-  - `NotesPage` (`/notes`)
-  - `NotePage` (`/notes/*`)
+    - `HomePage` (`/`)
+    - `AboutPage` (`/about`)
+    - `ProjectsPage` (`/projects`)
+    - `ProjectDemoPage` (`/projects/:id`)
+    - `ContactPage` (`/contact`)
+    - `NotesPage` (`/notes`)
+    - `NotePage` (`/notes/*`)
 - `src/components/` — folder-per-component (see below), colocated tests, barrel re-exports.
-  - `layout/` — **default** exports: `Container`, `Section` (`band`/`band="soft"`), `SectionHeading` (stacked/split), `Header` (fixed, hides on scroll-down, `routeLinks` array), `Footer`, `PageBackground`, `PageShell`. Import as `import Button from '$/components/ui/Button'` — the barrel resolves the folder.
-  - `ui/` — **default** exports: `Button` (href→anchor, to→Link), `Eyebrow`, `ArrowLink`, `LanguageMenu`, `NavMenu` (mobile drawer, portal, own `routeLinks`), `BrandIcon` + `brandGlyphs.ts` (github/linkedin/rss/discord inline SVGs), `SafeLink` (scrape-resistant link), `Badge`, `Card`, `Divider`, `IconButton`.
-  - `content/` — **default** exports: `ProjectCard` (title links to source, tags bottom-anchored, About + Demo actions), `SocialLink`, `TechBadge`.
-  - `notes/` — **default** exports: `NoteMarkdown` (+ `callouts.tsx`), `NoteSidebar`, `RelativeTimeTag`, `CopySourceButton`.
+    - `layout/` — **default** exports: `Container`, `Section` (`band`/`band="soft"`), `SectionHeading` (stacked/split), `Header` (fixed, hides on scroll-down, `routeLinks` array), `Footer`, `PageBackground`, `PageShell`. Import as `import Button from '$/components/ui/Button'` — the barrel resolves the folder.
+    - `ui/` — **default** exports: `Button` (href→anchor, to→Link), `Eyebrow`, `ArrowLink`, `LanguageMenu`, `NavMenu` (mobile drawer, portal, own `routeLinks`), `BrandIcon` + `brandGlyphs.ts` (github/linkedin/rss/discord inline SVGs), `SafeLink` (scrape-resistant link), `Badge`, `Card`, `Divider`, `IconButton`.
+    - `content/` — **default** exports: `ProjectCard` (title links to source, tags bottom-anchored, About + Demo actions), `SocialLink`, `TechBadge`.
+    - `notes/` — **default** exports: `NoteMarkdown` (+ `callouts.tsx`), `NoteSidebar`, `RelativeTimeTag`, `CopySourceButton`.
 - `src/content/` — `eng.json` / `pt-br.json` locale dictionaries; `index.ts` exposes `locales` + `Language`. `content.test.ts` enforces recursive shape parity, real email, stable card/channel ids, owner name untranslated.
 - `src/lib/` — `language.ts` (external store, `useSyncExternalStore`, `useLocale`/`setLanguage`, localStorage `matuz.dev:language`), `motion.ts` (EASE, fadeUp, fade, staggerContainer, viewportOnce, pageVariants; default duration 1s), `notes.ts` (client fetch + session cache), `relative-time.ts`, `hash-scroller.tsx`.
 - `src/assets/` — `hero-background.webp`, `project-matuz-dev.webp`, `project-wallpaper-picker.webp` (imported in ProjectsPage, mapped by card id via `cardImages` Record — NOT in JSON).

@@ -290,5 +290,26 @@ describe('Header', () => {
 
             expect(header).toHaveClass('translate-y-0');
         });
+
+        it('keeps the hidden header out of the tab order', () => {
+            Object.defineProperty(window, 'scrollY', {
+                configurable: true,
+                value: 0,
+            });
+
+            const { container } = renderHeader();
+
+            const header = container.firstElementChild as HTMLElement;
+
+            expect(header).not.toHaveAttribute('inert');
+
+            fireScroll(200);
+
+            expect(header).toHaveAttribute('inert');
+
+            fireScroll(150);
+
+            expect(header).not.toHaveAttribute('inert');
+        });
     });
 });
