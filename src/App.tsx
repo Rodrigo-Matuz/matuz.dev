@@ -6,6 +6,7 @@ import { ContactPage } from '$/pages/ContactPage';
 import { HomePage } from '$/pages/HomePage';
 import { NotePage } from '$/pages/NotePage';
 import { NotesPage } from '$/pages/NotesPage';
+import { NotFoundPage } from '$/pages/NotFoundPage';
 import { ProjectsPage } from '$/pages/ProjectsPage';
 import { ProjectDemoPage } from '$/pages/ProjectDemoPage';
 import NoteMarkdown from '$/components/notes/NoteMarkdown';
@@ -39,6 +40,8 @@ function AppRoutes() {
                 <Route path="/notes" element={<NotesPage />} />
                 {/* Splat so nested slugs (user1/FileNameTitle) match. */}
                 <Route path="/notes/*" element={<NotePageRoute />} />
+                {/* Anything unregistered falls through to the 404 page. */}
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </AnimatePresence>
     );

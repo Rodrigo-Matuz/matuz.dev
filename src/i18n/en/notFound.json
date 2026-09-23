@@ -1,0 +1,9 @@
+{
+    "notFound": {
+        "eyebrow": "Lost address",
+        "code": "Error 404",
+        "title": "This page doesn't exist.",
+        "description": "The address you tried to open was never built here — or it moved and left no forwarding link. Nothing broke on your end; the page simply isn't there.",
+        "homeAction": "Back to home"
+    }
+}

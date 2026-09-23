@@ -18,6 +18,7 @@ import enProjects from './en/projects.json';
 import enContact from './en/contact.json';
 import enAbout from './en/about.json';
 import enNotes from './en/notes.json';
+import enNotFound from './en/notFound.json';
 
 import ptCommon from './pt-BR/common.json';
 import ptHome from './pt-BR/home.json';
@@ -25,6 +26,7 @@ import ptProjects from './pt-BR/projects.json';
 import ptContact from './pt-BR/contact.json';
 import ptAbout from './pt-BR/about.json';
 import ptNotes from './pt-BR/notes.json';
+import ptNotFound from './pt-BR/notFound.json';
 
 export const locales = {
     en: {
@@ -34,6 +36,7 @@ export const locales = {
         ...enContact,
         ...enAbout,
         ...enNotes,
+        ...enNotFound,
     },
     'pt-BR': {
         ...ptCommon,
@@ -42,6 +45,7 @@ export const locales = {
         ...ptContact,
         ...ptAbout,
         ...ptNotes,
+        ...ptNotFound,
     },
 } as const;
 

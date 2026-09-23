@@ -1,0 +1,9 @@
+{
+    "notFound": {
+        "eyebrow": "Endereço perdido",
+        "code": "Erro 404",
+        "title": "Essa página não existe.",
+        "description": "O endereço que você tentou abrir nunca foi construído aqui — ou mudou de lugar e não deixou link novo. Nada quebrou do seu lado; a página simplesmente não está aí.",
+        "homeAction": "Voltar ao início"
+    }
+}
