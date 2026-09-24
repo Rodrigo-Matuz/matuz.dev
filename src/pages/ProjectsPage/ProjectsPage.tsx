@@ -8,6 +8,7 @@ import ProjectCard from '$/components/content/ProjectCard';
 import Button from '$/components/ui/Button';
 import Eyebrow from '$/components/ui/Eyebrow';
 import { useLocale } from '$/lib/language';
+import { usePageMeta } from '$/lib/page-meta';
 import {
     fadeUp,
     pageVariants,
@@ -34,6 +35,11 @@ const cardImages: Record<string, string> = {
 export function ProjectsPage() {
     const content = useLocale();
     const { projects } = content;
+
+    usePageMeta({
+        title: `${content.owner.displayName} — ${projects.eyebrow} · matuz.dev`,
+        description: projects.description,
+    });
 
     return (
         <PageShell>

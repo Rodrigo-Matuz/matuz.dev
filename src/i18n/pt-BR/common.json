@@ -16,6 +16,10 @@
         "social": "Outros lugares",
         "skipToContent": "Pular para o conteúdo"
     },
+    "meta": {
+        "homeTitle": "Rodrigo dos Santos Lima — Desenvolvedor Full-stack · matuz.dev",
+        "description": "Portfólio de Rodrigo dos Santos Lima (Matuz), desenvolvedor full-stack no Brasil. Sites, aplicações, software desktop e os sistemas que os conectam."
+    },
     "owner": {
         "displayName": "Rodrigo dos Santos Lima",
         "location": "Brasil · Desenvolvimento full-stack"

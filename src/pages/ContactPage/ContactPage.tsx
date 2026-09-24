@@ -8,6 +8,7 @@ import BrandIcon, { isBrandIconName } from '$/components/ui/BrandIcon';
 import Eyebrow from '$/components/ui/Eyebrow';
 import SafeLink from '$/components/ui/SafeLink';
 import { useLocale } from '$/lib/language';
+import { usePageMeta } from '$/lib/page-meta';
 import {
     fadeUp,
     pageVariants,
@@ -30,6 +31,11 @@ const channelAccentClasses = [
 export function ContactPage() {
     const content = useLocale();
     const { contact } = content;
+
+    usePageMeta({
+        title: `${content.owner.displayName} — ${contact.eyebrow} · matuz.dev`,
+        description: contact.description,
+    });
 
     return (
         <PageShell>

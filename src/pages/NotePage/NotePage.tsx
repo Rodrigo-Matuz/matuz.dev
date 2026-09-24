@@ -8,6 +8,7 @@ import CopySourceButton from '$/components/notes/CopySourceButton';
 import Container from '$/components/layout/Container';
 import PageShell from '$/components/layout/PageShell';
 import { useLocale } from '$/lib/language';
+import { usePageMeta } from '$/lib/page-meta';
 import {
     fetchNoteContent,
     fetchNotesIndex,
@@ -37,6 +38,15 @@ export function NotePage({
     const [state, setState] = useState<LoadState>('loading');
     const [note, setNote] = useState<NoteContent | null>(null);
     const [notes, setNotes] = useState<NoteIndexEntry[]>([]);
+
+    // Title follows the loaded note; missing notes stay out of indexes.
+    usePageMeta({
+        title: note
+            ? `${note.title} — ${content.notes.eyebrow} · matuz.dev`
+            : `${content.owner.displayName} — ${content.notes.eyebrow} · matuz.dev`,
+        description: content.notes.title,
+        noIndex: state === 'not-found',
+    });
 
     useEffect(() => {
         let cancelled = false;

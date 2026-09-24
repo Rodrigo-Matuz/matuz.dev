@@ -10,6 +10,7 @@ import ArrowLink from '$/components/ui/ArrowLink';
 import Button from '$/components/ui/Button';
 import Eyebrow from '$/components/ui/Eyebrow';
 import { useLocale } from '$/lib/language';
+import { usePageMeta } from '$/lib/page-meta';
 import {
     fadeUp,
     pageVariants,
@@ -55,6 +56,11 @@ const correspondenceMetaHoverClasses = [
 
 export function HomePage() {
     const content = useLocale();
+
+    usePageMeta({
+        title: content.meta.homeTitle,
+        description: content.meta.description,
+    });
 
     return (
         <PageShell backgroundSrc={backgroundImage}>

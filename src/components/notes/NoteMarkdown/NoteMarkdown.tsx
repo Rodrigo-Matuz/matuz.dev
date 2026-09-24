@@ -1,5 +1,11 @@
 import type { ReactNode } from 'react';
 
+// The notes pipeline is code-split (lazy-loaded from App.tsx): KaTeX + the
+// highlight theme live in this chunk so visitors of the other pages never
+// download them.
+import 'katex/dist/katex.min.css';
+import './hljs-theme.css';
+
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeKatex from 'rehype-katex';

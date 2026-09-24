@@ -8,6 +8,7 @@ import Section from '$/components/layout/Section';
 import BrandIcon from '$/components/ui/BrandIcon';
 import Eyebrow from '$/components/ui/Eyebrow';
 import { useLocale } from '$/lib/language';
+import { usePageMeta } from '$/lib/page-meta';
 import {
     fadeUp,
     pageVariants,
@@ -44,6 +45,14 @@ export function ProjectDemoPage() {
     const { projects } = content;
     const { slug } = useParams();
     const card = projects.cards.find((candidate) => candidate.id === slug);
+
+    usePageMeta({
+        title: card
+            ? `${card.title} — ${projects.eyebrow} · matuz.dev`
+            : `${content.owner.displayName} — ${projects.eyebrow} · matuz.dev`,
+        description: card?.description ?? content.meta.description,
+        noIndex: !card,
+    });
 
     if (!card) {
         return (

@@ -1,4 +1,5 @@
 import { AnimatePresence, MotionConfig } from 'motion/react';
+import { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
 
 import { AboutPage } from '$/pages/AboutPage';
@@ -9,14 +10,34 @@ import { NotesPage } from '$/pages/NotesPage';
 import { NotFoundPage } from '$/pages/NotFoundPage';
 import { ProjectsPage } from '$/pages/ProjectsPage';
 import { ProjectDemoPage } from '$/pages/ProjectDemoPage';
-import NoteMarkdown from '$/components/notes/NoteMarkdown';
 import HashScroller from '$/lib/hash-scroller';
+
+// The markdown pipeline (react-markdown + KaTeX + highlight.js) is by far
+// the heaviest part of the bundle and is only used by notes — load it on
+// demand so the other routes ship without it.
+const NoteMarkdown = lazy(() => import('$/components/notes/NoteMarkdown'));
 
 function NotePageRoute() {
     return (
         <NotePage
-            renderContent={(content) => <NoteMarkdown content={content} />}
+            renderContent={(content) => (
+                <Suspense fallback={<MarkdownFallback />}>
+                    <NoteMarkdown content={content} />
+                </Suspense>
+            )}
         />
+    );
+}
+
+/** Placeholder while the lazy markdown chunk streams in. */
+function MarkdownFallback() {
+    return (
+        <p
+            aria-hidden="true"
+            className="mt-16 font-mono text-xs uppercase tracking-[0.18em] text-subtle"
+        >
+            …
+        </p>
     );
 }
 

@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en">
+<!-- pt-BR is the site's default language; the app keeps
+document.documentElement.lang in sync after hydration. -->
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -24,6 +26,7 @@
         />
         <meta name="theme-color" content="#702EF3" />
         <meta name="author" content="Rodrigo dos Santos Lima" />
+        <link rel="canonical" href="https://matuz.dev/" />
 
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
@@ -67,6 +70,38 @@
             href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap"
             rel="stylesheet"
         />
+
+        <!-- Structured data: identity + site search basis for search engines. -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "Person",
+                        "@id": "https://matuz.dev/#person",
+                        "name": "Rodrigo dos Santos Lima",
+                        "alternateName": "Matuz",
+                        "url": "https://matuz.dev/",
+                        "jobTitle": "Full-stack Developer",
+                        "email": "mailto:mail@matuz.me",
+                        "sameAs": [
+                            "https://www.github.com/rodrigo-matuz",
+                            "https://www.linkedin.com/in/rodrigo-santos-m0117"
+                        ],
+                        "knowsLanguage": ["pt-BR", "en"]
+                    },
+                    {
+                        "@type": "WebSite",
+                        "@id": "https://matuz.dev/#website",
+                        "url": "https://matuz.dev/",
+                        "name": "matuz.dev",
+                        "description": "Personal website and portfolio of Rodrigo dos Santos Lima (Matuz) — full-stack developer.",
+                        "inLanguage": ["pt-BR", "en"],
+                        "publisher": { "@id": "https://matuz.dev/#person" }
+                    }
+                ]
+            }
+        </script>
     </head>
     <body>
         <div id="root"></div>

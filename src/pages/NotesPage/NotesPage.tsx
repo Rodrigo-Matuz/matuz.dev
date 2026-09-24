@@ -6,6 +6,7 @@ import Container from '$/components/layout/Container';
 import PageShell from '$/components/layout/PageShell';
 import Eyebrow from '$/components/ui/Eyebrow';
 import { useLocale } from '$/lib/language';
+import { usePageMeta } from '$/lib/page-meta';
 import { fetchNotesIndex, type NoteIndexEntry } from '$/lib/notes';
 
 type LoadState = 'loading' | 'loaded' | 'error';
@@ -15,6 +16,12 @@ type LoadState = 'loading' | 'loaded' | 'error';
  */
 export function NotesPage() {
     const content = useLocale();
+
+    usePageMeta({
+        title: `${content.owner.displayName} — ${content.notes.eyebrow} · matuz.dev`,
+        description: content.notes.title,
+    });
+
     const [state, setState] = useState<LoadState>('loading');
     const [notes, setNotes] = useState<NoteIndexEntry[]>([]);
 

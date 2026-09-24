@@ -5,6 +5,7 @@ import PageShell from '$/components/layout/PageShell';
 import Button from '$/components/ui/Button';
 import Eyebrow from '$/components/ui/Eyebrow';
 import { useLocale } from '$/lib/language';
+import { usePageMeta } from '$/lib/page-meta';
 import { fadeUp, pageVariants, staggerContainer } from '$/lib/motion';
 
 /**
@@ -15,6 +16,13 @@ import { fadeUp, pageVariants, staggerContainer } from '$/lib/motion';
 export function NotFoundPage() {
     const content = useLocale();
     const { notFound } = content;
+
+    // Non-existent addresses must not enter search indexes.
+    usePageMeta({
+        title: `${notFound.title} · matuz.dev`,
+        description: notFound.description,
+        noIndex: true,
+    });
 
     return (
         <PageShell>

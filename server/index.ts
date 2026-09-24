@@ -14,6 +14,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import express from 'express';
+import compression from 'compression';
 
 import { getNoteContent, getNotesIndex, isNotesConfigured } from './notes.js';
 
@@ -24,6 +25,9 @@ const app = express();
 const port = Number(process.env.PORT ?? 3000);
 
 app.disable('x-powered-by');
+// Heroku's router does not compress responses — do it at the app layer so
+// the JS/CSS/HTML payloads ship gzip-compressed.
+app.use(compression());
 
 // Long cache for hashed build assets; no cache for HTML/API responses.
 app.use(
@@ -90,8 +94,11 @@ app.get('/api/notes/*splat', async (req, res) => {
     }
 });
 
-// SPA fallback for client-side routes.
+// SPA fallback for client-side routes. `no-cache` (not `no-store`): browsers
+// may reuse the shell only after revalidating, so new hashed asset names
+// propagate immediately after a deploy.
 app.use((_req, res) => {
+    res.setHeader('Cache-Control', 'no-cache');
     res.sendFile(path.join(distDir, 'index.html'));
 });
 

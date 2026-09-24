@@ -7,6 +7,7 @@ import Section from '$/components/layout/Section';
 import Button from '$/components/ui/Button';
 import Eyebrow from '$/components/ui/Eyebrow';
 import { useLocale } from '$/lib/language';
+import { usePageMeta } from '$/lib/page-meta';
 import {
     fadeUp,
     pageVariants,
@@ -26,6 +27,11 @@ const skillAccentClasses = ['text-primary', 'text-secondary', 'text-accent'];
 export function AboutPage() {
     const content = useLocale();
     const { about } = content;
+
+    usePageMeta({
+        title: `${content.owner.displayName} — ${about.eyebrow} · matuz.dev`,
+        description: about.whoAmI.intro,
+    });
 
     return (
         <PageShell>
