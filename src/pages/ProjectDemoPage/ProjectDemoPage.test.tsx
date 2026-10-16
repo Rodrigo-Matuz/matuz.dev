@@ -4,6 +4,7 @@ import { beforeAll, describe, expect, it, vi } from 'vitest';
 
 import { ProjectDemoPage } from './ProjectDemoPage';
 import { locales } from '$/content';
+import { setLanguage } from '$/lib/language';
 
 // jsdom lacks IntersectionObserver, which Motion's whileInView uses.
 beforeAll(() => {
@@ -105,17 +106,42 @@ describe('ProjectDemoPage', () => {
         expect(description).not.toHaveClass('max-w-3xl');
     });
 
-    it('renders the demo paragraphs', () => {
-        renderPage('wallpaper-picker');
+    it.each(
+        (['en', 'pt-BR'] as const).flatMap((language) =>
+            ['wallpaper-picker', 'kanatype', 'matuz-dev', 'nixos-config'].map(
+                (slug) => ({ language, slug }),
+            ),
+        ),
+    )(
+        'renders the $language Markdown content for $slug',
+        async ({ language, slug }) => {
+            setLanguage(language);
+            renderPage(slug);
 
-        const card = locales['pt-BR'].projects.cards.find(
-            (candidate) => candidate.id === 'wallpaper-picker',
-        );
+            const card = locales[language].projects.cards.find(
+                (candidate) => candidate.id === slug,
+            )!;
 
-        for (const paragraph of card!.demo!.paragraphs) {
-            expect(screen.getByText(paragraph)).toBeInTheDocument();
-        }
-    });
+            expect(
+                screen.getByRole('heading', { level: 1, name: card.title }),
+            ).toBeInTheDocument();
+            expect(
+                await screen.findByText(card.demo!.paragraphs[0]),
+            ).toBeInTheDocument();
+
+            for (const section of card.demo!.paragraphs.slice(1)) {
+                const heading = section.match(/^## (.+)/)?.[1];
+
+                expect(heading).toBeTruthy();
+                expect(
+                    await screen.findByRole('heading', {
+                        level: 2,
+                        name: heading,
+                    }),
+                ).toBeInTheDocument();
+            }
+        },
+    );
 
     it('embeds a YouTube iframe when the demo video is a YouTube URL', () => {
         renderPage('wallpaper-picker');

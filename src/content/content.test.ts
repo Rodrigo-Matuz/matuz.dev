@@ -162,6 +162,22 @@ describe('content locales', () => {
             }
         });
 
+        it('includes the NixOS configuration as a project in both locales', () => {
+            for (const key of languageKeys) {
+                const card = locales[key].projects.cards.find(
+                    (project) => project.id === 'nixos-config',
+                );
+
+                expect(card, key).toBeDefined();
+                expect(card?.github).toBe(
+                    'https://github.com/Rodrigo-Matuz/nixos-config',
+                );
+                expect(card?.technologies).toContain('Nix');
+                expect(card?.demo?.paragraphs.join('\n\n')).toMatch(/^## /m);
+                expect(card?.preview).toBeUndefined();
+            }
+        });
+
         it('uses the same card ids in the same order in every locale', () => {
             // Titles may be translated (product names stay, but the pt-BR
             // Discord bot title is localized); ids are the stable key.

@@ -14,7 +14,7 @@
             {
                 "id": "wallpaper-picker",
                 "title": "Wallpaper Picker UI",
-                "description": "A lightweight desktop application for browsing and applying wallpapers, designed for low resource usage and deep system integration. Media processing and thumbnail generation powered by FFmpeg, with multilingual i18n support.",
+                "description": "Browse and apply video wallpapers on Linux and Windows, with cached FFmpeg previews and platform-specific playback. Built with Svelte, TypeScript, and Rust, with five theme families and five interface languages.",
                 "technologies": [
                     "Rust",
                     "TypeScript",
@@ -27,16 +27,17 @@
                 "demo": {
                     "video": "https://youtu.be/5_KZSFZyBGA",
                     "paragraphs": [
-                        "Wallpaper Picker UI is a lightweight Linux desktop application for browsing, previewing, and applying static or animated wallpapers, with a particular focus on dynamic wallpapers through mpvpaper. The application provides a clean thumbnail-based interface, automatic video thumbnail generation with FFmpeg, and customizable wallpaper commands, allowing it to adapt to different setups and automation workflows.",
-                        "Built with Tauri 2, the application combines a Svelte and TypeScript frontend with a Rust backend for native system integration while maintaining low resource usage. It also uses Tauri's capability-based permission system to restrict filesystem access, allowing the application to access only its own configuration file and thumbnail cache.",
-                        "The interface includes custom and preset themes, manual light and dark mode switching, multilingual support, and automatic updates. FFmpeg handles media processing and thumbnail generation, while mpvpaper provides the recommended backend for animated wallpapers."
+                        "Wallpaper Picker UI turns a folder of videos into a browsable live-wallpaper library. I built it to make choosing and applying a desktop background a visual task, while keeping playback configurable for different Linux setups and adding native desktop integration on Windows.",
+                        "## Browse your collection, not filenames\n\nThe app scans your selected folder and creates video previews with FFmpeg. A persistent cache reuses existing thumbnails across launches and incremental rescans, instead of regenerating the whole library. Bounded parallel processing, progress feedback, and cache recovery make larger collections easier to manage.\n\nSearch and a responsive thumbnail grid help you find a wallpaper. Five theme families, each with light and dark variants, and interfaces in English, Brazilian Portuguese, German, French, and Spanish let you adapt the app to your desktop.",
+                        "## Playback that fits the platform\n\n- On Linux, configurable commands connect the app to tools such as `mpvpaper`, so you can adapt playback to your environment.\n- On Windows, a Rust integration hosts an `mpv` window behind the desktop icons and manages replacing and stopping the wallpaper.\n- FFmpeg generates previews; playback requires the appropriate external player. Windows needs `mpv` on the system path, and its managed wallpaper stops when the app exits.\n\nThe published builds target Linux x86_64 and Windows x64. Linux compatibility depends on the selected wallpaper tool and desktop environment.",
+                        "## Native integration and delivery\n\nA Svelte 5 and TypeScript interface communicates with a Rust backend through Tauri 2. The backend handles filesystem scanning, media processing, saved configuration, and platform-specific playback. NixOS and Home Manager modules provide another installation path alongside Linux packages and a Windows installer.\n\nRelease checks run in the background. Update handling distinguishes supported Windows installations from Linux packages, which use manual or package-manager updates. The Windows update flow checks signed payloads and guards against installing while settings are unsaved or background work is pending; full installer-and-relaunch validation remains pending.\n\nLogic, component, and Rust tests run alongside Linux and Windows CI. The project combines media processing, persistent state, native desktop integration, and cross-platform packaging in a utility I continue to develop."
                     ]
                 }
             },
             {
                 "id": "kanatype",
-                "title": "Kanatype",
-                "description": "A lightweight desktop application for learning and practicing Hiragana, Katakana, and Kanji through interactive exercises, character filters, and a reference table.",
+                "title": "KanataType",
+                "description": "Offline Japanese practice for Windows and Linux, with kana drills, 2,211 kanji for meaning study, and a searchable reference. English and Brazilian Portuguese support includes answer grading, hints, and search.",
                 "technologies": [
                     "Rust",
                     "TypeScript",
@@ -48,16 +49,17 @@
                 "demo": {
                     "video": "https://youtu.be/GRT1OzZZ4y0",
                     "paragraphs": [
-                        "Kanatype is a desktop application focused on learning and practicing Japanese characters, offering separate or combined practice modes for Hiragana, Katakana, and Kanji.",
-                        "The application features an interactive interface with immediate feedback, intelligent character filters, and a reference table for quick lookup. It also includes light and dark themes and a responsive interface.",
-                        "Built with Tauri 2, the project combines a React, TypeScript, and Vite frontend with a Rust backend, providing a lightweight application with native system integration and a capability-based permission model."
+                        "KanataType is an offline desktop app for practicing Japanese characters through short typing exercises. It brings Hiragana, Katakana, and Kanji practice together with a searchable reference, so you can focus on a script or study level and look up unfamiliar characters without leaving the app.",
+                        "## Practice with useful feedback\n\nChoose kana drills, curated kanji reading prompts, or a separate kanji meaning exercise. Hints, skips, immediate answer feedback, and a session streak support repeated practice. The exercise avoids immediately repeating the same character when alternatives are available.\n\nThe bundled meaning-study library contains **2,211 kanji**, grouped into unofficial JLPT-aligned N5–N1 levels. Study one level or include the preceding levels. Reading practice uses a separate set of 140 curated romaji prompts; the larger meaning library does not imply complete reading coverage.",
+                        "## Localization beyond the interface\n\nEnglish and Brazilian Portuguese support extends to answer validation, hints, and reference searches. Portuguese meaning answers accept accent variations, while romaji answers keep their spelling rules. The app remembers language and practice preferences.\n\n- Search the reference by character, Japanese dictionary reading, meaning, or study level.\n- Practice with bundled data without a network connection.\n- Use Portuguese meaning practice for 1,929 supported kanji; entries without Portuguese meanings remain available in the reference but are excluded from that practice mode.\n\nJLPT groupings are study aids, not official exam requirements. Session counts and streaks give immediate feedback rather than long-term mastery tracking.",
+                        "## Building and shipping the learning tool\n\nReact and TypeScript handle the exercises, filtering, localization, and reference UI. Tauri 2 provides the desktop shell and native window integration, with Vite and Tailwind CSS supporting the frontend. A reproducible dictionary import process uses pinned, checksum-validated source snapshots and documents the data attribution.\n\nAutomated checks cover grading, dataset integrity, translations, and practice interactions. The release workflow validates versions, runs tests and a frontend build, then produces Windows and Linux installers. Nix and Home Manager packaging makes the app available to declarative Linux setups too. The engineering work spans interaction design, offline data preparation, localization, and desktop delivery."
                     ]
                 }
             },
             {
                 "id": "matuz-dev",
                 "title": "matuz.dev",
-                "description": "This very site — a bilingual portfolio built as an SPA with its own design system, restrained editorial motion, and a fully tested component library.",
+                "description": "A bilingual portfolio and publishing platform that turns Obsidian notes into a public technical journal. Custom React design system, an Express API, accessible navigation, and automated quality checks.",
                 "technologies": [
                     "React",
                     "TypeScript",
@@ -69,9 +71,31 @@
                 "preview": "/",
                 "demo": {
                     "paragraphs": [
-                        "This site is itself one of my projects: a bilingual (pt-BR / English) React SPA built around its own design system — display serif headings, mono micro-labels, and a restrained blue-violet palette — along with centralized animation presets that respect prefers-reduced-motion.",
-                        "Everything is composed from a folder-per-component library with colocated tests and barrel exports, covering layout primitives, UI blocks, and content cards. The notes system fetches Markdown at runtime from a private Obsidian vault through an Express API with a secure token and renders callouts, mathematics, syntax highlighting, and more.",
-                        "The test suite runs more than 230 tests with Vitest and Testing Library, while CI blocks every push on linting, tests, and production builds. You're looking at the demo right now."
+                        "matuz.dev is my bilingual portfolio and technical journal. I built it to give visitors a clear view of my work and to publish technical notes directly from my Obsidian workflow, without maintaining a separate CMS.",
+                        "## A portfolio with its own visual language\n\nThe interface uses a custom design system built with React, TypeScript, and Tailwind CSS: serif headings, compact monospace labels, reusable components, and coordinated page transitions. Visitors can switch between Portuguese and English without leaving the page. Motion respects `prefers-reduced-motion`, while keyboard navigation, a skip link, and focus handling keep the interface usable without a mouse.",
+                        "## Publishing from Obsidian\n\nAn Express API reads a designated folder in a private GitHub-hosted vault and publishes its Markdown notes. The GitHub credential stays on the server; readers only receive the public note content. Caching and ETag revalidation reduce repeated requests.\n\n- Render code with syntax highlighting, mathematical notation with KaTeX, tables, and Obsidian callouts.\n- Browse notes in a sidebar and share individual notes through stable, path-derived short IDs.\n- Copy a note's Markdown source to reuse a snippet or continue reading in another tool.",
+                        "## Engineering behind the pages\n\nThe React SPA uses Vite for builds and an Express production server on Heroku. The Markdown renderer loads on demand, responses use gzip compression, and hashed assets have long-lived cache headers. Route-specific metadata, structured data, a sitemap, and `robots.txt` provide the site's search and sharing metadata.\n\nVitest and Testing Library cover components, page behavior, and translation consistency. GitHub Actions runs linting, tests, and a production build on pushes to `master` and pull requests. This project brings together interface design, API integration, accessibility, testing, and deployment in a site I maintain and use."
+                    ]
+                }
+            },
+            {
+                "id": "nixos-config",
+                "title": "NixOS Config",
+                "description": "A Linux workstation defined in code, with modular app configurations and a portable installer. Choose your setup, preview it in a VM, and rebuild it from pinned Nix dependencies.",
+                "technologies": [
+                    "Nix",
+                    "NixOS",
+                    "Home Manager",
+                    "Bash",
+                    "flake-parts"
+                ],
+                "github": "https://github.com/Rodrigo-Matuz/nixos-config",
+                "demo": {
+                    "paragraphs": [
+                        "NixOS Config turns my Linux workstation setup into version-controlled code. Instead of rebuilding a desktop through manual installation and scattered settings, I declare the system, applications, and user environment together. The repository also includes a separate portable profile for people who want to try the setup or reuse individual app configurations.",
+                        "## A modular desktop\n\nNixOS manages the system, Home Manager manages user applications and settings, and Nix flakes pin the dependency sources. Each app has its own module and documentation. Active app folders are discovered automatically; moving a module to `home/optional/` keeps its configuration available without enabling it on my workstation.\n\nThe setup includes modules for Hyprland and Caelestia, development tools, and desktop applications. It also integrates my Wallpaper Picker UI and KanataType projects through flake inputs.",
+                        "## Try it before changing your system\n\nA Bash installer separates the original workstation profile from a configurable `#install` profile. It asks for the user's account, hostname, time zone, and module choices instead of copying my machine's identity.\n\n- Preview the selected profile in a separate NixOS VM without activating it on the host.\n- Install from a NixOS live USB onto filesystems you have already prepared and mounted.\n- Apply the portable profile to an existing NixOS installation using systemd-boot after a dry-build and explicit confirmation.\n- Check an expected Git commit before evaluating the downloaded configuration.\n\nThe installer currently targets x86_64 NixOS systems. It does not partition or format disks, and a VM preview does not validate physical hardware compatibility. Existing-system mode changes the active configuration and requires a recovery plan.",
+                        "## Configuration as an engineering project\n\nBuilt with Nix, Home Manager, flake-parts, and Bash, the project separates machine-specific hardware from reusable system and app modules. Optional encrypted-secret configuration is separate from installation; users sign in to their own applications afterward. The result is a documented setup I can evolve through Git, rebuild, and share without asking someone else to adopt every choice on my workstation.\n\nRead the [repository and installation guide](https://github.com/Rodrigo-Matuz/nixos-config/blob/main/install/README.md) before trying the portable profile."
                     ]
                 }
             },
