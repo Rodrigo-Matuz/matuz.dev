@@ -29,6 +29,13 @@ app.disable('x-powered-by');
 // the JS/CSS/HTML payloads ship gzip-compressed.
 app.use(compression());
 
+// Short, memorable download URL for the public NixOS installer.
+const nixosInstallerUrl =
+    'https://raw.githubusercontent.com/Rodrigo-Matuz/nixos-config/main/install.sh';
+app.get('/nixos-installscript', (_req, res) => {
+    res.redirect(302, nixosInstallerUrl);
+});
+
 // Long cache for hashed build assets; no cache for HTML/API responses.
 app.use(
     express.static(distDir, {
