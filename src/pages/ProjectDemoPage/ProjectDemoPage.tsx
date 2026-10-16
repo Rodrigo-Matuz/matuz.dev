@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Link, useParams } from 'react-router';
 import { motion } from 'motion/react';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
@@ -15,6 +16,9 @@ import {
     staggerContainer,
     viewportOnce,
 } from '$/lib/motion';
+
+// Reuse the notes renderer without adding its Markdown dependencies to the main bundle.
+const NoteMarkdown = lazy(() => import('$/components/notes/NoteMarkdown'));
 
 /** Extract a YouTube video ID from common URL shapes; null when not YouTube. */
 function youtubeId(href: string): string | null {
@@ -180,16 +184,28 @@ export function ProjectDemoPage() {
                         >
                             <motion.div
                                 variants={fadeUp}
-                                className="max-w-3xl border-t-2 border-primary pt-6"
+                                className="w-full min-w-0 break-words border-t-2 border-primary pt-6"
                             >
-                                {card.demo?.paragraphs.map((paragraph) => (
-                                    <p
-                                        key={paragraph}
-                                        className="mt-5 text-base leading-7 text-muted first:mt-0 sm:text-lg sm:leading-8"
-                                    >
-                                        {paragraph}
-                                    </p>
-                                ))}
+                                <Suspense
+                                    fallback={card.demo?.paragraphs.map(
+                                        (paragraph) => (
+                                            <p
+                                                key={paragraph}
+                                                className="mt-4 text-base leading-7 text-muted first:mt-0"
+                                            >
+                                                {paragraph}
+                                            </p>
+                                        ),
+                                    )}
+                                >
+                                    <NoteMarkdown
+                                        content={
+                                            card.demo?.paragraphs.join(
+                                                '\n\n',
+                                            ) ?? ''
+                                        }
+                                    />
+                                </Suspense>
                             </motion.div>
 
                             {card.demo?.video && (

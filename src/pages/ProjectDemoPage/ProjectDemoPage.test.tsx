@@ -50,6 +50,61 @@ describe('ProjectDemoPage', () => {
         }
     });
 
+    it('renders Markdown in project descriptions using the notes typography', async () => {
+        const card = locales['pt-BR'].projects.cards.find(
+            (candidate) => candidate.id === 'wallpaper-picker',
+        )!;
+        const paragraphs = card.demo!.paragraphs;
+
+        card.demo!.paragraphs = [
+            '*Italic* and **bold** with `inline code`.',
+            '```ts\nconst answer = 42;\n```',
+            '- First item\n- Second item\n\n[Documentation](https://example.com)',
+        ];
+
+        try {
+            const { container } = renderPage('wallpaper-picker');
+
+            expect(
+                await screen.findByText(
+                    'Italic',
+                    { selector: 'em' },
+                    { timeout: 10000 },
+                ),
+            ).toHaveClass('italic');
+            expect(
+                screen.getByText('bold', { selector: 'strong' }),
+            ).toHaveClass('text-primary');
+            expect(
+                screen.getByText('inline code', { selector: 'code' }),
+            ).toBeInTheDocument();
+            expect(container.querySelector('pre code')).toHaveTextContent(
+                'const answer = 42;',
+            );
+            expect(
+                container.querySelector('pre .hljs-keyword'),
+            ).toHaveTextContent('const');
+            expect(
+                screen.getByText('First item', { selector: 'li' }),
+            ).toBeInTheDocument();
+            expect(
+                screen.getByRole('link', { name: 'Documentation' }),
+            ).toHaveAttribute('href', 'https://example.com');
+        } finally {
+            card.demo!.paragraphs = paragraphs;
+        }
+    });
+
+    it('uses the full content width for the project description', () => {
+        const { container } = renderPage('wallpaper-picker');
+        const description = container.querySelector(
+            '#project-demo .border-t-2',
+        );
+
+        expect(description).toHaveClass('w-full', 'min-w-0', 'break-words');
+        expect(description).not.toHaveClass('max-w-3xl');
+    });
+
     it('renders the demo paragraphs', () => {
         renderPage('wallpaper-picker');
 
