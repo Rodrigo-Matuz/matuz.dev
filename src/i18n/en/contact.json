@@ -4,7 +4,7 @@
         "title": "Let's talk.",
         "description": "Whether it's a project, a question, or just to say hi — here's where to find me.",
         "emailNote": "Email is the best way to reach me — I have a catch-all domain, so anything @matuz.me lands in my inbox.",
-        "discordNote": "My Discord is a personal space, but anyone is welcome to message me there (@matuz).",
+        "discordNote": "My Discord is a personal space, but anyone is welcome to message me there.",
         "channels": [
             {
                 "id": "email",

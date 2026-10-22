@@ -4,7 +4,7 @@
         "title": "Vamos conversar.",
         "description": "Seja um projeto, uma dúvida ou só um oi — é aqui que você me encontra.",
         "emailNote": "E-mail é a melhor forma de falar comigo — tenho um domínio catch-all, então qualquer coisa @matuz.me chega na minha caixa de entrada.",
-        "discordNote": "Meu Discord é um espaço pessoal, mas qualquer pessoa é bem-vinda para me chamar lá (@matuz).",
+        "discordNote": "Meu Discord é um espaço pessoal, mas qualquer pessoa é bem-vinda para me chamar lá",
         "channels": [
             {
                 "id": "email",
